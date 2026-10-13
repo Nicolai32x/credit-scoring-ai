@@ -218,3 +218,18 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# Project datasets: enable tracking selectively after size/license review
+data/*
+!data/README.md
+
+# Generated results; keep descriptions and empty folder structure
+results/*
+!results/README.md
+!results/figures/
+results/figures/*
+!results/figures/.gitkeep
+
+# Generated submission packages; keep the checklist
+submission/*
+!submission/README.md

@@ -1,0 +1,6 @@
+# Core packages; record versions before starting shared experiments.
+pandas
+numpy
+scikit-learn
+matplotlib
+jupyterlab
