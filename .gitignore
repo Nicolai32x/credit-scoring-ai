@@ -219,9 +219,12 @@ __marimo__/
 # Streamlit
 .streamlit/secrets.toml
 
-# Project datasets: enable tracking selectively after size/license review
+# Project datasets: track only the reviewed public UCI originals and documentation
 data/*
 !data/README.md
+!data/LICENSE.md
+!data/german.data
+!data/german.doc
 
 # Generated results; keep descriptions and empty folder structure
 results/*

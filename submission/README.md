@@ -14,6 +14,7 @@ late submission costs 50% of the points.
 - [ ] Practical demo rehearsed to fit 5-10 minutes
 - [ ] Prompts and relevant AI outputs included
 - [ ] Dataset included and redistribution rights checked
+- [ ] UCI originals, dataset attribution, license link, and descriptions of data changes included
 - [ ] Code, notebooks, and dependencies included
 - [ ] Startup instructions and reproducibility checked on a second computer
 - [ ] All team members can explain their contributions and the results

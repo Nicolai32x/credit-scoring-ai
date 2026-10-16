@@ -2,7 +2,15 @@
 
 Team project for **Introduction to AI in Business**. We investigate how a
 credit-scoring model can support a business decision and assess its results,
-costs, and limitations. The dataset and models have not yet been selected.
+costs, and limitations. Statlog (German Credit Data) is the proposed dataset;
+the team will confirm the plan at the kickoff. No models have been trained.
+
+## First team meeting
+
+Start with [the project plan and meeting agenda](PROJECT_PLAN.md) for Tuesday,
+20 October 2026 (time/location TBD). The preparation includes a
+[dataset guide](data/README.md) and a [seven-input demo sketch](demo/README.md).
+No installation is required to read these files or join the discussion.
 
 ## Getting started
 
@@ -47,13 +55,15 @@ only descriptions of their intended purpose.
 
 | Area | Owner |
 | --- | --- |
-| Data and exploration | TBD |
-| Modeling and evaluation | TBD |
-| Report and literature | TBD |
-| Presentation and demo | TBD |
+| Technical implementation (data, modeling, demo) | Nicolai, proposed |
+| Business and literature | TBD |
+| Results interpretation and economics | Philipp, proposed |
+| Risks and implementation recommendations | TBD |
 
-Each presentation slide must name its responsible author in the footer.
-Also document ownership of report chapters.
+Each presentation slide must name its actual responsible author(s) in the footer.
+Record the presenter separately if different. Also document report-chapter
+ownership and AI assistance. Proposed roles are detailed in the
+[presentation plan](presentation/outline.md) and will be confirmed together.
 
 ## Course requirements
 
