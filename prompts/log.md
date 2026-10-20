@@ -160,3 +160,28 @@ This template is not yet a documented generative AI experiment.
 - Checks: 20 tests cover source/split integrity, preprocessing, error-cost
   direction and validation coverage/isolation using invented fixtures. Notebook
   execution and figures were checked. Final decision and human review are pending.
+
+## 2026-10-20: Frozen model, final assessment and saved pipeline
+
+- Requested by: Nicolai, continuing after the model comparison. This is an
+  English summary, not a verbatim prompt transcript.
+- Tool: AI coding assistant; model/version not recorded here.
+- Decision: retain logistic regression with balanced class weights, C=1 and the
+  original score threshold 0.5. It leads narrowly on validation balanced accuracy
+  and illustrative costs and is simpler than the forest. No further parameter
+  or threshold search was conducted. False rejections remain an accepted
+  limitation of this teaching example, not an operational banking policy.
+- Sequence: recorded `model_decision.json` and committed/pushed it as `d29c258`
+  before opening the test partition for prediction. Then fitted the complete
+  chosen pipeline on 800 development cases and assessed 200 test cases once.
+  The comparison's source files and outputs were preserved.
+- Outputs: saved pipeline/threshold bundle, final prediction CSV, test report
+  with provenance, and a confusion figure. Notebook 02's final section only
+  reads these outputs; it does not rerun final training or test prediction.
+- Findings: test accuracy 0.730, balanced accuracy 0.740 and bad-risk recall
+  46/60 (0.767), with 14 false approvals and 40 false rejections. Illustrative
+  cost 110 units versus 300 for the always-good reference; not currency/profit.
+- Checks: 23 tests passed, including explicit threshold use and refusal of
+  repeated final assessment before any data loading. The saved artifact and
+  report are checked against the frozen decision. No model or threshold changes
+  are made after seeing the test results. Human review and Streamlit work remain.

@@ -6,7 +6,9 @@ the fixed 800/200 development/test split are implemented. Notebook 01 contains
 development-only exploratory analysis. Notebook 02 demonstrates encoding and
 scaling learned from 640 development training cases and applied unchanged to
 160 validation cases. It then compares the majority baseline, logistic regression
-and random forest using all five development folds. No test evaluation has run.
+and random forest using all five development folds. A separate final assessment
+of the frozen logistic-regression pipeline is complete; notebook 02 section 6
+reads its saved results. The pipeline was fitted on development data only.
 
 ## Source, files, and license
 
@@ -64,11 +66,13 @@ Run `python code/preprocessing.py` using the project environment to validate
 the existing split. It creates the manifest only if absent and never overwrites
 an existing manifest. Do not delete or edit it to try new splits. For notebook
 exploration, use `load_partition()` (development by default). Later final
-evaluation can explicitly request `load_partition("test")`.
+evaluation explicitly requested `load_partition("test")` once, after the model
+decision was frozen. Use saved final outputs rather than repeating that step.
 
 Loading uses the original source plus the manifest, not separate edited CSVs.
 Basic test-row counts were checked for split integrity; no test features were
-explored and no test-set model performance was evaluated. The default loader helps
+explored during development. Final test performance was assessed only after
+freezing model decisions. The default loader helps
 the workflow; it does not technically prevent someone from opening test data.
 
 The earlier structural checks below examined the complete downloaded file

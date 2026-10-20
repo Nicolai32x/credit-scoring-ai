@@ -14,8 +14,9 @@ notebook 01 now includes development-only exploration, tables, four figures and
 interpretation. Reusable encoding/scaling pipelines are implemented and demonstrated
 on one training/validation fold in notebook 02. That notebook also compares a
 majority baseline, logistic regression and random forest in five development-only
-validation folds. Results and figures are available; a final model, test
-evaluation and working Streamlit app are still pending.
+validation folds. Logistic regression and threshold 0.5 were frozen before a
+one-time test assessment. The final pipeline and test results are saved;
+the Streamlit app is still pending.
 The report is written in Word in Teams, and a Canva presentation template is ready.
 
 Start with [the project plan](PROJECT_PLAN.md), [dataset guide](data/README.md),
@@ -54,7 +55,8 @@ Open the notebooks in numerical order. Notebook 01 can run end to end to load
 and explore development data and export the descriptive figures and summary.
 Its executed outputs are saved for reading on GitHub. Notebook 02 explains and
 demonstrates preprocessing in sections 1-2 and runs the model comparison in
-sections 3-5, including validation metrics, error costs and figures.
+sections 3-5, including validation metrics, error costs and figures. Section 6
+reads the saved final test assessment without fitting or rerunning the test.
 
 `requirements.in` lists the six direct dependencies; `requirements.txt` pins the
 resolved dependencies with platform markers. Install from `requirements.txt`
@@ -84,8 +86,8 @@ Do not delete it to try alternative partitions. Notebook 01 calls
 `load_partition()` with its development-only default. Test access is explicit
 and reserved for final evaluation. See [the dataset guide](data/README.md).
 
-Descriptive findings, development-only model metrics and reusable figures are
-indexed in [`results/README.md`](results/README.md). None are final test results.
+Descriptive findings, validation metrics and final test results are kept distinct
+in [`results/README.md`](results/README.md), together with reusable figures.
 
 ## Structure
 
@@ -107,7 +109,13 @@ uses the same preprocessing as training. Loading and pipeline factories live in
 `code/preprocessing.py`, the development comparison in `code/train.py`, and
 metric/error-cost calculations in `code/evaluate.py`. Running `code/train.py`
 regenerates validation CSV/JSON outputs; run notebook 02 for figures as well.
-Neither path evaluates the reserved test set or saves a final fitted model.
+Neither comparison path evaluates the test set or saves a final fitted model.
+The separate `code/final_model.py` assessment has already been run once; read
+`results/final_test.json` or notebook 02 section 6 instead of repeating it.
+`results/selected_pipeline.joblib` contains the complete development-trained
+pipeline and explicit threshold for the future demo. Load only the trusted
+project artifact, using the pinned environment; joblib files can execute code
+when loaded. The assessment script refuses to overwrite existing final outputs.
 
 ## Collaboration
 

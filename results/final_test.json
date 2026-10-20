@@ -1,0 +1,56 @@
+{
+  "assessed_at_utc": "2026-10-20T12:33:07.997106+00:00",
+  "partition": "test",
+  "training_partition": "development",
+  "training_cases": 800,
+  "test_cases": 200,
+  "model": "logistic_regression",
+  "threshold": 0.5,
+  "threshold_tuned_on_test": false,
+  "model_refitted_on_test": false,
+  "decision_sha256": "ba22245f8d9843041e4f76858152cc601b38849a5744d854e48accf15aa50121",
+  "pipeline_sha256": "c8ba0492a4c90aa219d97b7959137f7894be45ee6f6b364810a8e88308f78166",
+  "source_sha256": "b21f3d81db8071257d5ff1deaeba1fd4303b62712e6fcc9715c7a86202cb5871",
+  "split_sha256": "a4a21bbfb2351908ba0d1b0a7fd6b408bd8f9acf0daa4263f8e46d628fb3df09",
+  "assessment_code_sha256": "e7be3558202ba003871d2a1eb2bff5026731862673967d917543e191adc1b9eb",
+  "versions": {
+    "python": "3.12.13",
+    "numpy": "2.5.4",
+    "pandas": "3.0.6",
+    "scikit_learn": "1.9.1",
+    "joblib": "1.6.0"
+  },
+  "selected_model_metrics": {
+    "accuracy": 0.73,
+    "balanced_accuracy": 0.7404761904761905,
+    "bad_precision": 0.5348837209302325,
+    "bad_recall": 0.7666666666666667,
+    "bad_f1": 0.6301369863013698,
+    "roc_auc": 0.8101190476190476,
+    "cost_per_case": 0.55,
+    "true_good": 100,
+    "false_rejections": 40,
+    "false_approvals": 14,
+    "true_bad": 46
+  },
+  "always_good_reference_metrics": {
+    "accuracy": 0.7,
+    "balanced_accuracy": 0.5,
+    "bad_precision": 0.0,
+    "bad_recall": 0.0,
+    "bad_f1": 0.0,
+    "roc_auc": 0.5,
+    "cost_per_case": 1.5,
+    "true_good": 140,
+    "false_rejections": 0,
+    "false_approvals": 60,
+    "true_bad": 0
+  },
+  "cost_assumption": "5 per false approval, 1 per false rejection; not currency",
+  "limitations": [
+    "One historical random test split with only 60 bad-risk cases.",
+    "No threshold or model changes should be made using these test results.",
+    "Scores are not calibrated probabilities of future default.",
+    "No demonstrated fairness, profitability, or suitability for real lending."
+  ]
+}

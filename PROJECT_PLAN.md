@@ -6,7 +6,9 @@ deadlines have been recorded. The Python environment, named data loader and
 fixed development/test split are ready. Development-only exploration is complete
 in notebook 01. Preprocessing factories and a single-fold demonstration are ready
 in notebook 02, along with the first fixed-configuration five-fold model
-comparison. Final model selection, test evaluation and the app are still pending.
+comparison. Logistic regression with threshold 0.5 was frozen, refitted on the
+800 development cases, and assessed once on the 200 test cases. The saved
+pipeline is ready; the Streamlit app is still pending.
 
 ## What we want to build
 
@@ -20,8 +22,8 @@ It will illustrate the model, not make real lending decisions.
 Read [the dataset guide](data/README.md) and [the demo sketch](demo/README.md).
 Data loading, target mapping and the fixed split are implemented. Feature
 encoding/scaling and a first model comparison are implemented. Descriptive
-statistics, plots and validation metrics use development data only; final test
-performance has not been evaluated and the application remains pending.
+statistics, plots and validation metrics use development data only. A separate
+final test assessment is complete; the application remains pending.
 
 ## Planned experiment
 
@@ -49,8 +51,14 @@ The score threshold is 0.5; no parameter or threshold search has been performed.
 Logistic regression leads provisionally on balanced accuracy (0.709 versus
 0.702 for the forest), but the small difference does not establish superiority.
 See [validation results and limitations](results/README.md). Review this simple
-comparison before deciding whether any limited tuning is worthwhile; record
-all later trials. Freeze the final choice before opening the test partition.
+comparison informed the frozen decision: retain logistic regression and the
+original threshold 0.5 without further tuning. The decision was committed before
+the one-time test assessment. No model or threshold changes follow test results.
+
+Final test: accuracy 0.730, balanced accuracy 0.740, bad-risk recall 0.767 and
+ROC-AUC 0.810. The model detects 46/60 bad risks but falsely flags 40/140 good
+risks. This is a historical teaching result, not lending approval. The saved
+pipeline remains fitted on development cases only and will be reused by the demo.
 
 Keep preprocessing inside each training fold: encode categories, scale numeric
 inputs for logistic regression, and fit any learned transformations without

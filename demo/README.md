@@ -1,10 +1,15 @@
 # Demo sketch
 
-Planned demo; the Streamlit app and final saved scoring pipeline are still pending.
-The first development-only model comparison is available in notebook 02;
-model/threshold decisions and final test evaluation have not been completed.
+Planned demo; the Streamlit app is still pending. The complete saved pipeline
+is available in `results/selected_pipeline.joblib`: logistic regression,
+development-trained preprocessing, and explicit score threshold 0.5. Model
+decisions were frozen before final testing; see notebook 02 and the results guide.
 The existing `app.py` remains a placeholder. Nicolai, the technical lead,
 will connect a saved preprocessing/model pipeline to a small Streamlit form.
+Use `code/final_model.py`'s `predict_risk(bundle, inputs)` helper to apply the saved
+threshold consistently. Do not call training or final assessment from the app.
+The bundle contains the pipeline, threshold, seven feature names, training count,
+decision checksum and scikit-learn version. Reuse it without fitting on test cases.
 
 ## Planned interface
 

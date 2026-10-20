@@ -1,10 +1,9 @@
 # Final presentation plan
 
 Updated on 20 October 2026. This is the course-presentation plan, not the
-kickoff agenda. The shared Canva template is available; final content and model
-test results are still pending. Preliminary development-only model results are
-available in `results/README.md`; label them as validation results when drafting
-slides. The course requires a 20-25 minute
+kickoff agenda. The shared Canva template is available; final slide content is
+still pending. Validation and final test results are available separately in
+`results/README.md`; distinguish them when drafting slides. The course requires a 20-25 minute
 presentation and a 5-10 minute practical demo; this plan budgets 24 + 8 minutes.
 Confirm with the lecturer whether the demo has a separate time slot.
 
