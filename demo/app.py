@@ -14,6 +14,7 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "code"))
 from final_model import predict_risk  # noqa: E402
 from preprocessing import CATEGORICAL_FEATURES, FEATURE_COLUMNS  # noqa: E402
+from genai import generate_explanation, get_api_key  # noqa: E402
 
 CATEGORY_LABELS = {
     "purpose": {
@@ -85,6 +86,53 @@ def category_input(feature, supported):
     )
 
 
+def render_genai_panel():
+    """Optional explanation of aggregate results, separate from applicant inputs."""
+    st.subheader("AI explanation of our results")
+    st.write("Explain the overall evaluation in plain English. This does not explain "
+             "the individual applicant above or change the risk prediction.")
+    key = get_api_key()
+    if st.button("Generate AI explanation", key="generate_explanation", disabled=not bool(key)):
+        try:
+            with st.spinner("Generating an explanation of the saved evaluation results..."):
+                response = generate_explanation(api_key=key)
+            if response["status"] == "completed" and response["output_text"].strip():
+                st.session_state["ai_explanation"] = response["output_text"]
+            else:
+                st.warning("The explanation was incomplete. Use a recorded example below.")
+        except Exception:
+            st.warning("The AI service is unavailable. The credit-risk demo still works; "
+                       "use a recorded example below.")
+    if not key:
+        st.caption("Live explanations need a locally configured OpenAI API key. "
+                   "Recorded experiment examples work without a key.")
+    if "ai_explanation" in st.session_state:
+        st.caption("Live AI-generated explanation · check it against the reported results")
+        st.write(st.session_state["ai_explanation"])
+    with st.expander("Recorded experiment: simple vs structured prompt"):
+        variant = st.radio("Prompt version", ["simple", "structured"], horizontal=True,
+                           key="recorded_prompt_version")
+        attempts_path = ROOT / "results" / "genai" / "attempts.jsonl"
+        if attempts_path.exists():
+            records = [json.loads(line) for line in attempts_path.read_text(encoding="utf-8").splitlines() if line]
+            matching = [record for record in records if record.get("variant") == variant
+                        and record.get("status") == "completed" and record.get("output_text")]
+            if matching:
+                record = matching[0]
+                st.caption(f"Recorded API output · {record['returned_model']} · "
+                           f"{record['created_at_utc']} · repetition {record['repetition']} of 3")
+                st.text(record["prompt"].split("\n\nRESULTS (JSON):")[0])
+                st.write(record["output_text"])
+                st.caption("This is a saved real response, not a new API call. All six "
+                           "attempts and their assessment are available in the repository.")
+            else:
+                st.info("No completed recorded example is available for this prompt yet.")
+        else:
+            st.info("The experiment has not been run yet. No example answers have been invented.")
+    st.caption("Only aggregate evaluation facts are sent to OpenAI after clicking Generate. "
+               "Applicant form values are not included. Live requests incur API usage charges.")
+
+
 def main():
     st.set_page_config(page_title="Credit Risk Demo", page_icon="📊", layout="centered")
     st.title("Credit Risk Demo")
@@ -113,7 +161,7 @@ def main():
             employment = category_input("employment_duration", supported)
         st.caption("DM is the historical currency, not EUR. Ranges follow development data; "
                    "an allowed combination may still be poorly represented.")
-        submitted = st.form_submit_button("Predict risk class", type="primary")
+        submitted = st.form_submit_button("Predict risk class", type="primary", key="predict_class")
 
     if submitted:
         values = {
@@ -123,12 +171,18 @@ def main():
         }
         inputs = pd.DataFrame([values], columns=bundle["feature_columns"])
         prediction = int(predict_risk(bundle, inputs).predicted_bad_risk.iloc[0])
+        st.session_state["last_result"] = {"values": values, "prediction": prediction}
+
+    if "last_result" in st.session_state:
+        values = st.session_state["last_result"]["values"]
+        prediction = st.session_state["last_result"]["prediction"]
         st.subheader("Result for the submitted example")
         st.info(f"Predicted class: {'Bad risk' if prediction else 'Good risk'}")
         st.caption("This is a model class, not a credit approval or a probability of default. "
                    "Submit again after changing inputs.")
         with st.expander("Submitted inputs"):
-            readable = {"Credit amount (historical DM)": amount, "Duration (months)": duration}
+            readable = {"Credit amount (historical DM)": values["credit_amount"],
+                        "Duration (months)": values["duration_months"]}
             readable.update({FIELD_LABELS[name]: CATEGORY_LABELS[name][values[name]]
                              for name in CATEGORICAL_FEATURES})
             st.table(pd.DataFrame(readable.items(), columns=["Input", "Submitted value"]).astype(str))
@@ -144,6 +198,7 @@ def main():
                  "some categories are rare, and fairness has not been demonstrated.")
         st.write("The saved logistic-regression pipeline was trained on 800 development cases "
                  "with the same seven inputs. This app does not retrain it or change its threshold.")
+    render_genai_panel()
     st.caption("Source: Hofmann (1994), UCI Statlog (German Credit Data), CC BY 4.0.")
     st.markdown("[Dataset and attribution](https://doi.org/10.24432/C5NC77)")
 

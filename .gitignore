@@ -218,6 +218,8 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+.env
+.env.*
 
 # Temporary lock files created while Word documents are open
 ~$*.docx
@@ -242,6 +244,7 @@ results/*
 !results/selected_pipeline.joblib
 !results/final_test_predictions.csv
 !results/final_test.json
+!results/genai/
 !results/figures/
 results/figures/*
 !results/figures/.gitkeep

@@ -7,3 +7,4 @@ matplotlib
 jupyterlab
 ipykernel
 streamlit>=1.40
+openai

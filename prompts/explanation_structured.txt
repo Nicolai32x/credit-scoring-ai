@@ -1,0 +1,5 @@
+Explain these credit-scoring results to a bank manager in plain English.
+Include the number of bad risks detected out of all actual bad risks and the number of good risks incorrectly flagged out of all actual good risks. Explain both missed bad risks and incorrectly flagged good risks.
+Distinguish classification accuracy from the ability to detect bad risks. If you mention costs, call them illustrative cost units rather than euros, actual savings or profit.
+Do not invent individual reasons or causal feature effects. Do not treat a model score as a calibrated probability of future default. Do not recommend approving or rejecting loans or deploying the system in a bank.
+Make clear that this is a historical teaching example with limitations. Describe what the evidence supports and what it does not support.

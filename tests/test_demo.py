@@ -24,7 +24,7 @@ class DemoTests(unittest.TestCase):
             self.assertEqual(len(app.exception), 0)
             self.assertEqual(len(app.number_input), 2)
             self.assertEqual(len(app.selectbox), 5)
-            self.assertEqual(len(app.button), 1)
+            self.assertEqual(len(app.button), 2)
             self.assertFalse(any("Predicted class:" in element.value for element in app.info))
             self.assertEqual(app.number_input(key="credit_amount").min, 276)
             self.assertEqual(app.number_input(key="credit_amount").max, 15945)
@@ -43,7 +43,7 @@ class DemoTests(unittest.TestCase):
                                   [amount, months, purpose, checking, savings, employment, history]))
                 for key in ["purpose", "checking_status", "savings_status", "employment_duration", "credit_history"]:
                     app.selectbox(key=key).set_value(values[key])
-                app.button[0].click().run()
+                app.button(key="predict_class").click().run()
                 self.assertEqual(len(app.exception), 0)
                 raw = pd.DataFrame([values], columns=bundle["feature_columns"])
                 expected = int(predict_risk(bundle, raw).predicted_bad_risk.iloc[0])
