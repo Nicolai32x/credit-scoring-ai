@@ -5,7 +5,8 @@ Statlog is the selected teaching dataset. Column naming, target mapping and
 the fixed 800/200 development/test split are implemented. Notebook 01 contains
 development-only exploratory analysis. Notebook 02 demonstrates encoding and
 scaling learned from 640 development training cases and applied unchanged to
-160 validation cases. No credit-risk classifier has been trained or evaluated.
+160 validation cases. It then compares the majority baseline, logistic regression
+and random forest using all five development folds. No test evaluation has run.
 
 ## Source, files, and license
 
@@ -67,7 +68,7 @@ evaluation can explicitly request `load_partition("test")`.
 
 Loading uses the original source plus the manifest, not separate edited CSVs.
 Basic test-row counts were checked for split integrity; no test features were
-explored and no model performance was evaluated. The default loader helps
+explored and no test-set model performance was evaluated. The default loader helps
 the workflow; it does not technically prevent someone from opening test data.
 
 The earlier structural checks below examined the complete downloaded file

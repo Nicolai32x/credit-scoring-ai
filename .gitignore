@@ -234,6 +234,10 @@ data/*
 results/*
 !results/README.md
 !results/development_summary.json
+!results/metrics.csv
+!results/cv_fold_metrics.csv
+!results/cv_predictions.csv
+!results/model_comparison.json
 !results/figures/
 results/figures/*
 !results/figures/.gitkeep
@@ -241,6 +245,8 @@ results/figures/*
 !results/figures/development_numeric_distributions.png
 !results/figures/development_account_categories.png
 !results/figures/development_background_categories.png
+!results/figures/cv_model_comparison.png
+!results/figures/cv_confusion_matrices.png
 
 # Generated submission packages; keep the checklist
 submission/*

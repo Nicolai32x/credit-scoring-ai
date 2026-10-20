@@ -5,7 +5,8 @@ The kickoff agenda is retained below for reference; no meeting outcomes or
 deadlines have been recorded. The Python environment, named data loader and
 fixed development/test split are ready. Development-only exploration is complete
 in notebook 01. Preprocessing factories and a single-fold demonstration are ready
-in notebook 02. Credit-risk model experiments and the app are still to begin.
+in notebook 02, along with the first fixed-configuration five-fold model
+comparison. Final model selection, test evaluation and the app are still pending.
 
 ## What we want to build
 
@@ -18,9 +19,9 @@ It will illustrate the model, not make real lending decisions.
 
 Read [the dataset guide](data/README.md) and [the demo sketch](demo/README.md).
 Data loading, target mapping and the fixed split are implemented. Feature
-encoding/scaling is implemented; models and the application are still pending. Descriptive
-statistics and plots use development data only; predictive performance has
-not been evaluated.
+encoding/scaling and a first model comparison are implemented. Descriptive
+statistics, plots and validation metrics use development data only; final test
+performance has not been evaluated and the application remains pending.
 
 ## Planned experiment
 
@@ -38,9 +39,18 @@ not been evaluated.
 
 In each validation round, approximately 640 cases train the model and 160
 validate it. Refit the chosen pipeline on all 800 development cases before
-the final test. The 800/200 allocation is fixed. No credit-risk models have yet
-been trained or cross-validated. Notebook 02 demonstrates preprocessing on the
-first development fold only; model comparison will use all five folds.
+the final test. The 800/200 allocation is fixed. Notebook 02 demonstrates
+preprocessing on the first development fold and then compares all three
+candidates across all five folds using fresh pipelines.
+
+The first comparison fixes class weighting to `balanced` for both ML models,
+logistic regression C=1 and a forest with 300 trees and minimum leaf size 5.
+The score threshold is 0.5; no parameter or threshold search has been performed.
+Logistic regression leads provisionally on balanced accuracy (0.709 versus
+0.702 for the forest), but the small difference does not establish superiority.
+See [validation results and limitations](results/README.md). Review this simple
+comparison before deciding whether any limited tuning is worthwhile; record
+all later trials. Freeze the final choice before opening the test partition.
 
 Keep preprocessing inside each training fold: encode categories, scale numeric
 inputs for logistic regression, and fit any learned transformations without

@@ -1,0 +1,181 @@
+{
+  "partition": "development",
+  "cases": 800,
+  "test_evaluated": false,
+  "validation": {
+    "n_splits": 5,
+    "shuffle": true,
+    "random_state": 42
+  },
+  "threshold": 0.5,
+  "threshold_tuned": false,
+  "parameter_search": false,
+  "primary_metric": "balanced_accuracy",
+  "feature_columns": [
+    "credit_amount",
+    "duration_months",
+    "purpose",
+    "checking_status",
+    "savings_status",
+    "employment_duration",
+    "credit_history"
+  ],
+  "cost_assumption": "(5 * false approvals + false rejections) / number of cases; not currency",
+  "source_sha256": "b21f3d81db8071257d5ff1deaeba1fd4303b62712e6fcc9715c7a86202cb5871",
+  "split_sha256": "a4a21bbfb2351908ba0d1b0a7fd6b408bd8f9acf0daa4263f8e46d628fb3df09",
+  "code_sha256": {
+    "preprocessing.py": "380ff1d56f51dd1b1a12869d503d0dfa078af7df5911d63585fb4dea2fa32b15",
+    "train.py": "67459116a9e2664d77a19dc52a26b8ebdd1a56197b850fb157d67cb3d923e652",
+    "evaluate.py": "710f003265e1ef30c6ee221be2f97ac27fd83300d596a07c7e1e7ba450db2089"
+  },
+  "versions": {
+    "python": "3.12.13",
+    "numpy": "2.5.4",
+    "pandas": "3.0.6",
+    "scikit_learn": "1.9.1"
+  },
+  "candidate_parameters": {
+    "majority_baseline": {
+      "constant": null,
+      "random_state": null,
+      "strategy": "most_frequent"
+    },
+    "logistic_regression": {
+      "C": 1.0,
+      "class_weight": "balanced",
+      "dual": false,
+      "fit_intercept": true,
+      "intercept_scaling": 1,
+      "l1_ratio": 0.0,
+      "max_iter": 2000,
+      "n_jobs": null,
+      "penalty": "deprecated",
+      "random_state": 42,
+      "solver": "lbfgs",
+      "tol": 0.0001,
+      "verbose": 0,
+      "warm_start": false
+    },
+    "random_forest": {
+      "bootstrap": true,
+      "ccp_alpha": 0.0,
+      "class_weight": "balanced",
+      "criterion": "gini",
+      "max_depth": null,
+      "max_features": "sqrt",
+      "max_leaf_nodes": null,
+      "max_samples": null,
+      "min_impurity_decrease": 0.0,
+      "min_samples_leaf": 5,
+      "min_samples_split": 2,
+      "min_weight_fraction_leaf": 0.0,
+      "monotonic_cst": null,
+      "n_estimators": 300,
+      "n_jobs": 1,
+      "oob_score": false,
+      "random_state": 42,
+      "verbose": 0,
+      "warm_start": false
+    }
+  },
+  "fold_summary": [
+    {
+      "model": "majority_baseline",
+      "accuracy_mean": 0.7,
+      "accuracy_std": 0.0,
+      "balanced_accuracy_mean": 0.5,
+      "balanced_accuracy_std": 0.0,
+      "bad_precision_mean": 0.0,
+      "bad_precision_std": 0.0,
+      "bad_recall_mean": 0.0,
+      "bad_recall_std": 0.0,
+      "bad_f1_mean": 0.0,
+      "bad_f1_std": 0.0,
+      "roc_auc_mean": 0.5,
+      "roc_auc_std": 0.0,
+      "cost_per_case_mean": 1.5,
+      "cost_per_case_std": 0.0
+    },
+    {
+      "model": "logistic_regression",
+      "accuracy_mean": 0.7075,
+      "accuracy_std": 0.04060095442227929,
+      "balanced_accuracy_mean": 0.7089285714285714,
+      "balanced_accuracy_std": 0.04848998920692787,
+      "bad_precision_mean": 0.5098893309344618,
+      "bad_precision_std": 0.0469281762690659,
+      "bad_recall_mean": 0.7125,
+      "bad_recall_std": 0.09363418772601761,
+      "bad_f1_mean": 0.5928288184067612,
+      "bad_f1_std": 0.05741540955106552,
+      "roc_auc_mean": 0.7664434523809524,
+      "roc_auc_std": 0.04960045022900356,
+      "cost_per_case_mean": 0.6375,
+      "cost_per_case_std": 0.13764197215965776
+    },
+    {
+      "model": "random_forest",
+      "accuracy_mean": 0.7025,
+      "accuracy_std": 0.035520680595957026,
+      "balanced_accuracy_mean": 0.7017857142857142,
+      "balanced_accuracy_std": 0.05374269910337678,
+      "bad_precision_mean": 0.5011395817242894,
+      "bad_precision_std": 0.04346206636858847,
+      "bad_recall_mean": 0.7,
+      "bad_recall_std": 0.10374916331657276,
+      "bad_f1_mean": 0.5833943591441109,
+      "bad_f1_std": 0.06516521277304027,
+      "roc_auc_mean": 0.7778645833333333,
+      "roc_auc_std": 0.04044473745654326,
+      "cost_per_case_mean": 0.6575,
+      "cost_per_case_std": 0.15745783165660573
+    }
+  ],
+  "pooled_out_of_fold_metrics": {
+    "majority_baseline": {
+      "accuracy": 0.7,
+      "balanced_accuracy": 0.5,
+      "bad_precision": 0.0,
+      "bad_recall": 0.0,
+      "bad_f1": 0.0,
+      "roc_auc": 0.5,
+      "cost_per_case": 1.5,
+      "true_good": 560,
+      "false_rejections": 0,
+      "false_approvals": 240,
+      "true_bad": 0
+    },
+    "logistic_regression": {
+      "accuracy": 0.7075,
+      "balanced_accuracy": 0.7089285714285715,
+      "bad_precision": 0.5089285714285714,
+      "bad_recall": 0.7125,
+      "bad_f1": 0.59375,
+      "roc_auc": 0.7652604166666668,
+      "cost_per_case": 0.6375,
+      "true_good": 395,
+      "false_rejections": 165,
+      "false_approvals": 69,
+      "true_bad": 171
+    },
+    "random_forest": {
+      "accuracy": 0.7025,
+      "balanced_accuracy": 0.7017857142857142,
+      "bad_precision": 0.5029940119760479,
+      "bad_recall": 0.7,
+      "bad_f1": 0.5853658536585366,
+      "roc_auc": 0.7752232142857143,
+      "cost_per_case": 0.6575,
+      "true_good": 394,
+      "false_rejections": 166,
+      "false_approvals": 72,
+      "true_bad": 168
+    }
+  },
+  "limitations": [
+    "Same validation folds compare candidates; selection estimates can be optimistic.",
+    "Fold standard deviations are not independent-sample confidence intervals.",
+    "Raw model scores are not calibrated probabilities of future default.",
+    "No final model, threshold, or test assessment has been frozen."
+  ]
+}

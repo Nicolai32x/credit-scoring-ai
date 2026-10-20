@@ -137,3 +137,26 @@ This template is not yet a documented generative AI experiment.
 - Limits: no predictive performance, model selection, or test-partition analysis.
   Original source files, split membership, and exploratory outputs are unchanged.
   Human review of the new notebook explanations is pending.
+
+## 2026-10-20: First development-only model comparison
+
+- Requested by: Nicolai, continuing after the preprocessing step. This is an
+  English task summary, not a verbatim prompt transcript.
+- Tool: AI coding assistant; model/version not recorded here.
+- Work: implemented shared comparison and metric functions; extended notebook 02
+  with majority baseline, logistic regression and random forest. Fixed settings
+  were documented before inspecting results: balanced weights for both ML models,
+  logistic C=1, forest 300 trees/minimum leaf size 5, score threshold 0.5.
+- Evaluation: same five stratified development folds for every model; fresh
+  pipelines fit on 640 training cases and predict 160 validation cases. Every
+  development case has one out-of-fold prediction per model. No parameter search,
+  threshold tuning, test evaluation or final fitted-pipeline export was performed.
+- Outputs: fold metrics, mean/sample-standard-deviation summary, out-of-fold
+  predictions, JSON provenance, two figures and executed notebook explanations.
+- Findings: logistic regression leads narrowly on mean balanced accuracy (0.709
+  versus forest 0.702), while forest has slightly higher mean ROC-AUC. The
+  baseline's 70% accuracy hides zero bad-risk recall. Both ML models falsely
+  reject many good risks; no reliable superiority or bank-profit claim is made.
+- Checks: 20 tests cover source/split integrity, preprocessing, error-cost
+  direction and validation coverage/isolation using invented fixtures. Notebook
+  execution and figures were checked. Final decision and human review are pending.

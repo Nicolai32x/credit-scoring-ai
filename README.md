@@ -12,8 +12,10 @@ outline are ready. Python and package versions are recorded. The named data
 loader and fixed 800/200 development/test split are implemented and checked;
 notebook 01 now includes development-only exploration, tables, four figures and
 interpretation. Reusable encoding/scaling pipelines are implemented and demonstrated
-on one training/validation fold in notebook 02. Trained credit-risk models,
-model evaluation results, and a working Streamlit app are still pending.
+on one training/validation fold in notebook 02. That notebook also compares a
+majority baseline, logistic regression and random forest in five development-only
+validation folds. Results and figures are available; a final model, test
+evaluation and working Streamlit app are still pending.
 The report is written in Word in Teams, and a Canva presentation template is ready.
 
 Start with [the project plan](PROJECT_PLAN.md), [dataset guide](data/README.md),
@@ -51,7 +53,8 @@ In VS Code, select this `.venv` environment as the interpreter and notebook kern
 Open the notebooks in numerical order. Notebook 01 can run end to end to load
 and explore development data and export the descriptive figures and summary.
 Its executed outputs are saved for reading on GitHub. Notebook 02 explains and
-demonstrates preprocessing in sections 1-2; model comparison remains an outline.
+demonstrates preprocessing in sections 1-2 and runs the model comparison in
+sections 3-5, including validation metrics, error costs and figures.
 
 `requirements.in` lists the six direct dependencies; `requirements.txt` pins the
 resolved dependencies with platform markers. Install from `requirements.txt`
@@ -81,8 +84,8 @@ Do not delete it to try alternative partitions. Notebook 01 calls
 `load_partition()` with its development-only default. Test access is explicit
 and reserved for final evaluation. See [the dataset guide](data/README.md).
 
-Descriptive findings and reusable figures are indexed in
-[`results/README.md`](results/README.md). They are not model-performance results.
+Descriptive findings, development-only model metrics and reusable figures are
+indexed in [`results/README.md`](results/README.md). None are final test results.
 
 ## Structure
 
@@ -100,8 +103,11 @@ Descriptive findings and reusable figures are indexed in
 | `submission/` | Checklist for the MS Teams submission package |
 
 Notebooks explain the analysis. Place shared logic in `code/` so that the demo
-uses the same preprocessing as training. The loader and pipeline factories are implemented in
-`code/preprocessing.py`; training and evaluation modules are still placeholders.
+uses the same preprocessing as training. Loading and pipeline factories live in
+`code/preprocessing.py`, the development comparison in `code/train.py`, and
+metric/error-cost calculations in `code/evaluate.py`. Running `code/train.py`
+regenerates validation CSV/JSON outputs; run notebook 02 for figures as well.
+Neither path evaluates the reserved test set or saves a final fitted model.
 
 ## Collaboration
 

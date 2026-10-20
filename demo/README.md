@@ -1,6 +1,8 @@
 # Demo sketch
 
-Planned demo; no Streamlit app or scoring model has been built.
+Planned demo; the Streamlit app and final saved scoring pipeline are still pending.
+The first development-only model comparison is available in notebook 02;
+model/threshold decisions and final test evaluation have not been completed.
 The existing `app.py` remains a placeholder. Nicolai, the technical lead,
 will connect a saved preprocessing/model pipeline to a small Streamlit form.
 
