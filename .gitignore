@@ -228,6 +228,7 @@ data/*
 !data/LICENSE.md
 !data/german.data
 !data/german.doc
+!data/split.json
 
 # Generated results; keep descriptions and empty folder structure
 results/*

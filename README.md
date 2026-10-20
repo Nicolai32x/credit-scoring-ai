@@ -8,10 +8,11 @@ Streamlit demo with seven inputs.
 ## Current status and project documents
 
 The original dataset, its structural review, project plan, and presentation
-outline are ready. A local Python environment is set up and the package
-versions are recorded. The report is written in Word in Teams, and a Canva
-presentation template has been prepared. No preprocessing pipeline, data splits, trained models,
-evaluation results, or working Streamlit application exist yet.
+outline are ready. Python and package versions are recorded. The named data
+loader and fixed 800/200 development/test split are implemented and checked;
+notebook 01 can load development data. Feature encoding/scaling, exploration,
+trained models, evaluation results, and a working Streamlit app are still pending.
+The report is written in Word in Teams, and a Canva presentation template is ready.
 
 Start with [the project plan](PROJECT_PLAN.md), [dataset guide](data/README.md),
 [presentation outline](presentation/outline.md), and [demo sketch](demo/README.md).
@@ -45,7 +46,8 @@ uv venv --python 3.12.13 --seed .venv
 On macOS/Linux, use `.venv/bin/python` instead of `.\.venv\Scripts\python.exe`.
 You do not need to activate the environment when using its Python path directly.
 In VS Code, select this `.venv` environment as the interpreter and notebook kernel.
-Open the notebooks in numerical order. They currently contain outlines only.
+Open the notebooks in numerical order. Notebook 01 has a working development-data
+loading cell; its exploration sections and notebook 02 are still outlines.
 
 `requirements.in` lists the six direct dependencies; `requirements.txt` pins the
 resolved dependencies with platform markers. Install from `requirements.txt`
@@ -60,12 +62,28 @@ uv pip compile requirements.in --python-version 3.12.13 --universal --no-annotat
 Streamlit is planned and is not installed by the current requirements; add it
 when implementing the demo. The setup above does not create a working model.
 
+### Load data and verify the fixed split
+
+From the project directory in PowerShell:
+
+```powershell
+.\.venv\Scripts\python.exe code/preprocessing.py
+.\.venv\Scripts\python.exe -m unittest discover -s tests -v
+```
+
+`data/split.json` is versioned and fixes row membership. The first command
+validates and reuses it; it only creates a split when the file is absent.
+Do not delete it to try alternative partitions. Notebook 01 calls
+`load_partition()` with its development-only default. Test access is explicit
+and reserved for final evaluation. See [the dataset guide](data/README.md).
+
 ## Structure
 
 | Directory | Purpose |
 | --- | --- |
 | `code/` | Shared Python functions for notebooks and the demo |
 | `notebooks/` | Exploration, baseline, and model comparison with explanations |
+| `tests/` | Source integrity, feature/target mapping, and split isolation checks |
 | `data/` | Dataset and documentation of its source |
 | `results/` | Generated metrics, models, and shared figures |
 | `report/` | Writing workflow and Markdown skeleton for the final export |
@@ -75,8 +93,8 @@ when implementing the demo. The setup above does not create a working model.
 | `submission/` | Checklist for the MS Teams submission package |
 
 Notebooks explain the analysis. Place shared logic in `code/` so that the demo
-uses the same preprocessing as training. The Python modules initially contain
-only descriptions of their intended purpose.
+uses the same preprocessing as training. The loader is implemented in
+`code/preprocessing.py`; training and evaluation modules are still placeholders.
 
 ## Collaboration
 

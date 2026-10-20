@@ -80,3 +80,22 @@ This template is not yet a documented generative AI experiment.
   contain platform markers, but macOS/Linux setup still needs verification.
 - Human review of this setup is pending. This entry summarizes the work rather
   than reproducing the exact user prompts.
+
+## 2026-10-20: Named data loading and fixed holdout
+
+- Requested by: Nicolai, continuing the agreed work one step at a time. This
+  entry is an English summary, not a verbatim prompt transcript.
+- Tool: AI coding assistant; model/version not recorded here.
+- Output: shared loader with English column names, seven selected inputs, and
+  `bad_risk` mapping (original 1 to 0, original 2 to 1). `data/split.json`
+  reserves 800 development rows and 200 test rows using seed 42 and stratification.
+- Safeguards: source checksum verified; row IDs are source positions, not model
+  inputs; existing manifests are validated and never overwritten by the loader.
+  The notebook defaults to development data. Explicit test access is reserved
+  for final evaluation and is not a technical access restriction.
+- Verification: tests cover label/feature mapping, split isolation and balance,
+  reproducibility, source changes, and invalid manifests. Notebook loading is
+  checked from both supported working directories.
+- Limits: no feature encoding/scaling, predictive exploration, cross-validation,
+  model fitting or performance evaluation in this step. Test class counts are
+  used only to verify stratification. Human review of these changes is pending.

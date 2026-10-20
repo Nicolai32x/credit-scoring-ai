@@ -1,8 +1,9 @@
 # Dataset guide: Statlog (German Credit Data)
 
 Downloaded and checked on 16 October 2026; project status updated on 20 October.
-Statlog is the selected teaching dataset. No preprocessing, splitting, or model
-training has been done.
+Statlog is the selected teaching dataset. Column naming, target mapping and
+the fixed 800/200 development/test split are implemented. No feature encoding,
+scaling, exploratory analysis or model training has been performed.
 
 ## Source, files, and license
 
@@ -28,16 +29,44 @@ in the eventual submission package.
 
 Use the original mixed categorical/numeric `german.data`, not the separately
 transformed `german.data-numeric`. It has no header and uses whitespace between
-fields. Columns 1-20 are inputs; column 21 is the target. Later, load with
-`pandas.read_csv`, `sep=r"\s+"`, and `header=None`, then assign column names.
+fields. Columns 1-20 are inputs; column 21 is the target. The shared loader in
+`code/preprocessing.py` uses `pandas.read_csv`, `sep=r"\s+"`, and `header=None`,
+then assigns column names.
 Both `.data` and `.doc` are plain-text files; `german.doc` is not a Word document.
 
 ## Target and verified structural checks
 
-Original labels: **1 = good credit risk; 2 = bad credit risk**. For later
-evaluation, map these to **0 = good; 1 = bad**, so positive means bad risk.
+Original labels: **1 = good credit risk; 2 = bad credit risk**. The loader maps
+these to **0 = good; 1 = bad** in `bad_risk`, so positive means bad risk.
 These are historical risk labels, not a documented default-within-12-months
 outcome. A model score is not automatically a validated future default probability.
+
+## Fixed development and test partition
+
+`split.json` records the source checksum, feature order, label mapping, seed 42,
+scikit-learn version used to create it, and the two lists of original row
+positions. It is tracked in Git; the original data files remain unchanged.
+
+| Partition | Rows | Good risk 0 | Bad risk 1 | Use |
+| --- | --- | --- | --- | --- |
+| Development | 800 | 560 | 240 | Exploration, training and cross-validation |
+| Test | 200 | 140 | 60 | Final evaluation after freezing modeling decisions |
+
+`row_id` means the zero-based original line position, not a customer ID. It is
+the DataFrame index and is excluded from model inputs. The selected seven
+features are returned in the same order as the planned form, with the target
+returned separately.
+
+Run `python code/preprocessing.py` using the project environment to validate
+the existing split. It creates the manifest only if absent and never overwrites
+an existing manifest. Do not delete or edit it to try new splits. For notebook
+exploration, use `load_partition()` (development by default). Later final
+evaluation can explicitly request `load_partition("test")`.
+
+Loading uses the original source plus the manifest, not separate edited CSVs.
+Basic test-row counts were checked for split integrity; no test features were
+explored and no model performance was evaluated. The default loader helps
+the workflow; it does not technically prevent someone from opening test data.
 
 The following checks examined the complete downloaded file without modeling
 or exploring feature/target relationships. Predictive exploration will use

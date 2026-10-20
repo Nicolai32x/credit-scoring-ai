@@ -2,8 +2,9 @@
 
 Updated on **20 October 2026** with the agreed roles and writing workflow.
 The kickoff agenda is retained below for reference; no meeting outcomes or
-deadlines have been recorded. The Python environment is prepared; data processing,
-experiments, and the app are still to begin.
+deadlines have been recorded. The Python environment, named data loader and
+fixed development/test split are ready. Feature transformations, exploration,
+model experiments and the app are still to begin.
 
 ## What we want to build
 
@@ -15,17 +16,18 @@ Streamlit demo will take seven inputs and display a predicted risk class.
 It will illustrate the model, not make real lending decisions.
 
 Read [the dataset guide](data/README.md) and [the demo sketch](demo/README.md).
-Models, preprocessing, data splits, and the application have not been implemented.
-The dataset review is preparation, not an evaluation of predictive performance.
+Data loading, target mapping and the fixed split are implemented. Feature
+encoding/scaling, models and the application are not implemented. The checks
+so far concern structure and isolation, not predictive performance.
 
 ## Planned experiment
 
 | Step | Plan |
 | --- | --- |
 | Inputs | Seven documented features, identical in training and the demo |
-| Target | Original label 1 = good risk, 2 = bad risk; later map to 0 and 1 respectively |
-| Test set | Reserve 20% (200 cases) once, stratified by target, with random seed 42 |
-| Development set | Use the other 80% (800 cases) for training and validation |
+| Target | Implemented: original label 1 maps to 0 (good); 2 maps to 1 (bad) |
+| Test set | Reserved: 20% (200 cases), stratified by target, seed 42; membership in `data/split.json` |
+| Development set | Reserved: 80% (800 cases) for training and validation |
 | Validation | Five stratified, shuffled folds inside development data, seed 42 |
 | Reference | A majority-class predictor to show whether ML adds value |
 | Models | Logistic regression and random forest, with a small tuning budget |
@@ -34,7 +36,8 @@ The dataset review is preparation, not an evaluation of predictive performance.
 
 In each validation round, approximately 640 cases train the model and 160
 validate it. Refit the chosen pipeline on all 800 development cases before
-the final test. These are planned sizes; no split has been created yet.
+the final test. The 800/200 allocation is fixed; cross-validation and model
+training have not been run yet.
 
 Keep preprocessing inside each training fold: encode categories, scale numeric
 inputs for logistic regression, and fit any learned transformations without
