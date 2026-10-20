@@ -72,7 +72,7 @@ and make no paid API calls.
 
 ## Streamlit use
 
-The live button uses the structured prompt and only the fixed aggregate results.
+The aggregate live button uses the structured prompt and only the fixed aggregate results.
 It is separate from the applicant prediction and does not change model settings,
 the threshold or test metrics. Repeated UI reruns do not automatically call the
 API. Live answers are labeled as generated and need checking.
@@ -81,6 +81,12 @@ The recorded-example panel reads the first completed response per variant from
 the experiment log and labels it with its timestamp and model. All attempts
 remain available for inspection. It works without an API key or network access.
 Saved examples are actual API responses, never invented substitutes.
+
+A later **Explain this result with AI** feature explains the last submitted
+fictional profile using calculated logistic-regression contributions. It sends
+the profile, class and contributions after a visible disclosure and is outside
+the six-answer experiment. Two actual integration outputs and a prompt refinement
+are documented in the demo guide; the original experiment and ML model are unchanged.
 
 ## Official implementation references
 
@@ -154,6 +160,15 @@ optional explanation of the aggregate results. It does not alter the saved
 classifier, decision threshold or individual prediction. Recorded real responses
 from both prompts are also available in the app, allowing the experiment to be
 shown without a live API connection.
+
+Separately, we added an optional explanation of the last submitted fictional
+profile. This feature calculates contributions from the saved logistic-regression
+coefficients relative to mean transformed development inputs and supplies them
+to the language model. It does not ask the language model to infer reasons from
+the class label alone. After an explicit button click, the seven fictional
+inputs, predicted class and contributions are sent to OpenAI. These explanations
+describe the fitted model's calculation, not causal effects or future default
+probabilities. This extension was not part of the six-response prompt comparison.
 
 For this input, the structured prompt produced more complete numerical context,
 but did not guarantee compliance with every instruction. The experiment contains

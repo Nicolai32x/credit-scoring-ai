@@ -1,0 +1,96 @@
+{
+  "created_at_utc": "2026-10-20T13:46:17.704686+00:00",
+  "variant": "profile",
+  "requested_model": "gpt-5.4-mini-2026-03-17",
+  "returned_model": "gpt-5.4-mini-2026-03-17",
+  "response_id": "resp_0546934702e261ae016ad770a7386487d1a0e369dc6052d029",
+  "status": "completed",
+  "instructions": "Write in English for a bank manager without a machine-learning background. Use 120-180 words.",
+  "prompt": "Explain the predicted class for this submitted fictional profile in plain English.\nStart with the supplied predicted class. Describe two or three of the largest absolute model contributions, including opposing directions when present. Use only the supplied contribution signs and English input descriptions; do not infer risk directions from the category names alone.\nEach contribution is relative to the mean transformed inputs of the 800 development cases. This reference is not a real or typical applicant. The final class depends on the reference plus all seven contributions, not just the largest feature.\nExplain directions as pushing this model toward Good risk or Bad risk relative to that reference. Do not interpret contribution values as percentages, probability changes, universal risk rules, or causal effects. Do not invent repayment behavior, income, personal circumstances or reasons beyond the supplied calculation.\nDo not recommend credit approval, rejection or deployment. Do not turn the score into a default probability. Keep a brief historical-teaching caveat and distinguish this model explanation from what will actually happen to an applicant.\n\nRESULTS (JSON):\n{\n  \"submitted_profile\": {\n    \"credit_amount\": 3000,\n    \"duration_months\": 12,\n    \"purpose\": \"A42\",\n    \"checking_status\": \"A12\",\n    \"savings_status\": \"A62\",\n    \"employment_duration\": \"A74\",\n    \"credit_history\": \"A32\"\n  },\n  \"predicted_class\": \"Good risk\",\n  \"contribution_reference\": \"Mean transformed inputs of the 800 development cases; not a real or typical applicant.\",\n  \"reference_logit\": -0.29039711380449684,\n  \"threshold_logit\": 0.0,\n  \"model_logit\": -0.47292276521130705,\n  \"contributions\": [\n    {\n      \"feature\": \"employment_duration\",\n      \"contribution_logit_units\": -0.5389346119131184,\n      \"direction\": \"toward Good risk\"\n    },\n    {\n      \"feature\": \"checking_status\",\n      \"contribution_logit_units\": 0.3957619544170237,\n      \"direction\": \"toward Bad risk\"\n    },\n    {\n      \"feature\": \"duration_months\",\n      \"contribution_logit_units\": -0.3541959639642972,\n      \"direction\": \"toward Good risk\"\n    },\n    {\n      \"feature\": \"credit_history\",\n      \"contribution_logit_units\": 0.16967088052115809,\n      \"direction\": \"toward Bad risk\"\n    },\n    {\n      \"feature\": \"savings_status\",\n      \"contribution_logit_units\": 0.08151601340431887,\n      \"direction\": \"toward Bad risk\"\n    },\n    {\n      \"feature\": \"purpose\",\n      \"contribution_logit_units\": 0.07339455518884397,\n      \"direction\": \"toward Bad risk\"\n    },\n    {\n      \"feature\": \"credit_amount\",\n      \"contribution_logit_units\": -0.009738479060739446,\n      \"direction\": \"toward Good risk\"\n    }\n  ],\n  \"interpretation_limits\": \"Contributions explain this fixed model calculation relative to the stated development mean. They do not explain real-world causes, default probabilities or lending suitability. All seven contributions plus the reference determine the class; a single feature may push in the opposite direction.\",\n  \"english_input_descriptions\": {\n    \"credit_amount\": \"3000 historical DM\",\n    \"duration_months\": \"12 months\",\n    \"purpose\": \"Furniture / equipment\",\n    \"checking_status\": \"0 to below 200 DM\",\n    \"savings_status\": \"100 to below 500 DM\",\n    \"employment_duration\": \"Four to less than seven years\",\n    \"credit_history\": \"Existing credits repaid duly so far\"\n  }\n}",
+  "settings": {
+    "reasoning_effort": "none",
+    "temperature": 0.7,
+    "max_output_tokens": 800,
+    "store": false,
+    "max_retries": 0
+  },
+  "output_text": "**Predicted class: Good risk.**\n\nRelative to the reference point, the model is pushed most strongly **toward Good risk** by **employment_duration** (\u201cFour to less than seven years\u201d), with the largest contribution at **-0.539**. A second strong push toward **Good risk** comes from **duration_months** (\u201c12 months\u201d), at **-0.354**.\n\nThe biggest offsetting influence is **checking_status** (\u201c0 to below 200 DM\u201d), which pushes **toward Bad risk** at **+0.396**. Two smaller Bad-risk pushes also come from **credit_history** (\u201cExisting credits repaid duly so far\u201d), **savings_status** (\u201c100 to below 500 DM\u201d), and **purpose** (\u201cFurniture / equipment\u201d).\n\nThis is a model explanation, not a statement about what will actually happen to any applicant. It also reflects a historical teaching example: the class depends on the reference plus all seven contributions, not just the largest ones.",
+  "usage": {
+    "input_tokens": 821,
+    "input_tokens_details": {
+      "cache_write_tokens": 0,
+      "cached_tokens": 0
+    },
+    "output_tokens": 204,
+    "output_tokens_details": {
+      "reasoning_tokens": 0
+    },
+    "total_tokens": 1025
+  },
+  "elapsed_seconds": 3.265,
+  "final_report_sha256": "0036f014cdfcd451871a8f39b989209e9c4238acc8d3e8e115ddab3d73de0c6b",
+  "example_note": "Additional live integration check using fictional scenario A; not part of the original six-response aggregate experiment.",
+  "context": {
+    "submitted_profile": {
+      "credit_amount": 3000,
+      "duration_months": 12,
+      "purpose": "A42",
+      "checking_status": "A12",
+      "savings_status": "A62",
+      "employment_duration": "A74",
+      "credit_history": "A32"
+    },
+    "predicted_class": "Good risk",
+    "contribution_reference": "Mean transformed inputs of the 800 development cases; not a real or typical applicant.",
+    "reference_logit": -0.29039711380449684,
+    "threshold_logit": 0.0,
+    "model_logit": -0.47292276521130705,
+    "contributions": [
+      {
+        "feature": "employment_duration",
+        "contribution_logit_units": -0.5389346119131184,
+        "direction": "toward Good risk"
+      },
+      {
+        "feature": "checking_status",
+        "contribution_logit_units": 0.3957619544170237,
+        "direction": "toward Bad risk"
+      },
+      {
+        "feature": "duration_months",
+        "contribution_logit_units": -0.3541959639642972,
+        "direction": "toward Good risk"
+      },
+      {
+        "feature": "credit_history",
+        "contribution_logit_units": 0.16967088052115809,
+        "direction": "toward Bad risk"
+      },
+      {
+        "feature": "savings_status",
+        "contribution_logit_units": 0.08151601340431887,
+        "direction": "toward Bad risk"
+      },
+      {
+        "feature": "purpose",
+        "contribution_logit_units": 0.07339455518884397,
+        "direction": "toward Bad risk"
+      },
+      {
+        "feature": "credit_amount",
+        "contribution_logit_units": -0.009738479060739446,
+        "direction": "toward Good risk"
+      }
+    ],
+    "interpretation_limits": "Contributions explain this fixed model calculation relative to the stated development mean. They do not explain real-world causes, default probabilities or lending suitability. All seven contributions plus the reference determine the class; a single feature may push in the opposite direction.",
+    "english_input_descriptions": {
+      "credit_amount": "3000 historical DM",
+      "duration_months": "12 months",
+      "purpose": "Furniture / equipment",
+      "checking_status": "0 to below 200 DM",
+      "savings_status": "100 to below 500 DM",
+      "employment_duration": "Four to less than seven years",
+      "credit_history": "Existing credits repaid duly so far"
+    }
+  }
+}

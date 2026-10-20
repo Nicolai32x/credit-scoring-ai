@@ -252,3 +252,32 @@ is documented in the 20 October entry below and `results/genai/README.md`.
   explicit live-call behavior and persistence of the original ML result during
   AI interaction. Raw outputs, rubric evidence, usage and source checksums were
   checked. No additional paid calls were made by automated tests.
+
+## 2026-10-20: Explanation of the submitted fictional profile
+
+- Requested by: Nicolai, asking for an explanation of the current input/result.
+- Work: added a separate profile explanation button. It uses the last submitted
+  form snapshot and the frozen pipeline's actual coefficient contributions,
+  centered on mean transformed development inputs. Seven grouped contributions
+  plus the reference exactly reconstruct the decision score. No model fitting,
+  threshold changes or new test predictions were performed.
+- Data flow: the app explicitly states that this optional button sends the
+  fictional inputs, class, descriptions and contributions to OpenAI. The existing
+  aggregate explanation still sends no applicant inputs. Do not use real personal
+  data. Profile explanations clear when a new prediction is submitted.
+- Verification: contribution reconstruction, coefficient signs, reference checks,
+  request context and submitted-snapshot behavior were checked offline. Two real
+  API integration checks used the existing fictional scenario A. The first used
+  technical names/raw values and said two minor features while listing three;
+  the refined prompt requests friendly labels, 2-3 features and no raw logits.
+  Both raw responses remain in `results/genai/`, outside the original experiment.
+- Limits: these are relative contributions to a model logit, not causal effects,
+  calibrated default probabilities or lending recommendations. The reference is
+  an average transformed vector, not a real or typical applicant. A successful
+  example does not prove every future explanation will follow instructions.
+- Report: the chapter-3 draft in `prompts/experiment.md` includes a separate
+  extension paragraph; existing Word text saying the app never sends profile
+  inputs needs qualification for this optional feature.
+- Checks: all 36 tests passed. The local server is healthy, both fictional
+  integration outputs were checked against the supplied contribution directions,
+  and the frozen model, final test and original experiment remain unchanged.

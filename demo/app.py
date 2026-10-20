@@ -15,6 +15,7 @@ sys.path.insert(0, str(ROOT / "code"))
 from final_model import predict_risk  # noqa: E402
 from preprocessing import CATEGORICAL_FEATURES, FEATURE_COLUMNS  # noqa: E402
 from genai import generate_explanation, get_api_key  # noqa: E402
+from explain import profile_context  # noqa: E402
 
 CATEGORY_LABELS = {
     "purpose": {
@@ -140,6 +141,44 @@ def render_genai_panel():
                "Applicant form values are not included. Live requests incur API usage charges.")
 
 
+def render_profile_explanation(bundle, values):
+    """Explain the last submitted snapshot, never unsent edits in the form."""
+    inputs = pd.DataFrame([values], columns=bundle["feature_columns"])
+    reference = json.loads((ROOT / "results/explanation_reference.json").read_text(encoding="utf-8"))
+    context = profile_context(bundle, inputs, reference)
+    readable = {"credit_amount": f"{values['credit_amount']} historical DM",
+                "duration_months": f"{values['duration_months']} months"}
+    readable.update({feature: CATEGORY_LABELS[feature][values[feature]] for feature in CATEGORICAL_FEATURES})
+    context["english_input_descriptions"] = readable
+    key = get_api_key()
+    st.caption("Use fictional profiles only. Clicking Explain sends the last submitted seven "
+               "inputs, predicted class and calculated model contributions to OpenAI. "
+               "It incurs API usage charges.")
+    if st.button("Explain this result with AI", key="explain_profile", disabled=not bool(key)):
+        st.session_state.pop("profile_explanation", None)
+        try:
+            with st.spinner("Explaining this submitted profile..."):
+                response = generate_explanation("profile", context=context, api_key=key)
+            if response["status"] == "completed" and response["output_text"].strip():
+                st.session_state["profile_explanation"] = response["output_text"]
+            else:
+                st.warning("The profile explanation was incomplete. The model contributions are shown below.")
+        except Exception:
+            st.warning("The AI explanation is unavailable. The risk prediction and model contributions still work.")
+    if "profile_explanation" in st.session_state:
+        st.caption("AI explanation of the last submitted profile · based on this model's calculated contributions")
+        st.write(st.session_state["profile_explanation"])
+    with st.expander("Calculated model contributions"):
+        st.write("Directions are relative to the average transformed inputs of the 800 development "
+                 "cases. This reference is not an actual applicant. These are model associations, "
+                 "not causes or probability changes; all seven contributions determine the result.")
+        st.dataframe(pd.DataFrame([{
+            "Input": FIELD_LABELS.get(item["feature"], item["feature"].replace("_", " ").capitalize()),
+            "Submitted value": readable[item["feature"]],
+            "Model direction relative to reference": item["direction"],
+        } for item in context["contributions"]]), hide_index=True)
+
+
 def main():
     st.set_page_config(page_title="Credit Risk Demo", page_icon="📊", layout="centered")
     st.title("Credit Risk Demo")
@@ -179,6 +218,7 @@ def main():
         inputs = pd.DataFrame([values], columns=bundle["feature_columns"])
         prediction = int(predict_risk(bundle, inputs).predicted_bad_risk.iloc[0])
         st.session_state["last_result"] = {"values": values, "prediction": prediction}
+        st.session_state.pop("profile_explanation", None)
 
     if "last_result" in st.session_state:
         values = st.session_state["last_result"]["values"]
@@ -193,6 +233,7 @@ def main():
             readable.update({FIELD_LABELS[name]: CATEGORY_LABELS[name][values[name]]
                              for name in CATEGORICAL_FEATURES})
             st.table(pd.DataFrame(readable.items(), columns=["Input", "Submitted value"]).astype(str))
+        render_profile_explanation(bundle, values)
 
     with st.expander("How reliable is this example?"):
         scores = report["selected_model_metrics"]

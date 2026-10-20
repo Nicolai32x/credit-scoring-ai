@@ -244,6 +244,7 @@ results/*
 !results/selected_pipeline.joblib
 !results/final_test_predictions.csv
 !results/final_test.json
+!results/explanation_reference.json
 !results/genai/
 !results/figures/
 results/figures/*

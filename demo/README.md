@@ -90,6 +90,29 @@ that these historical results do not establish suitability for real lending.
 
 ## Generative AI explanation and experiment
 
+After **Predict risk class**, the result includes **Explain this result with AI**.
+This button explains the last submitted fictional profile, not unsent form edits.
+It sends the seven submitted values, class, English descriptions and calculated
+feature contributions to OpenAI. The disclosure appears beside the button.
+Use fictional profiles only. Submitting a new prediction clears its old explanation.
+
+Contributions are computed locally from the saved logistic-regression coefficients.
+Each transformed input is centered on the mean transformed inputs of the 800
+development cases. Centered values times coefficients, grouped into seven inputs,
+plus the reference score reconstruct the model's decision score. That reference
+is not a real or typical applicant. Directions toward Bad/Good risk are relative
+to it, not causal effects or probability changes. The reference is stored in
+`results/explanation_reference.json`; the app never loads training data or fits
+anything. **Calculated model contributions** also works without an API key.
+
+Two real checks on fictional scenario A are retained in
+`results/genai/profile_example.json` and `profile_example_refined.json`. The first
+used technical labels and raw contributions and contained a counting slip
+("Two smaller" followed by three features). The prompt was refined to use friendly
+labels, 2-3 features, an explicit reference and no raw logits. The second matched
+the supplied major contribution directions. These are integration examples,
+not part of the six-answer experiment or proof of general explanation reliability.
+
 Below the prediction, **AI explanation of our results** explains the overall
 evaluation, not an individual applicant. The live button uses the structured
 prompt from `prompts/explanation_structured.txt` and sends only aggregate

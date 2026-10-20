@@ -1,4 +1,4 @@
-"""Explain aggregate saved results; never send applicant inputs or change ML."""
+"""Explain saved aggregate results or an explicitly submitted fictional profile."""
 
 from datetime import datetime, timezone
 from hashlib import sha256
@@ -52,14 +52,17 @@ def experiment_context():
 
 
 def request_text(variant, context=None):
-    prompt = PROMPT_PATHS[variant].read_text(encoding="utf-8").strip()
+    path = ROOT / "prompts" / "explanation_profile.txt" if variant == "profile" else PROMPT_PATHS[variant]
+    if variant == "profile" and context is None:
+        raise ValueError("A profile explanation requires the submitted profile and model contributions.")
+    prompt = path.read_text(encoding="utf-8").strip()
     facts = experiment_context() if context is None else context
     return prompt + "\n\nRESULTS (JSON):\n" + json.dumps(facts, indent=2)
 
 
-def generate_explanation(variant="structured", *, api_key=None, client=None):
+def generate_explanation(variant="structured", *, context=None, api_key=None, client=None):
     """One request, no tools or retries; return exact prompt/output and usage."""
-    prompt = request_text(variant)
+    prompt = request_text(variant, context)
     if client is None:
         key = get_api_key() if api_key is None else api_key
         if not key:

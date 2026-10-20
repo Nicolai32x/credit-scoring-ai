@@ -83,8 +83,10 @@ The app uses the frozen pipeline; it does not train or rerun the test assessment
 Risk predictions and recorded GenAI examples work without an API key. The optional
 live explanation uses OpenAI and requires a local `OPENAI_API_KEY` environment
 variable or `.streamlit/secrets.toml` entry. That file is ignored by Git; never
-commit a key. Only aggregate evaluation facts are sent after an explicit click,
-not the applicant inputs. See [the experiment design](prompts/experiment.md).
+commit a key. The aggregate explanation sends only evaluation facts. The separate
+**Explain this result with AI** button sends the last submitted fictional profile,
+predicted class and calculated model contributions after an explicit click.
+The app states this before sending; use fictional examples only. See [the demo guide](demo/README.md).
 
 ### Load data and verify the fixed split
 

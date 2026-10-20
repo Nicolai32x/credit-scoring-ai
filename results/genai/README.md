@@ -78,6 +78,13 @@ until the user replaced the key. The completed experiment is in `run_02/`;
 no successful answers were discarded. [The run index](selected_run.json) points
 the Streamlit demo to that completed run.
 
+Later profile-explanation integration checks are kept separately as
+`profile_example.json` and `profile_example_refined.json`. They use fictional
+scenario A and are not part of the six-response comparison or its cost total.
+The original output is preserved alongside the refined prompt's output; see
+the demo guide for the wording problems and changes. These are not scored as
+additional evidence of general prompt superiority.
+
 Recorded usage: **3,213 input tokens**, **1,454 output tokens**, no cached input
 or reasoning tokens. Estimated standard API cost: **$0.00895**, using the
 published GPT-5.4 mini rates checked on 20 October 2026. This is an estimate,
@@ -85,7 +92,7 @@ not a billing statement; see the [official model pricing](https://developers.ope
 
 ## Demonstration
 
-Open Streamlit and scroll to **AI explanation of our results**. The live button
+Open Streamlit and scroll to **AI explanation of our results**. This aggregate button
 uses the structured prompt and sends only aggregate evaluation facts. It never
 sends the applicant inputs. Each click is a separate paid request and its answer
 must be checked; later live responses are not part of the six-answer comparison.
