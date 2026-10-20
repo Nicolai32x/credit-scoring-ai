@@ -1,17 +1,17 @@
-# Demo sketch
+# Streamlit demo
 
-Planned demo; the Streamlit app is still pending. The complete saved pipeline
-is available in `results/selected_pipeline.joblib`: logistic regression,
+The seven-input Streamlit app is implemented in `demo/app.py`. It loads the
+complete saved pipeline from `results/selected_pipeline.joblib`: logistic regression,
 development-trained preprocessing, and explicit score threshold 0.5. Model
 decisions were frozen before final testing; see notebook 02 and the results guide.
-The existing `app.py` remains a placeholder. Nicolai, the technical lead,
-will connect a saved preprocessing/model pipeline to a small Streamlit form.
+The form displays English category descriptions, preserves historical DM units,
+and returns a predicted class. It shows no percentage default probability.
 Use `code/final_model.py`'s `predict_risk(bundle, inputs)` helper to apply the saved
 threshold consistently. Do not call training or final assessment from the app.
 The bundle contains the pipeline, threshold, seven feature names, training count,
 decision checksum and scikit-learn version. Reuse it without fitting on test cases.
 
-## Planned interface
+## Interface
 
 ```text
 Credit Risk Demo - Historical Teaching Dataset
@@ -30,18 +30,18 @@ Predicted class: [Good risk / Bad risk]
 Historical dataset demonstration; not a lending recommendation.
 ```
 
-Use the exact mappings in [the dataset guide](../data/README.md). All seven
-features must match the trained model. No hidden guesses for other features.
-Keep category meanings faithful to the dictionary, including combined unknown
-categories. Keep DM labels explicit. Initially show a class, not an unsupported
-percentage probability of future default.
+The app uses the mappings in [the dataset guide](../data/README.md). It accepts
+exactly the seven trained inputs and offers only categories supported by the
+saved encoder. Combined meanings such as unknown / no savings account remain
+visible. Submit the form again after changing inputs; the displayed result
+belongs to the last submitted values, which can be expanded below it.
 
 For the teaching demo, use the observed development-data ranges: amount
 276-15,945 DM and duration 4-60 months. These are demonstration guardrails,
 not general lending rules. Staying within them does not ensure a combination
 is well represented. Other inputs use observed development categories.
 
-## Fictional scenarios to try after implementation
+## Fictional scenarios to try
 
 These are invented discussion examples, not real people or labeled records.
 They have no known correct outcome or promised prediction.
@@ -65,11 +65,24 @@ practical runs, output interpretation, an actual GenAI prompt/output example,
 and limitations. Everyone should contribute material they can explain.
 
 Before presenting, test startup on a second machine and prepare fallback
-screenshots or example outputs. Add final installation/startup instructions
-when the actual demo exists; do not install Streamlit just for this planning step.
+screenshots or example outputs. Automated checks exercise the form with the
+three fictional profiles above and verify that no fitting or dataset loading
+occurs. A second-machine check and team rehearsal are still pending.
 
-To run the current placeholder from the project directory:
+## Start locally
+
+From the project directory in PowerShell, with the existing `.venv`:
 
 ```powershell
-.\.venv\Scripts\python.exe demo/app.py
+.\.venv\Scripts\python.exe -m pip install -r requirements.txt
+.\.venv\Scripts\python.exe -m streamlit run demo/app.py --server.address 127.0.0.1 --browser.gatherUsageStats false
 ```
+
+Open the local URL printed in the terminal (normally `http://127.0.0.1:8501`).
+Stop the server with `Ctrl+C`. On macOS/Linux, use `.venv/bin/python`; those
+platforms have not yet been checked. No API key or external AI service is needed.
+The app predicts with the saved classifier; it is not a generative AI experiment.
+
+The reliability panel displays the final test tradeoff: 46/60 bad risks detected,
+with 40/140 good risks incorrectly flagged. Use fictional profiles and explain
+that these historical results do not establish suitability for real lending.

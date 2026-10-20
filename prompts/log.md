@@ -185,3 +185,26 @@ This template is not yet a documented generative AI experiment.
   repeated final assessment before any data loading. The saved artifact and
   report are checked against the frozen decision. No model or threshold changes
   are made after seeing the test results. Human review and Streamlit work remain.
+
+## 2026-10-20: Seven-input Streamlit demo
+
+- Requested by: Nicolai, continuing after discussing the moderate model results.
+  This is an English summary, not a verbatim prompt transcript.
+- Tool: AI coding assistant; model/version not recorded here.
+- Work: connected an English Streamlit form to the saved development-trained
+  pipeline and explicit frozen threshold. Two numeric inputs retain historical
+  DM/month units and development-data ranges; five dropdowns preserve the source
+  category meanings and offer only categories learned by the saved encoder.
+- Output: a predicted risk class, an expandable submitted-input summary, and a
+  reliability explanation showing 46/60 bad risks detected and 40/140 good risks
+  falsely flagged. No default-probability percentage or lending approval is shown.
+- Dependencies: added Streamlit and pinned its dependencies. Existing model and
+  analysis package versions are retained; Pillow changed from 13.0.0 to 12.3.0
+  for Streamlit compatibility. Original requirements remain available in Git.
+- Checks: 24 tests passed, including the real form with three fictional profiles,
+  comparison with the saved helper, and guards prohibiting fitting or partition
+  loading during the app check. Local startup/health and package compatibility
+  were verified; frozen model/data/test outputs remain unchanged.
+- Limits: no external AI API or generative AI experiment is implemented here.
+  Frozen model, threshold and final assessment are unchanged. Team rehearsal,
+  second-machine testing and human review remain pending.

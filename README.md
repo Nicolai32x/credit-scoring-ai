@@ -16,7 +16,7 @@ on one training/validation fold in notebook 02. That notebook also compares a
 majority baseline, logistic regression and random forest in five development-only
 validation folds. Logistic regression and threshold 0.5 were frozen before a
 one-time test assessment. The final pipeline and test results are saved;
-the Streamlit app is still pending.
+the local seven-input Streamlit demo is implemented.
 The report is written in Word in Teams, and a Canva presentation template is ready.
 
 Start with [the project plan](PROJECT_PLAN.md), [dataset guide](data/README.md),
@@ -58,7 +58,7 @@ demonstrates preprocessing in sections 1-2 and runs the model comparison in
 sections 3-5, including validation metrics, error costs and figures. Section 6
 reads the saved final test assessment without fitting or rerunning the test.
 
-`requirements.in` lists the six direct dependencies; `requirements.txt` pins the
+`requirements.in` lists the seven direct dependencies; `requirements.txt` pins the
 resolved dependencies with platform markers. Install from `requirements.txt`
 for repeatable setup. The environment itself stays local and is ignored by Git.
 Only Windows has been verified locally; other platforms still need a setup check.
@@ -68,8 +68,14 @@ When deliberately updating packages, regenerate the pins and rerun the checks:
 uv pip compile requirements.in --python-version 3.12.13 --universal --no-annotate --output-file requirements.txt
 ```
 
-Streamlit is planned and is not installed by the current requirements; add it
-when implementing the demo. The setup above does not create a working model.
+To start the demo with the saved model, run from the project directory:
+
+```powershell
+.\.venv\Scripts\python.exe -m streamlit run demo/app.py --server.address 127.0.0.1 --browser.gatherUsageStats false
+```
+
+Read [the demo guide](demo/README.md) for the walkthrough and fictional profiles.
+The app uses the frozen pipeline; it does not train or rerun the test assessment.
 
 ### Load data and verify the fixed split
 
@@ -113,7 +119,7 @@ Neither comparison path evaluates the test set or saves a final fitted model.
 The separate `code/final_model.py` assessment has already been run once; read
 `results/final_test.json` or notebook 02 section 6 instead of repeating it.
 `results/selected_pipeline.joblib` contains the complete development-trained
-pipeline and explicit threshold for the future demo. Load only the trusted
+pipeline and explicit threshold used by the demo. Load only the trusted
 project artifact, using the pinned environment; joblib files can execute code
 when loaded. The assessment script refuses to overwrite existing final outputs.
 

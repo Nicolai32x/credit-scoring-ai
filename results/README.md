@@ -157,5 +157,5 @@ fairness or generalization to today's applicants.
 
 Read notebook 02 section 6 to inspect saved results without fitting or repeating
 the assessment. `code/final_model.py` refuses to run if final outputs already
-exist. Do not delete them to try another model or threshold. The future demo
-will reuse this saved pipeline without training on the test cases.
+exist. Do not delete them to try another model or threshold. The Streamlit demo
+reuses this saved pipeline without training on the test cases.

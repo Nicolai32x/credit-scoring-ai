@@ -8,7 +8,8 @@ in notebook 01. Preprocessing factories and a single-fold demonstration are read
 in notebook 02, along with the first fixed-configuration five-fold model
 comparison. Logistic regression with threshold 0.5 was frozen, refitted on the
 800 development cases, and assessed once on the 200 test cases. The saved
-pipeline is ready; the Streamlit app is still pending.
+pipeline is ready and connected to the local seven-input Streamlit app. Team
+rehearsal and a second-machine check are still pending.
 
 ## What we want to build
 
@@ -23,7 +24,7 @@ Read [the dataset guide](data/README.md) and [the demo sketch](demo/README.md).
 Data loading, target mapping and the fixed split are implemented. Feature
 encoding/scaling and a first model comparison are implemented. Descriptive
 statistics, plots and validation metrics use development data only. A separate
-final test assessment is complete; the application remains pending.
+final test assessment is complete and the Streamlit demo is implemented locally.
 
 ## Planned experiment
 
