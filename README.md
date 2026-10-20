@@ -14,6 +14,16 @@ No installation is required to read these files or join the discussion.
 
 ## Getting started
 
+Questions about the project or your role? Upload `README.md`, `PROJECT_PLAN.md`,
+and `presentation/outline.md` to your usual AI chat and ask it to explain them
+in simple terms. Add other relevant files when needed. You do not need to
+install anything for this; check its answers against the files and ask the team
+if something is unclear.
+
+If you want to try GitHub edits or use an AI assistant with the project, see the
+[optional GitHub and AI tutorial](OPTIONAL_TUTORIAL.md). It is not a prerequisite
+for contributing; you can also share your work with the team and ask for help.
+
 Use Python 3.11 or later. Run these commands from the project directory in PowerShell:
 
 ```powershell
