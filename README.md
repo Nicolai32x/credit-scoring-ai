@@ -50,7 +50,7 @@ The results page explains these numbers and the 5:1 assumed error-cost illustrat
 | Zosia | Risks, limitations and conclusions | Results/limitations, demo data flow, own sources |
 
 Write the report in the **shared Word document in Teams** and slides in the
-[shared Canva presentation](https://canva.link/doeibex7blblalaa). Use actual authorship
+[shared Canva presentation](https://canva.link/doeibex7vw4e04b). Use actual authorship
 and record AI assistance. The [report map](report/report.md) identifies sections;
 it is an export skeleton, not another draft to edit alongside Word.
 

@@ -1,6 +1,6 @@
 # Presentation outline
 
-Use the [shared Canva presentation](https://canva.link/doeibex7blblalaa).
+Use the [shared Canva presentation](https://canva.link/doeibex7vw4e04b).
 Target **24 minutes of presentation plus an 8-minute demo**. The course ranges
 are 20-25 and 5-10 minutes; confirm whether the demo has its own time slot.
 Presentation date and final topic name still need to be recorded.
