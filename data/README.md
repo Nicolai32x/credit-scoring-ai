@@ -1,14 +1,9 @@
 # Dataset guide: Statlog (German Credit Data)
 
-Downloaded and checked on 16 October 2026; project status updated on 20 October.
-Statlog is the selected teaching dataset. Column naming, target mapping and
-the fixed 800/200 development/test split are implemented. Notebook 01 contains
-development-only exploratory analysis. Notebook 02 demonstrates encoding and
-scaling learned from 640 development training cases and applied unchanged to
-160 validation cases. It then compares the majority baseline, logistic regression
-and random forest using all five development folds. A separate final assessment
-of the frozen logistic-regression pipeline is complete; notebook 02 section 6
-reads its saved results. The pipeline was fitted on development data only.
+Technical reference for the source, exact category meanings and integrity checks.
+Downloaded and checked on 16 October 2026. For the plain-language project and
+actual model results, read [the overview](../README.md) and [results](../results/README.md).
+The model, fixed split, final assessment and demo are implemented.
 
 ## Source, files, and license
 
@@ -59,14 +54,14 @@ positions. It is tracked in Git; the original data files remain unchanged.
 
 `row_id` means the zero-based original line position, not a customer ID. It is
 the DataFrame index and is excluded from model inputs. The selected seven
-features are returned in the same order as the planned form, with the target
+features are returned in the same order as the demo form, with the target
 returned separately.
 
 Run `python code/preprocessing.py` using the project environment to validate
 the existing split. It creates the manifest only if absent and never overwrites
 an existing manifest. Do not delete or edit it to try new splits. For notebook
-exploration, use `load_partition()` (development by default). Later final
-evaluation explicitly requested `load_partition("test")` once, after the model
+exploration, use `load_partition()` (development by default). The final
+assessment requested `load_partition("test")` once, after the model
 decision was frozen. Use saved final outputs rather than repeating that step.
 
 Loading uses the original source plus the manifest, not separate edited CSVs.
@@ -100,7 +95,7 @@ silently convert this to zero or discard these cases.
 Always predicting good risk would give 70% accuracy and 0% bad-risk recall on
 the whole file. This is a reference calculation, not a validated model result.
 
-## Seven planned inputs
+## Seven model and demo inputs
 
 | Original column | English feature name | Form control |
 | --- | --- | --- |
@@ -112,9 +107,9 @@ the whole file. This is a reference calculation, not a validated model result.
 | 7 | `employment_duration` | Dropdown |
 | 3 | `credit_history` | Dropdown |
 
-Train the demo model using exactly these seven inputs. Display order differs
+The saved demo model uses exactly these seven inputs. Display order differs
 from file order. Do not train on 20 inputs and silently invent the remaining
-13 values for the form. Predictive adequacy has not yet been established.
+13 values for the form. Measured performance and its limits are in [the results overview](../results/README.md).
 
 ### Category guide for the form
 
@@ -148,7 +143,7 @@ telephone, foreign-worker status. Consult `german.doc` for the unused columns.
 - With 1,000 examples, performance and subgroup comparisons can be unstable.
   Some categories are rare: retraining, for example, has 9 records.
 - The original data includes age, personal status/sex, and foreign-worker status.
-  The planned seven-input model excludes them. Other features can still act as proxies;
+  The seven-input model excludes them. Other features can still act as proxies;
   exclusion alone does not demonstrate fairness.
 - No IDs or dates allow us to independently verify a split by applicant or time.
   A random test split does not demonstrate generalization to today's applicants.
@@ -156,4 +151,4 @@ telephone, foreign-worker status. Consult `german.doc` for the unused columns.
   good risk predicted bad, and 0 for correct predictions. They are not actual
   monetary losses for a bank.
 
-See [PROJECT_PLAN.md](../PROJECT_PLAN.md) for the proposed experiment.
+See [the project overview](../README.md) and [actual results](../results/README.md) for the implemented experiment.

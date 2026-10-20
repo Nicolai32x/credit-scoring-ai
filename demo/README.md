@@ -1,50 +1,30 @@
-# Streamlit demo
+# Demo guide
 
-The seven-input Streamlit app is implemented in `demo/app.py`. It loads the
-complete saved pipeline from `results/selected_pipeline.joblib`: logistic regression,
-development-trained preprocessing, and explicit score threshold 0.5. Model
-decisions were frozen before final testing; see notebook 02 and the results guide.
-The form displays English category descriptions, preserves historical DM units,
-and returns a predicted class. It shows no percentage default probability.
-Use `code/final_model.py`'s `predict_risk(bundle, inputs)` helper to apply the saved
-threshold consistently. Do not call training or final assessment from the app.
-The bundle contains the pipeline, threshold, seven feature names, training count,
-decision checksum and scikit-learn version. Reuse it without fitting on test cases.
+Use fictional profiles. The demo illustrates a historical model; it does not
+approve loans, predict a calibrated default probability or establish real lending suitability.
 
-## Interface
+## What the audience sees
 
-```text
-Credit Risk Demo - Historical Teaching Dataset
+1. Enter seven values and click **Predict risk class**. Amount is historical DM,
+   duration is months; the other five fields use English category descriptions.
+2. **Explain this result with AI** explains the last submitted profile using actual
+   model contributions. It does not explain unsent form edits. A new prediction
+   clears the old profile explanation.
+3. **Calculated model contributions** shows directions without an API call. They
+   are relative to average transformed development inputs, not real-world causes
+   or percentage changes. The reference is not a real or typical applicant.
+4. **How reliable is this example?** shows the actual error tradeoff: 46/60 bad
+   risks detected and 40/140 good risks wrongly flagged.
+5. **AI explanation of our results** explains the aggregate evaluation. Its
+   recorded simple/structured examples work without internet or an API key.
 
-Credit amount (DM)          [integer]
-Duration (months)          [integer]
-Loan purpose               [dropdown]
-Checking-account category  [dropdown]
-Savings/bonds category     [dropdown]
-Employment duration        [dropdown]
-Credit history             [dropdown]
+The ML classifier and generative AI are separate. No button retrains the model
+or changes the frozen threshold. AI responses must still be checked.
 
-[Predict risk class]
+## Fictional examples
 
-Predicted class: [Good risk / Bad risk]
-Historical dataset demonstration; not a lending recommendation.
-```
-
-The app uses the mappings in [the dataset guide](../data/README.md). It accepts
-exactly the seven trained inputs and offers only categories supported by the
-saved encoder. Combined meanings such as unknown / no savings account remain
-visible. Submit the form again after changing inputs; the displayed result
-belongs to the last submitted values, which can be expanded below it.
-
-For the teaching demo, use the observed development-data ranges: amount
-276-15,945 DM and duration 4-60 months. These are demonstration guardrails,
-not general lending rules. Staying within them does not ensure a combination
-is well represented. Other inputs use observed development categories.
-
-## Fictional scenarios to try
-
-These are invented discussion examples, not real people or labeled records.
-They have no known correct outcome or promised prediction.
+These have no known correct outcome. Use the live class rather than promising
+what the model will say. Category meanings: [dataset reference](../data/README.md).
 
 | Scenario | Amount (DM) | Months | Purpose | Checking | Savings | Employment | Credit history |
 | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -52,89 +32,68 @@ They have no known correct outcome or promised prediction.
 | B | 9,000 | 48 | A40: new car | A11 | A61 | A72 | A33 |
 | C | 3,000 | 12 | A42: furniture | A14 | A65 | A74 | A32 |
 
-A and B illustrate contrasting input profiles; do not assume what the model
-will predict. C illustrates how the form represents no checking account and
-unknown/no savings. A second run may change one input to discuss model behavior;
-this is a sensitivity example, not evidence of cause and effect.
+Change one input to discuss model sensitivity, not causality. The form limits
+amount to 276-15,945 DM and duration to 4-60 months, following development data.
+These are demo guardrails; allowed combinations can still be poorly represented.
 
-## Planned walkthrough
-
-Use the eight-minute sequence and presenters in the
-[presentation plan](../presentation/outline.md). It includes input explanation,
-practical runs, output interpretation, an actual GenAI prompt/output example,
-and limitations. Everyone should contribute material they can explain.
-
-Before presenting, test startup on a second machine and prepare fallback
-screenshots or example outputs. Automated checks exercise the form with the
-three fictional profiles above and verify that no fitting or dataset loading
-occurs. A second-machine check and team rehearsal are still pending.
+For the group walkthrough, use [the eight-minute sequence](../presentation/outline.md).
+A second-computer check and team rehearsal are still needed. Keep screenshots
+as a fallback; the recorded aggregate AI responses are already available offline.
 
 ## Start locally
 
-From the project directory in PowerShell, with the existing `.venv`:
+Reading results on GitHub needs no setup. To run the app, use Python 3.12.13 and
+an existing project `.venv` (initial setup is in the root README). In PowerShell:
 
 ```powershell
 .\.venv\Scripts\python.exe -m pip install -r requirements.txt
 .\.venv\Scripts\python.exe demo/run.py
 ```
 
-Open the local URL printed in the terminal (normally `http://127.0.0.1:8501`).
-The launcher adds the shared `code/` directory to `PYTHONPATH` before Streamlit
-starts, so its imported modules are watched and reloaded. If using the direct
-`streamlit run` command instead, restart the server after shared-code changes;
-refreshing the browser alone can leave old module signatures in memory.
-Stop the server with `Ctrl+C`. On macOS/Linux, use `.venv/bin/python`; those
-platforms have not yet been checked. Risk predictions and recorded explanation
-examples need no API key or external service. Optional live explanations use
-OpenAI; see below. Generative AI is separate from the saved risk classifier.
+Open the terminal's local URL, normally http://127.0.0.1:8501. Leave the terminal
+open; stop with Ctrl+C. On macOS/Linux use `.venv/bin/python`; only Windows is verified.
+The launcher watches the shared code folder. After code changes, use Streamlit's
+Rerun prompt; if starting with a direct `streamlit run` command, restart the server
+when imported modules change. Browser refresh alone can leave old modules loaded.
 
-The reliability panel displays the final test tradeoff: 46/60 bad risks detected,
-with 40/140 good risks incorrectly flagged. Use fictional profiles and explain
-that these historical results do not establish suitability for real lending.
+## Live AI: key and data flow
 
-## Generative AI explanation and experiment
+Risk predictions, model-contribution directions and recorded aggregate examples
+need no API key. For live explanations, configure `OPENAI_API_KEY` in the local
+environment or ignored `.streamlit/secrets.toml`:
 
-After **Predict risk class**, the result includes **Explain this result with AI**.
-This button explains the last submitted fictional profile, not unsent form edits.
-It sends the seven submitted values, class, English descriptions and calculated
-feature contributions to OpenAI. The disclosure appears beside the button.
-Use fictional profiles only. Submitting a new prediction clears its old explanation.
+```toml
+OPENAI_API_KEY = "your-secret-key"
+```
 
-Contributions are computed locally from the saved logistic-regression coefficients.
-Each transformed input is centered on the mean transformed inputs of the 800
-development cases. Centered values times coefficients, grouped into seven inputs,
-plus the reference score reconstruct the model's decision score. That reference
-is not a real or typical applicant. Directions toward Bad/Good risk are relative
-to it, not causal effects or probability changes. The reference is stored in
-`results/explanation_reference.json`; the app never loads training data or fits
-anything. **Calculated model contributions** also works without an API key.
+Never commit or share the key. Each live click incurs API usage charges.
 
-Two real checks on fictional scenario A are retained in
-`results/genai/profile_example.json` and `profile_example_refined.json`. The first
-used technical labels and raw contributions and contained a counting slip
-("Two smaller" followed by three features). The prompt was refined to use friendly
-labels, 2-3 features, an explicit reference and no raw logits. The second matched
-the supplied major contribution directions. These are integration examples,
-not part of the six-answer experiment or proof of general explanation reliability.
+| Button | What is sent to OpenAI |
+| --- | --- |
+| Explain this result with AI | Last submitted fictional inputs, predicted class, English descriptions and computed model contributions |
+| Generate AI explanation | Only the aggregate evaluation facts; no applicant inputs |
 
-Below the prediction, **AI explanation of our results** explains the overall
-evaluation, not an individual applicant. The live button uses the structured
-prompt from `prompts/explanation_structured.txt` and sends only aggregate
-evaluation facts. It does not change the classifier, threshold or risk result.
-An API error leaves the risk demo usable; requests are never triggered by
-ordinary widget reruns.
+The app discloses the profile data flow before the button. Use fictional inputs
+only. Requests do not run automatically on ordinary widget reruns. On failure,
+the app distinguishes key/access, limits, connection and timeout issues; model
+predictions remain available. Raw provider errors and keys are not displayed.
 
-For live explanations, add the local secret API key to the ignored file
-`.streamlit/secrets.toml` as `OPENAI_API_KEY = "your-secret-key"`, or use the
-environment variable of the same name. Do not use the key's management ID,
-post it in a chat or commit it to Git. A live click incurs API usage charges.
+<details>
+<summary>Optional: how the profile explanation is grounded</summary>
 
-For presentation without a key or network, expand **Recorded experiment: simple
-vs structured prompt**. Switch between the first real completed response for
-each variant, with the model and timestamp shown. This is a labeled recording,
-not an invented answer or a new API call.
+The saved logistic-regression pipeline is fitted on 800 development cases and
+uses threshold 0.5. Center each transformed profile input on the development-data
+mean, multiply by the fitted coefficient, and group one-hot columns back into
+seven inputs. Those contributions plus the reference score exactly reconstruct
+the model's decision score. The app never loads training data or refits anything.
+The reference is stored in `results/explanation_reference.json` and tied to the
+saved model checksum. These are associations in the model, not causal effects.
 
-The [experiment overview](../results/genai/README.md) links all six actual answers,
-their assessment and the draft text for report chapter 3. The structured prompt
-included the two class denominators more consistently; one answer exceeded the
-word target. Human review of the AI-assisted assessment remains pending.
+The first [profile integration output](../results/genai/profile_example.json)
+used technical labels/raw values and said two smaller features while listing
+three. The [refined output](../results/genai/profile_example_refined.json) used
+friendlier labels and correctly described the supplied major directions. Both
+remain unedited. They are outside the [six-response experiment](../results/genai/README.md)
+and do not prove every future profile explanation will follow instructions.
+
+</details>

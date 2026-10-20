@@ -299,3 +299,29 @@ is documented in the 20 October entry below and `results/genai/README.md`.
   live profile explanation in the actual running app. This troubleshooting call
   is not part of the completed six-response experiment. The original model,
   threshold and evaluation were not changed.
+
+## 2026-10-20: Simplify the team handover
+
+- Requested by: Nicolai, asking to review, update and remove unnecessary material
+  so teammates can understand the technical work without navigating many files.
+- Work: made the root README the single project overview and reading route;
+  put final test results/errors/cost assumptions first in `results/README.md`;
+  simplified the presentation outline, demo instructions and report section map.
+  Technical details are optional expandable sections. All files remain English.
+- Removed: redundant `PROJECT_PLAN.md`, duplicate `prompts/experiment.md` and the
+  unused figure-folder marker. Current roles, next steps and course requirements
+  were consolidated into the existing overview, outline and submission checklist.
+  The unique chapter-3 reference draft was preserved in an expandable section of
+  `results/genai/README.md`; the shared Word document remains the working report.
+- Evidence: original data, fixed split, executable code/tests, saved model,
+  metrics/predictions, notebook outputs, exact prompts, raw API attempts and
+  assessments remain at their original paths. Historical entries in this log
+  retain earlier filenames as a record, not as current navigation instructions.
+- Remaining: GenAI human sign-off, second-machine testing, shared report/slides,
+  rehearsal and final exports still require team checks. No review or completion
+  by another team member was inferred.
+- Verification: all local Markdown links/detail blocks checked; 49 implementation
+  and evidence files confirmed unchanged, including the exact prompt texts.
+  All 38 tests passed without paid API calls. The first test import hit a local
+  OpenBLAS memory-allocation error; the successful run limited BLAS/OMP threads
+  to one for that process, without changing packages or model settings.

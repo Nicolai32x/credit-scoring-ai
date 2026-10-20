@@ -1,191 +1,115 @@
 # Credit Scoring AI
 
-Team project for **Introduction to AI in Business**. We investigate how a
-credit-scoring model can support a business decision and assess its results,
-costs, and limitations. We will use Statlog (German Credit Data) and a small
-Streamlit demo with seven inputs.
+Team project for **Introduction to AI in Business**.
+**Question:** How well can a simple model classify credit risk using seven inputs?
 
-## Current status and project documents
+## Start here — no installation needed
 
-The original dataset, its structural review, project plan, and presentation
-outline are ready. Python and package versions are recorded. The named data
-loader and fixed 800/200 development/test split are implemented and checked;
-notebook 01 now includes development-only exploration, tables, four figures and
-interpretation. Reusable encoding/scaling pipelines are implemented and demonstrated
-on one training/validation fold in notebook 02. That notebook also compares a
-majority baseline, logistic regression and random forest in five development-only
-validation folds. Logistic regression and threshold 0.5 were frozen before a
-one-time test assessment. The final pipeline and test results are saved;
-the local seven-input Streamlit demo is implemented.
-The generative AI experiment compares two prompts using six actual OpenAI
-responses. The demo includes a live explanation of aggregate results and
-recorded examples for offline presentation. The AI-assisted assessment still
-needs Nicolai's review; see [the experiment results](results/genai/README.md).
-The report is written in Word in Teams, and a Canva presentation template is ready.
+You can read the text, view/download figures and open the saved notebook outputs
+**directly on GitHub**. You do not need to run Python or learn Git for your part.
 
-Start with [the project plan](PROJECT_PLAN.md), [dataset guide](data/README.md),
-[presentation outline](presentation/outline.md), and [demo sketch](demo/README.md).
-No installation is required to read these files or contribute to the written work.
+| Read | What you get |
+| --- | --- |
+| **[Results and figures](results/README.md)** | The model results, errors, cost illustration and reusable graphics |
+| **[Presentation outline](presentation/outline.md)** | Everyone's section, slide suggestions and demo sequence |
+| [GenAI experiment](results/genai/README.md) | The prompt comparison, real answers and assessment |
 
-## Getting started
+For an AI explanation of the project, download this README and `results/README.md`
+and upload them to your usual AI chat. Add the presentation outline for role
+questions. Check its answers against the files. [GitHub/AI tutorial](OPTIONAL_TUTORIAL.md)
+is optional; it is not required to contribute.
 
-Questions about the project or your role? Upload `README.md`, `PROJECT_PLAN.md`,
-and `presentation/outline.md` to your usual AI chat and ask it to explain them
-in simple terms. Add other relevant files when needed. You do not need to
-install anything for this; check its answers against the files and ask the team
-if something is unclear.
+## What Nicolai implemented
 
-If you want to try GitHub edits or use an AI assistant with the project, see the
-[optional GitHub and AI tutorial](OPTIONAL_TUTORIAL.md). It is not a prerequisite
-for contributing; you can also share your work with the team and ask for help.
+1. Checked the original **UCI German Credit** dataset: 1,000 historical cases.
+2. Used seven inputs: amount, duration, purpose, checking account, savings,
+   employment duration and credit history. Amounts stay in historical **DM**, not EUR.
+3. Reserved **200 test cases**; used **800 development cases** to compare an
+   always-good baseline, logistic regression and random forest in five validation folds.
+4. Selected logistic regression and threshold 0.5 **before the final test**.
+   The test was assessed once; the model was not trained on test cases.
+5. Built a seven-input Streamlit demo with optional AI explanations, and compared
+   two GenAI prompts using six real API responses.
 
-### Technical setup for running Python later
+In plain English: **training** learns patterns, **validation** compares approaches,
+and the separate **test** gives the final check. The ML model predicts the risk
+class; generative AI explains results and model contributions, without deciding the class.
 
-The development environment uses **Python 3.12.13**, recorded in `.python-version`.
-Use [uv](https://docs.astral.sh/uv/guides/install-python/) to find or install that
-version and create the environment. Create `.venv` only once; for an existing
-environment, skip the first command. From the project directory in PowerShell:
+The selected model detected **46 of 60 bad risks**, but wrongly flagged
+**40 of 140 good risks**. Accuracy is **73%**, balanced accuracy **74%**.
+This is a working teaching example with substantial errors, not a lending system.
+The results page explains these numbers and the 5:1 assumed error-cost illustration.
+
+## Where each person continues
+
+| Person | Area | Main material |
+| --- | --- | --- |
+| Jan | Business context and existing solutions | This page, presentation outline, own literature |
+| Nicolai | Data, method, GenAI and demo | Saved notebooks, GenAI experiment, demo guide |
+| Philipp | Results and economics | Results page and its linked figures |
+| Zosia | Risks, limitations and conclusions | Results/limitations, demo data flow, own sources |
+
+Write the report in the **shared Word document in Teams** and slides in the
+[shared Canva presentation](https://canva.link/doeibex7blblalaa). Use actual authorship
+and record AI assistance. The [report map](report/report.md) identifies sections;
+it is an export skeleton, not another draft to edit alongside Word.
+
+## Remaining team checks
+
+- Finish/review the shared report and slides; keep numbers and sources consistent.
+- Nicolai reviews the six GenAI answers and the AI-assisted assessment.
+- Rehearse the 24-minute presentation and 8-minute demo; confirm the lecturer's time slots.
+- Check startup on a second computer and prepare fallback screenshots.
+- Export the reviewed report as Markdown/PDF and follow the [submission checklist](submission/README.md).
+
+Presentation date, final topic name and the shared Word link still need to be
+recorded. Technical implementation is complete; report/slide readiness is a team check.
+
+## Optional: run or inspect the implementation
+
+To use the demo, see the **[demo guide](demo/README.md)**. It separates the
+classifier, aggregate AI explanation and submitted-profile AI explanation.
+Recorded GenAI examples work offline; live explanations need a local API key.
+
+<details>
+<summary>Technical setup, files and collaboration rules</summary>
+
+Python **3.12.13**; install the pinned packages, not newer model-library versions.
+From the project directory in PowerShell, create `.venv` once if absent:
 
 ```powershell
 uv venv --python 3.12.13 --seed .venv
 .\.venv\Scripts\python.exe -m pip install -r requirements.txt
-.\.venv\Scripts\python.exe -m jupyterlab
-```
-
-On macOS/Linux, use `.venv/bin/python` instead of `.\.venv\Scripts\python.exe`.
-You do not need to activate the environment when using its Python path directly.
-In VS Code, select this `.venv` environment as the interpreter and notebook kernel.
-Open the notebooks in numerical order. Notebook 01 can run end to end to load
-and explore development data and export the descriptive figures and summary.
-Its executed outputs are saved for reading on GitHub. Notebook 02 explains and
-demonstrates preprocessing in sections 1-2 and runs the model comparison in
-sections 3-5, including validation metrics, error costs and figures. Section 6
-reads the saved final test assessment without fitting or rerunning the test.
-
-`requirements.in` lists the eight direct dependencies; `requirements.txt` pins the
-resolved dependencies with platform markers. Install from `requirements.txt`
-for repeatable setup. The environment itself stays local and is ignored by Git.
-Only Windows has been verified locally; other platforms still need a setup check.
-When deliberately updating packages, regenerate the pins and rerun the checks:
-
-```powershell
-uv pip compile requirements.in --python-version 3.12.13 --universal --no-annotate --output-file requirements.txt
-```
-
-To start the demo with the saved model, run from the project directory:
-
-```powershell
 .\.venv\Scripts\python.exe demo/run.py
 ```
 
-Read [the demo guide](demo/README.md) for the walkthrough and fictional profiles.
-The app uses the frozen pipeline; it does not train or rerun the test assessment.
-Risk predictions and recorded GenAI examples work without an API key. The optional
-live explanation uses OpenAI and requires a local `OPENAI_API_KEY` environment
-variable or `.streamlit/secrets.toml` entry. That file is ignored by Git; never
-commit a key. The aggregate explanation sends only evaluation facts. The separate
-**Explain this result with AI** button sends the last submitted fictional profile,
-predicted class and calculated model contributions after an explicit click.
-The app states this before sending; use fictional examples only. See [the demo guide](demo/README.md).
+Use [uv's Python setup](https://docs.astral.sh/uv/guides/install-python/) if needed.
+For an existing environment, skip creation. On macOS/Linux use `.venv/bin/python`;
+only Windows has been verified. Requirements list eight direct dependencies and
+pin resolved versions. Keep the local environment and API key out of Git.
 
-### Load data and verify the fixed split
+- [Notebook 01](notebooks/01_exploration.ipynb): development-data exploration.
+- [Notebook 02](notebooks/02_model_comparison.ipynb): validation and saved final-test results.
+- [Dataset reference](data/README.md): source, category meanings, integrity and limitations.
+- `code/`: loading/preprocessing, model comparison, metrics, frozen final assessment,
+  OpenAI integration and exact profile contributions. `tests/` checks those boundaries.
+- `results/`: evidence and saved pipeline; JSON/CSV files are optional for team reading.
+- `prompts/`: actual prompt texts and chronological AI-use log.
 
-From the project directory in PowerShell:
+Run checks with:
 
 ```powershell
-.\.venv\Scripts\python.exe code/preprocessing.py
 .\.venv\Scripts\python.exe -m unittest discover -s tests -v
 ```
 
-`data/split.json` is versioned and fixes row membership. The first command
-validates and reuses it; it only creates a split when the file is absent.
-Do not delete it to try alternative partitions. Notebook 01 calls
-`load_partition()` with its development-only default. Test access is explicit
-and reserved for final evaluation. See [the dataset guide](data/README.md).
+The fixed split, decision and final assessment are already recorded. Do not
+refit/tune using test data or delete artifacts to repeat selection. The demo
+loads the saved pipeline. Read saved results instead of rerunning the final test.
 
-Descriptive findings, validation metrics and final test results are kept distinct
-in [`results/README.md`](results/README.md), together with reusable figures.
+Work directly on `main` by default. Check status and remote updates first,
+coordinate shared-file edits, preserve team changes and check before committing.
+Commit/push completed steps; use a branch only if requested. Never force-push or
+reset over another member's work. All project files are in English. Report chapters
+and slide footers must reflect actual authorship and AI assistance.
 
-## Structure
-
-| Directory | Purpose |
-| --- | --- |
-| `code/` | Shared Python functions for notebooks and the demo |
-| `notebooks/` | Exploration, baseline, and model comparison with explanations |
-| `tests/` | Source integrity, split isolation, and preprocessing checks |
-| `data/` | Dataset and documentation of its source |
-| `results/` | Generated metrics, models, and shared figures |
-| `report/` | Writing workflow and Markdown skeleton for the final export |
-| `presentation/` | Outline and link to the shared Canva presentation |
-| `prompts/` | Documentation of generative AI use |
-| `demo/` | Practical demo and walkthrough |
-| `submission/` | Checklist for the MS Teams submission package |
-
-Notebooks explain the analysis. Place shared logic in `code/` so that the demo
-uses the same preprocessing as training. Loading and pipeline factories live in
-`code/preprocessing.py`, the development comparison in `code/train.py`, and
-metric/error-cost calculations in `code/evaluate.py`. Running `code/train.py`
-regenerates validation CSV/JSON outputs; run notebook 02 for figures as well.
-Neither comparison path evaluates the test set or saves a final fitted model.
-The separate `code/final_model.py` assessment has already been run once; read
-`results/final_test.json` or notebook 02 section 6 instead of repeating it.
-`results/selected_pipeline.joblib` contains the complete development-trained
-pipeline and explicit threshold used by the demo. Load only the trusted
-project artifact, using the pinned environment; joblib files can execute code
-when loaded. The assessment script refuses to overwrite existing final outputs.
-
-## Collaboration
-
-- Work directly on `main` by default, including technical changes. Check
-  `git status` and update from the remote before starting with a clean working
-  tree. Coordinate edits to shared files.
-- Review changes locally and run the relevant checks before committing and
-  pushing. Nicolai can inspect the local changes; if he asks to review first,
-  wait for that review before publishing. Use a separate branch only when
-  explicitly requested.
-- Preserve existing team edits. If updates or conflicts are unclear, ask for
-  help; never force-push or use a destructive reset to overwrite shared work.
-- After each completed and checked work step, commit and push directly to `main`.
-- Assign one owner per notebook where possible to reduce merge conflicts.
-- Do not commit credentials or personal credit data.
-- Write project documentation, comments, and notebook explanations in English.
-
-| Area | Owner |
-| --- | --- |
-| Technical implementation (data, modeling, demo) | Nicolai |
-| Business and literature | Jan |
-| Results interpretation and economics | Philipp |
-| Risks and implementation recommendations | Zosia |
-
-Each presentation slide must name its actual responsible author(s) in the footer.
-Record the presenter separately if different. Also document report-chapter
-ownership and AI assistance. Roles and speaking sections are detailed in the
-[presentation plan](presentation/outline.md).
-
-## Writing the report
-
-Use the shared Word document in Teams as the working version;
-each person writes their sections and adds sources. Its Teams link still needs
-to be recorded. Word files are kept in Teams rather than this repository.
-Do not maintain a separate competing draft in `report/report.md`.
-After the team review, Nicolai coordinates the Markdown and PDF exports.
-See [the report skeleton and responsibilities](report/report.md).
-
-## Course requirements
-
-The team project includes the report (20 points), presentation (20), demo (10),
-and an individual end-of-semester test (20). The separate case study accounts
-for the remaining 30% of the final grade and is outside this credit-scoring project.
-
-- Report as `.md` and PDF: business problem, existing solutions with references,
-  a generative AI experiment, and empirical analysis covering goals, assumptions,
-  results, and interpretation.
-- Presentation: 20-25 minutes; business problem, method, data, results,
-  implementation costs, ethical/legal/social risks, and lessons learned.
-- Demo: 5-10 minutes; explain functionality, prompt/agent design, output, and limitations.
-- Upload all project files to MS Teams by the presentation day in a folder named
-  `YYYYMMDD_Topic`. According to the Grading Regulations, late submission costs
-  50% of the points.
-
-Presentation date and final topic name: **TBD**.
-Full submission checklist: `submission/README.md`.
+</details>

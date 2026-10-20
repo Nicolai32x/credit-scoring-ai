@@ -5,6 +5,13 @@ Upload to MS Teams by the presentation day. Folder name:
 The PDF does not specify a date. According to the Grading Regulations,
 late submission costs 50% of the points.
 
+Course deliverables: report 20 points, presentation 20, demo 10, and an
+individual end-of-semester test 20. The separate case study contributes the
+remaining 30% of the final grade and is outside this credit-scoring project.
+The report requires a business problem, referenced existing solutions, a GenAI
+experiment, and empirical goals/assumptions/results/interpretation. Presentation
+and demo timing/content are mapped in `presentation/outline.md`.
+
 - [ ] Report included as Markdown and PDF
 - [ ] Shared Word draft reviewed by all authors; Markdown and PDF match the final content
 - [ ] Business problem, existing solutions, and literature covered
