@@ -117,3 +117,23 @@ This template is not yet a documented generative AI experiment.
   are inferred. Demo range guidance now uses development-data support.
 - Limits: no model fitting, feature transformation, or test-set exploration.
   Human review of the new explanations and figures is pending.
+
+## 2026-10-20: Fold-specific preprocessing
+
+- Requested by: Nicolai, continuing after review of the exploratory notebook.
+  This entry is an English summary, not a verbatim prompt transcript.
+- Tool: AI coding assistant; model/version not recorded here.
+- Work: added fresh preprocessing and model-pipeline factories. Five categorical
+  inputs use one-hot encoding; two numeric inputs are standardized for logistic
+  regression and left unscaled for random forest. Source category A65 is kept.
+  Unseen categories produce a zero block and need explanation in the future demo.
+- Notebook 02: fit preprocessing on 640 training cases from the first development
+  fold, then transform 160 validation cases without refitting. Later sections
+  remain placeholders. This example is not reused as a globally fitted transform.
+- Checks: synthetic fixtures verify training-only statistics, stable handling of
+  unseen categories, feature selection, serialization, and per-fold fitting.
+  A dummy classifier is fitted only to invented test fixtures to check pipeline
+  behavior; no credit-risk classifier is trained on the project dataset.
+- Limits: no predictive performance, model selection, or test-partition analysis.
+  Original source files, split membership, and exploratory outputs are unchanged.
+  Human review of the new notebook explanations is pending.

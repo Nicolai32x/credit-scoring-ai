@@ -3,8 +3,9 @@
 Downloaded and checked on 16 October 2026; project status updated on 20 October.
 Statlog is the selected teaching dataset. Column naming, target mapping and
 the fixed 800/200 development/test split are implemented. Notebook 01 contains
-development-only exploratory analysis. No feature encoding, scaling or model
-training has been performed.
+development-only exploratory analysis. Notebook 02 demonstrates encoding and
+scaling learned from 640 development training cases and applied unchanged to
+160 validation cases. No credit-risk classifier has been trained or evaluated.
 
 ## Source, files, and license
 

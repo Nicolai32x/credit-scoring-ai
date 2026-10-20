@@ -1,7 +1,7 @@
-"""Load the original German Credit data and reserve a fixed test partition.
+"""Load the fixed data partitions and build unfitted preprocessing pipelines.
 
-This module does not encode features, scale values, or fit models. Those
-transformations will later be learned inside training folds only.
+Encoding categories and scaling numeric inputs must be learned inside each
+training fold. The factories below do not fit anything or load test data.
 """
 
 from hashlib import sha256
@@ -11,7 +11,11 @@ from pathlib import Path
 
 import pandas as pd
 import sklearn
+from sklearn.base import BaseEstimator, clone
+from sklearn.compose import ColumnTransformer
 from sklearn.model_selection import train_test_split
+from sklearn.pipeline import Pipeline
+from sklearn.preprocessing import OneHotEncoder, StandardScaler
 
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
@@ -33,6 +37,11 @@ SOURCE_COLUMNS = [
 FEATURE_COLUMNS = [
     "credit_amount", "duration_months", "purpose", "checking_status",
     "savings_status", "employment_duration", "credit_history",
+]
+NUMERIC_FEATURES = ["credit_amount", "duration_months"]
+CATEGORICAL_FEATURES = [
+    "purpose", "checking_status", "savings_status",
+    "employment_duration", "credit_history",
 ]
 
 
@@ -138,6 +147,41 @@ def load_partition(
     validate_split(manifest, frame)
     selected = frame.loc[manifest["row_ids"][partition]]
     return selected[FEATURE_COLUMNS].copy(), selected[TARGET].copy()
+
+
+def build_preprocessor(*, scale_numeric: bool = True) -> ColumnTransformer:
+    """Return a fresh, unfitted transformation of the seven named inputs.
+
+    Scale numbers for logistic regression; use scale_numeric=False for a
+    tree model. Categories are learned from the fit data only. A category
+    unseen during fitting produces zeros in that feature's one-hot block.
+    Combined source categories such as A65 are kept as categories.
+    """
+    numeric = StandardScaler() if scale_numeric else "passthrough"
+    return ColumnTransformer(
+        transformers=[
+            ("numeric", numeric, NUMERIC_FEATURES),
+            ("categorical", OneHotEncoder(
+                handle_unknown="ignore", sparse_output=False,
+            ), CATEGORICAL_FEATURES),
+        ],
+        remainder="drop",
+    )
+
+
+def build_model_pipeline(
+    model: BaseEstimator, *, scale_numeric: bool = True,
+) -> Pipeline:
+    """Keep preprocessing and an unfitted model together for cross-validation.
+
+    Pass raw seven-column DataFrames to this pipeline. Do not transform the
+    complete development set before cross-validation. Cloning the supplied
+    estimator prevents reuse of previously fitted model state.
+    """
+    return Pipeline([
+        ("preprocessing", build_preprocessor(scale_numeric=scale_numeric)),
+        ("model", clone(model)),
+    ])
 
 
 if __name__ == "__main__":

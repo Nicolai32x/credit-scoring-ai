@@ -4,7 +4,8 @@ Updated on **20 October 2026** with the agreed roles and writing workflow.
 The kickoff agenda is retained below for reference; no meeting outcomes or
 deadlines have been recorded. The Python environment, named data loader and
 fixed development/test split are ready. Development-only exploration is complete
-in notebook 01. Feature transformations, model experiments and the app are still to begin.
+in notebook 01. Preprocessing factories and a single-fold demonstration are ready
+in notebook 02. Credit-risk model experiments and the app are still to begin.
 
 ## What we want to build
 
@@ -17,7 +18,7 @@ It will illustrate the model, not make real lending decisions.
 
 Read [the dataset guide](data/README.md) and [the demo sketch](demo/README.md).
 Data loading, target mapping and the fixed split are implemented. Feature
-encoding/scaling, models and the application are not implemented. Descriptive
+encoding/scaling is implemented; models and the application are still pending. Descriptive
 statistics and plots use development data only; predictive performance has
 not been evaluated.
 
@@ -37,8 +38,9 @@ not been evaluated.
 
 In each validation round, approximately 640 cases train the model and 160
 validate it. Refit the chosen pipeline on all 800 development cases before
-the final test. The 800/200 allocation is fixed; cross-validation and model
-training have not been run yet.
+the final test. The 800/200 allocation is fixed. No credit-risk models have yet
+been trained or cross-validated. Notebook 02 demonstrates preprocessing on the
+first development fold only; model comparison will use all five folds.
 
 Keep preprocessing inside each training fold: encode categories, scale numeric
 inputs for logistic regression, and fit any learned transformations without

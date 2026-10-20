@@ -11,8 +11,9 @@ The original dataset, its structural review, project plan, and presentation
 outline are ready. Python and package versions are recorded. The named data
 loader and fixed 800/200 development/test split are implemented and checked;
 notebook 01 now includes development-only exploration, tables, four figures and
-interpretation. Feature encoding/scaling, trained models, model evaluation
-results, and a working Streamlit app are still pending.
+interpretation. Reusable encoding/scaling pipelines are implemented and demonstrated
+on one training/validation fold in notebook 02. Trained credit-risk models,
+model evaluation results, and a working Streamlit app are still pending.
 The report is written in Word in Teams, and a Canva presentation template is ready.
 
 Start with [the project plan](PROJECT_PLAN.md), [dataset guide](data/README.md),
@@ -49,7 +50,8 @@ You do not need to activate the environment when using its Python path directly.
 In VS Code, select this `.venv` environment as the interpreter and notebook kernel.
 Open the notebooks in numerical order. Notebook 01 can run end to end to load
 and explore development data and export the descriptive figures and summary.
-Its executed outputs are saved for reading on GitHub. Notebook 02 is still an outline.
+Its executed outputs are saved for reading on GitHub. Notebook 02 explains and
+demonstrates preprocessing in sections 1-2; model comparison remains an outline.
 
 `requirements.in` lists the six direct dependencies; `requirements.txt` pins the
 resolved dependencies with platform markers. Install from `requirements.txt`
@@ -88,7 +90,7 @@ Descriptive findings and reusable figures are indexed in
 | --- | --- |
 | `code/` | Shared Python functions for notebooks and the demo |
 | `notebooks/` | Exploration, baseline, and model comparison with explanations |
-| `tests/` | Source integrity, feature/target mapping, and split isolation checks |
+| `tests/` | Source integrity, split isolation, and preprocessing checks |
 | `data/` | Dataset and documentation of its source |
 | `results/` | Generated metrics, models, and shared figures |
 | `report/` | Writing workflow and Markdown skeleton for the final export |
@@ -98,7 +100,7 @@ Descriptive findings and reusable figures are indexed in
 | `submission/` | Checklist for the MS Teams submission package |
 
 Notebooks explain the analysis. Place shared logic in `code/` so that the demo
-uses the same preprocessing as training. The loader is implemented in
+uses the same preprocessing as training. The loader and pipeline factories are implemented in
 `code/preprocessing.py`; training and evaluation modules are still placeholders.
 
 ## Collaboration

@@ -17,8 +17,9 @@ held-out test cases. There are no trained-model or model-performance results yet
 - Duration: median 18 months, mean 20.77 months, range 4-60 months.
 - Small loan-purpose groups include retraining (5 cases), other (6), domestic
   appliances (10) and repairs (18). Their observed label shares are unstable.
-- Numeric scales differ and categorical codes are identifiers. Encoding and
-  numeric scaling will be learned inside training folds in the next step.
+- Numeric scales differ and categorical codes are identifiers. Notebook 02 now
+  demonstrates encoding and numeric scaling learned inside one training fold;
+  model comparison is still pending.
 
 The notebook also shows category-level bad-risk shares with denominators and
 small-group flags. These are descriptive associations, not causal effects,
