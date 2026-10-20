@@ -17,6 +17,10 @@ majority baseline, logistic regression and random forest in five development-onl
 validation folds. Logistic regression and threshold 0.5 were frozen before a
 one-time test assessment. The final pipeline and test results are saved;
 the local seven-input Streamlit demo is implemented.
+The generative AI experiment compares two prompts using six actual OpenAI
+responses. The demo includes a live explanation of aggregate results and
+recorded examples for offline presentation. The AI-assisted assessment still
+needs Nicolai's review; see [the experiment results](results/genai/README.md).
 The report is written in Word in Teams, and a Canva presentation template is ready.
 
 Start with [the project plan](PROJECT_PLAN.md), [dataset guide](data/README.md),
@@ -58,7 +62,7 @@ demonstrates preprocessing in sections 1-2 and runs the model comparison in
 sections 3-5, including validation metrics, error costs and figures. Section 6
 reads the saved final test assessment without fitting or rerunning the test.
 
-`requirements.in` lists the seven direct dependencies; `requirements.txt` pins the
+`requirements.in` lists the eight direct dependencies; `requirements.txt` pins the
 resolved dependencies with platform markers. Install from `requirements.txt`
 for repeatable setup. The environment itself stays local and is ignored by Git.
 Only Windows has been verified locally; other platforms still need a setup check.
@@ -76,6 +80,11 @@ To start the demo with the saved model, run from the project directory:
 
 Read [the demo guide](demo/README.md) for the walkthrough and fictional profiles.
 The app uses the frozen pipeline; it does not train or rerun the test assessment.
+Risk predictions and recorded GenAI examples work without an API key. The optional
+live explanation uses OpenAI and requires a local `OPENAI_API_KEY` environment
+variable or `.streamlit/secrets.toml` entry. That file is ignored by Git; never
+commit a key. Only aggregate evaluation facts are sent after an explicit click,
+not the applicant inputs. See [the experiment design](prompts/experiment.md).
 
 ### Load data and verify the fixed split
 

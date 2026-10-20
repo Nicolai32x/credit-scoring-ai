@@ -1,0 +1,222 @@
+{
+  "review_type": "AI-assisted qualitative review using the criteria fixed before generation",
+  "human_sign_off": "pending",
+  "independent_or_blinded_review": false,
+  "word_count_method": "Whitespace-separated tokens in raw output, including headings and Markdown emphasis.",
+  "results": [
+    {
+      "attempt": 1,
+      "variant": "simple",
+      "word_count": 173,
+      "criteria": {
+        "numerical_accuracy": {
+          "score": 1,
+          "evidence_excerpt": "100 good borrowers",
+          "rationale": "Reported counts and rounded percentages are correct, but the 60 bad-risk and 140 good-risk denominators are omitted."
+        },
+        "clarity": {
+          "score": 2,
+          "evidence_excerpt": "meaning a little over half",
+          "rationale": "173 whitespace-separated words; explains precision in ordinary language."
+        },
+        "balanced_errors": {
+          "score": 2,
+          "evidence_excerpt": "14 false approvals",
+          "rationale": "Explains both risky applicants marked good and good applicants marked bad."
+        },
+        "unsupported_claims": {
+          "score": 2,
+          "evidence_excerpt": "historical teaching data",
+          "rationale": "Explicit caveats; no invented causal feature effects, calibrated default probability, actual monetary savings, or deployment recommendation. See qualitative cautions about general priority claims and approval wording."
+        }
+      },
+      "total_out_of_8": 7
+    },
+    {
+      "attempt": 2,
+      "variant": "structured",
+      "word_count": 169,
+      "criteria": {
+        "numerical_accuracy": {
+          "score": 2,
+          "evidence_excerpt": "46 of the 60 bad risks",
+          "rationale": "Correct counts and both denominators, including 40 of 140 good risks; no numerical errors."
+        },
+        "clarity": {
+          "score": 2,
+          "evidence_excerpt": "Accuracy alone does not show how well it finds bad risks.",
+          "rationale": "169 words; explicitly distinguishes accuracy from detection of bad risks."
+        },
+        "balanced_errors": {
+          "score": 2,
+          "evidence_excerpt": "missed 14 bad risks",
+          "rationale": "Both missed bad risks and incorrectly flagged good risks are described."
+        },
+        "unsupported_claims": {
+          "score": 2,
+          "evidence_excerpt": "illustrative cost units per case",
+          "rationale": "Costs are bounded to the historical assumption; explicitly rejects future savings, profitability and deployment claims."
+        }
+      },
+      "total_out_of_8": 8
+    },
+    {
+      "attempt": 3,
+      "variant": "simple",
+      "word_count": 169,
+      "criteria": {
+        "numerical_accuracy": {
+          "score": 1,
+          "evidence_excerpt": "46 bad borrowers",
+          "rationale": "Counts, accuracy, recall, AUC and cost values are correct, but the 60/140 denominators are omitted."
+        },
+        "clarity": {
+          "score": 2,
+          "evidence_excerpt": "good overall separation between good and bad risks",
+          "rationale": "169 words; gives a plain-language description of ROC-AUC and the error tradeoff."
+        },
+        "balanced_errors": {
+          "score": 2,
+          "evidence_excerpt": "40 false rejections",
+          "rationale": "Both errors are counted and explained."
+        },
+        "unsupported_claims": {
+          "score": 2,
+          "evidence_excerpt": "under the stated assumptions",
+          "rationale": "Cost comparison remains conditional, with historical and suitability/fairness caveats. No explicit deployment recommendation; approval wording is still imprecise."
+        }
+      },
+      "total_out_of_8": 7
+    },
+    {
+      "attempt": 4,
+      "variant": "structured",
+      "word_count": 193,
+      "criteria": {
+        "numerical_accuracy": {
+          "score": 2,
+          "evidence_excerpt": "140 actual good risks",
+          "rationale": "Correct denominators, counts, percentages and cost values."
+        },
+        "clarity": {
+          "score": 1,
+          "evidence_excerpt": "accuracy alone can be misleading here",
+          "rationale": "Explanation is understandable but has 193 words, exceeding the fixed 120-180-word target."
+        },
+        "balanced_errors": {
+          "score": 2,
+          "evidence_excerpt": "missed 14 bad risks",
+          "rationale": "Describes both errors, including 40 good risks incorrectly flagged."
+        },
+        "unsupported_claims": {
+          "score": 2,
+          "evidence_excerpt": "illustrative cost units",
+          "rationale": "Limits claims to the historical data and explicitly excludes calibrated probabilities, causal explanations and present-day lending decisions."
+        }
+      },
+      "total_out_of_8": 7
+    },
+    {
+      "attempt": 5,
+      "variant": "simple",
+      "word_count": 148,
+      "criteria": {
+        "numerical_accuracy": {
+          "score": 1,
+          "evidence_excerpt": "40 false rejections",
+          "rationale": "Correct counts, recall, AUC and costs, but the 60/140 class denominators are omitted."
+        },
+        "clarity": {
+          "score": 2,
+          "evidence_excerpt": "That means it separates good and bad risks fairly well.",
+          "rationale": "148 words; explains the main error tradeoff and discrimination in accessible terms."
+        },
+        "balanced_errors": {
+          "score": 2,
+          "evidence_excerpt": "14 false approvals",
+          "rationale": "Both errors are counted and explained, though accepted/declined language should be corrected in any adopted text."
+        },
+        "unsupported_claims": {
+          "score": 2,
+          "evidence_excerpt": "historical teaching dataset",
+          "rationale": "Contains calibration, fairness and current-use caveats; no explicit recommendation to deploy, invented causes, actual savings, or default probability. The phrase useful screening tool is stronger than the evidence and is noted qualitatively."
+        }
+      },
+      "total_out_of_8": 7
+    },
+    {
+      "attempt": 6,
+      "variant": "structured",
+      "word_count": 171,
+      "criteria": {
+        "numerical_accuracy": {
+          "score": 2,
+          "evidence_excerpt": "140 actual good risks",
+          "rationale": "Correct 46/60 and 40/140 figures and percentages; no numerical errors."
+        },
+        "clarity": {
+          "score": 2,
+          "evidence_excerpt": "That trade-off is separate from accuracy.",
+          "rationale": "171 words; explains the difference between overall accuracy and the two error rates."
+        },
+        "balanced_errors": {
+          "score": 2,
+          "evidence_excerpt": "detected **46** and missed **14**",
+          "rationale": "Both error types are described with denominators."
+        },
+        "unsupported_claims": {
+          "score": 2,
+          "evidence_excerpt": "not a calibrated probability of default",
+          "rationale": "Historical limits and lack of demonstrated fairness/usefulness/lending suitability are explicit; costs are called illustrative units."
+        }
+      },
+      "total_out_of_8": 8
+    }
+  ],
+  "summary": {
+    "simple": {
+      "scores_out_of_8": [
+        7,
+        7,
+        7
+      ],
+      "mean_out_of_8": 7.0,
+      "criterion_means": {
+        "numerical_accuracy": 1.0,
+        "clarity": 2.0,
+        "balanced_errors": 2.0,
+        "unsupported_claims": 2.0
+      }
+    },
+    "structured": {
+      "scores_out_of_8": [
+        8,
+        7,
+        8
+      ],
+      "mean_out_of_8": 7.666666666666667,
+      "criterion_means": {
+        "numerical_accuracy": 2.0,
+        "clarity": 1.6666666666666667,
+        "balanced_errors": 2.0,
+        "unsupported_claims": 2.0
+      }
+    }
+  },
+  "qualitative_cautions": [
+    "All six responses have correct numerical values; the numerical-score difference concerns omitted class denominators, not fabricated statistics.",
+    "Simple answers use approval/rejection or accepted/declined language although the app only predicts classes. Correct this framing if adopting their text.",
+    "Simple attempt 1 says false approvals are usually the most important lending error, a broader generalization than the supplied historical cost assumption supports.",
+    "Simple attempt 5 calls the model a useful screening tool. This is not an explicit deployment recommendation under the fixed rubric, but suggests more practical utility than this experiment establishes.",
+    "The unsupported-claims rubric gives every answer 2 points under its specified definitions. That does not certify every phrase as well framed; the cautions above reveal a limitation of this small rubric.",
+    "One structured answer exceeded the word target. No claim of universal prompt superiority, statistical significance or independent human validation follows."
+  ],
+  "usage": {
+    "input_tokens": 3213,
+    "cached_input_tokens": 0,
+    "output_tokens": 1454,
+    "estimated_usd": 0.00895275,
+    "pricing_basis": "Published standard GPT-5.4 mini rates checked 20 October 2026: $0.75/M input, $0.075/M cached input, $4.50/M output. Estimate, not a billing statement.",
+    "pricing_source": "https://developers.openai.com/api/docs/models/gpt-5.4-mini"
+  }
+}

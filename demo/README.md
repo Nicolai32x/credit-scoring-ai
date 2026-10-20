@@ -80,9 +80,34 @@ From the project directory in PowerShell, with the existing `.venv`:
 
 Open the local URL printed in the terminal (normally `http://127.0.0.1:8501`).
 Stop the server with `Ctrl+C`. On macOS/Linux, use `.venv/bin/python`; those
-platforms have not yet been checked. No API key or external AI service is needed.
-The app predicts with the saved classifier; it is not a generative AI experiment.
+platforms have not yet been checked. Risk predictions and recorded explanation
+examples need no API key or external service. Optional live explanations use
+OpenAI; see below. Generative AI is separate from the saved risk classifier.
 
 The reliability panel displays the final test tradeoff: 46/60 bad risks detected,
 with 40/140 good risks incorrectly flagged. Use fictional profiles and explain
 that these historical results do not establish suitability for real lending.
+
+## Generative AI explanation and experiment
+
+Below the prediction, **AI explanation of our results** explains the overall
+evaluation, not an individual applicant. The live button uses the structured
+prompt from `prompts/explanation_structured.txt` and sends only aggregate
+evaluation facts. It does not change the classifier, threshold or risk result.
+An API error leaves the risk demo usable; requests are never triggered by
+ordinary widget reruns.
+
+For live explanations, add the local secret API key to the ignored file
+`.streamlit/secrets.toml` as `OPENAI_API_KEY = "your-secret-key"`, or use the
+environment variable of the same name. Do not use the key's management ID,
+post it in a chat or commit it to Git. A live click incurs API usage charges.
+
+For presentation without a key or network, expand **Recorded experiment: simple
+vs structured prompt**. Switch between the first real completed response for
+each variant, with the model and timestamp shown. This is a labeled recording,
+not an invented answer or a new API call.
+
+The [experiment overview](../results/genai/README.md) links all six actual answers,
+their assessment and the draft text for report chapter 3. The structured prompt
+included the two class denominators more consistently; one answer exceeded the
+word target. Human review of the AI-assisted assessment remains pending.

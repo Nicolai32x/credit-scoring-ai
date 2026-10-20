@@ -54,8 +54,8 @@ during rehearsal and confirm the time slots with the lecturer.
 | 3 | Project goal: what does success mean and what is outside scope? | Research question, seven-input scope, false-approval versus false-rejection tradeoff | B | 2 |
 | 4 | Data: what are the labels and seven inputs? | UCI attribution, sample size, class balance, DM units, historical-data caveat | T | 2 |
 | 5 | Method: how do we compare models fairly? | Diagram: test holdout, cross-validation, baseline, logistic regression, random forest | T | 2 |
-| 6 | GenAI and reproducibility: what did AI help with and how did we check it? | One actual prompt, output excerpt, correction, and reproducible pipeline explanation | T | 2 |
-| 7 | Measurable results: what did each model achieve? | Validation comparison and final held-out test result for the selected approach; values remain TBD | E | 2 |
+| 6 | GenAI and reproducibility: what did AI help with and how did we check it? | Compare actual simple/structured prompts and outputs: more explicit denominators, one 193-word instruction failure; AI-assisted assessment and human review limits | T | 2 |
+| 7 | Measurable results: what did each model achieve? | Validation comparison and frozen-model test: 0.740 balanced accuracy, 46/60 bad risks detected, 40/140 good risks falsely flagged | E | 2 |
 | 8 | Error interpretation: which mistakes matter to the business? | Confusion matrix and bad-risk recall; historical 5:1 cost example, clearly labeled | E | 2 |
 | 9 | Costs and benefits: what would this take to operate? | Team effort, hosting/maintenance assumptions, data and review needs; no fabricated ROI | E | 2 |
 | 10 | Ethical, legal, and social risks: who could be harmed and how do we mitigate it? | Referenced discussion or visual covering all three areas | R | 2 |
@@ -98,8 +98,11 @@ The deck should not claim an agent exists if the team only used coding assistanc
 | Show a boundary/ambiguous scenario and explain limitations | R | 2 |
 | **Total** | | **8** |
 
-Use the [demo sketch](../demo/README.md). Prepare screenshots or recorded example
-outputs as a fallback after implementation. Do not invent predictions now.
+Use the [demo guide](../demo/README.md). Actual GenAI responses from both prompts
+are already recorded in the app; use them if API access fails. Prepare fallback
+screenshots of the risk prediction and rehearse the full sequence. See
+[the experiment results](../results/genai/README.md) for all six responses,
+the rubric and its limitations. Do not claim independent human validation.
 
 ## Minimum preparation for every presenter
 

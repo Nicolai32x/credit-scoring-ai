@@ -93,6 +93,7 @@ def render_genai_panel():
              "the individual applicant above or change the risk prediction.")
     key = get_api_key()
     if st.button("Generate AI explanation", key="generate_explanation", disabled=not bool(key)):
+        st.session_state.pop("ai_explanation", None)
         try:
             with st.spinner("Generating an explanation of the saved evaluation results..."):
                 response = generate_explanation(api_key=key)
@@ -112,7 +113,13 @@ def render_genai_panel():
     with st.expander("Recorded experiment: simple vs structured prompt"):
         variant = st.radio("Prompt version", ["simple", "structured"], horizontal=True,
                            key="recorded_prompt_version")
-        attempts_path = ROOT / "results" / "genai" / "attempts.jsonl"
+        experiment_dir = ROOT / "results" / "genai"
+        index_path = experiment_dir / "selected_run.json"
+        if index_path.exists():
+            selected_run = json.loads(index_path.read_text(encoding="utf-8"))
+            attempts_path = experiment_dir / selected_run["attempts_file"]
+        else:
+            attempts_path = experiment_dir / "attempts.jsonl"
         if attempts_path.exists():
             records = [json.loads(line) for line in attempts_path.read_text(encoding="utf-8").splitlines() if line]
             matching = [record for record in records if record.get("variant") == variant

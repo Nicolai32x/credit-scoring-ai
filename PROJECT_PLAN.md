@@ -10,6 +10,9 @@ comparison. Logistic regression with threshold 0.5 was frozen, refitted on the
 800 development cases, and assessed once on the 200 test cases. The saved
 pipeline is ready and connected to the local seven-input Streamlit app. Team
 rehearsal and a second-machine check are still pending.
+The GenAI explanation experiment is also complete: six real responses, a
+documented AI-assisted assessment and recorded examples in Streamlit. Human
+review, report/slide completion and presentation practice remain pending.
 
 ## What we want to build
 

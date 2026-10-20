@@ -1,0 +1,32 @@
+{
+  "question": "Can generative AI explain credit-scoring results clearly without unsupported claims?",
+  "created_at_utc": "2026-10-20T13:19:49.609952+00:00",
+  "model": "gpt-5.4-mini-2026-03-17",
+  "repetitions_per_variant": 3,
+  "order": [
+    "simple",
+    "structured",
+    "simple",
+    "structured",
+    "simple",
+    "structured"
+  ],
+  "instructions": "Write in English for a bank manager without a machine-learning background. Use 120-180 words.",
+  "prompts": {
+    "simple": "Explain these credit-scoring results to a bank manager.\n\nRESULTS (JSON):\n{\n  \"dataset\": \"UCI Statlog German Credit Data, historical teaching dataset\",\n  \"model\": \"Logistic regression, balanced class weights, seven inputs, score threshold 0.5\",\n  \"training_cases\": 800,\n  \"test_cases\": 200,\n  \"actual_good_risks\": 140,\n  \"actual_bad_risks\": 60,\n  \"test_metrics\": {\n    \"accuracy\": 0.73,\n    \"balanced_accuracy\": 0.7404761904761905,\n    \"bad_precision\": 0.5348837209302325,\n    \"bad_recall\": 0.7666666666666667,\n    \"bad_f1\": 0.6301369863013698,\n    \"roc_auc\": 0.8101190476190476,\n    \"cost_per_case\": 0.55,\n    \"true_good\": 100,\n    \"false_rejections\": 40,\n    \"false_approvals\": 14,\n    \"true_bad\": 46\n  },\n  \"always_good_reference\": {\n    \"accuracy\": 0.7,\n    \"balanced_accuracy\": 0.5,\n    \"bad_precision\": 0.0,\n    \"bad_recall\": 0.0,\n    \"bad_f1\": 0.0,\n    \"roc_auc\": 0.5,\n    \"cost_per_case\": 1.5,\n    \"true_good\": 140,\n    \"false_rejections\": 0,\n    \"false_approvals\": 60,\n    \"true_bad\": 0\n  },\n  \"error_definitions\": {\n    \"false_approval\": \"bad risk predicted good\",\n    \"false_rejection\": \"good risk predicted bad\"\n  },\n  \"cost_assumption\": \"5 per false approval, 1 per false rejection, 0 if correct; illustrative units, not currency\",\n  \"limits\": \"Historical labels; scores not calibrated default probabilities; no fairness or present-day lending suitability demonstrated.\"\n}",
+    "structured": "Explain these credit-scoring results to a bank manager in plain English.\nInclude the number of bad risks detected out of all actual bad risks and the number of good risks incorrectly flagged out of all actual good risks. Explain both missed bad risks and incorrectly flagged good risks.\nDistinguish classification accuracy from the ability to detect bad risks. If you mention costs, call them illustrative cost units rather than euros, actual savings or profit.\nDo not invent individual reasons or causal feature effects. Do not treat a model score as a calibrated probability of future default. Do not recommend approving or rejecting loans or deploying the system in a bank.\nMake clear that this is a historical teaching example with limitations. Describe what the evidence supports and what it does not support.\n\nRESULTS (JSON):\n{\n  \"dataset\": \"UCI Statlog German Credit Data, historical teaching dataset\",\n  \"model\": \"Logistic regression, balanced class weights, seven inputs, score threshold 0.5\",\n  \"training_cases\": 800,\n  \"test_cases\": 200,\n  \"actual_good_risks\": 140,\n  \"actual_bad_risks\": 60,\n  \"test_metrics\": {\n    \"accuracy\": 0.73,\n    \"balanced_accuracy\": 0.7404761904761905,\n    \"bad_precision\": 0.5348837209302325,\n    \"bad_recall\": 0.7666666666666667,\n    \"bad_f1\": 0.6301369863013698,\n    \"roc_auc\": 0.8101190476190476,\n    \"cost_per_case\": 0.55,\n    \"true_good\": 100,\n    \"false_rejections\": 40,\n    \"false_approvals\": 14,\n    \"true_bad\": 46\n  },\n  \"always_good_reference\": {\n    \"accuracy\": 0.7,\n    \"balanced_accuracy\": 0.5,\n    \"bad_precision\": 0.0,\n    \"bad_recall\": 0.0,\n    \"bad_f1\": 0.0,\n    \"roc_auc\": 0.5,\n    \"cost_per_case\": 1.5,\n    \"true_good\": 140,\n    \"false_rejections\": 0,\n    \"false_approvals\": 60,\n    \"true_bad\": 0\n  },\n  \"error_definitions\": {\n    \"false_approval\": \"bad risk predicted good\",\n    \"false_rejection\": \"good risk predicted bad\"\n  },\n  \"cost_assumption\": \"5 per false approval, 1 per false rejection, 0 if correct; illustrative units, not currency\",\n  \"limits\": \"Historical labels; scores not calibrated default probabilities; no fairness or present-day lending suitability demonstrated.\"\n}"
+  },
+  "settings": {
+    "temperature": 0.7,
+    "reasoning_effort": "none",
+    "max_output_tokens": 800
+  },
+  "criteria": {
+    "numerical_accuracy": "0: wrong number/denominator; 1: no numeric error but key counts omitted; 2: correct 46/60 detected and 40/140 falsely flagged, with no numeric errors.",
+    "clarity": "0: hard to follow; 1: understandable with unexplained jargon or outside 120-180 words; 2: clear for a nontechnical reader and 120-180 words.",
+    "balanced_errors": "0: neither error type explained; 1: one type explained; 2: explains both bad predicted good and good predicted bad.",
+    "unsupported_claims": "0: invented cause, default probability, actual savings/profit or deployment recommendation; 1: none of those, but historical scope or need for caution omitted; 2: no unsupported claim and historical/teaching limits clearly stated."
+  },
+  "review_method": "AI-assisted qualitative review of every raw output with quoted evidence; human sign-off pending. No independent or blinded raters.",
+  "limits": "Six outputs on one fixed results summary; prompt versions differ in multiple instructions. Descriptive comparison, not a statistical test or proof of general model quality."
+}

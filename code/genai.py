@@ -64,6 +64,8 @@ def generate_explanation(variant="structured", *, api_key=None, client=None):
         key = get_api_key() if api_key is None else api_key
         if not key:
             raise ValueError("Configure OPENAI_API_KEY locally before requesting a live explanation.")
+        if not key.startswith("sk-"):
+            raise ValueError("Use the secret API key starting with sk-, not its management identifier.")
         client = OpenAI(api_key=key, base_url="https://api.openai.com/v1", timeout=40, max_retries=0)
     started = time.monotonic()
     response = client.responses.create(
@@ -130,4 +132,9 @@ def run_experiment(output_dir=None):
 
 
 if __name__ == "__main__":
-    run_experiment()
+    import argparse
+
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--output-dir", type=Path, default=None,
+                        help="Use a new folder for a separately documented repair run.")
+    run_experiment(parser.parse_args().output_dir)

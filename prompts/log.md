@@ -20,7 +20,8 @@ Enter the actual prompt used here.
 - Content adopted and its use in the project:
 - Limitations, errors, and lessons learned:
 
-This template is not yet a documented generative AI experiment.
+The template alone is not an experiment. The completed explanation experiment
+is documented in the 20 October entry below and `results/genai/README.md`.
 
 ## 2026-10-16: Kickoff preparation and presentation planning
 
@@ -208,3 +209,46 @@ This template is not yet a documented generative AI experiment.
 - Limits: no external AI API or generative AI experiment is implemented here.
   Frozen model, threshold and final assessment are unchanged. Team rehearsal,
   second-machine testing and human review remain pending.
+
+## 2026-10-20: OpenAI result-explanation experiment
+
+- Requested by: Nicolai, approving the two-prompt experiment and Streamlit
+  integration. This is a task summary; exact experimental prompts are preserved
+  separately from the conversational instructions.
+- Generation model: `gpt-5.4-mini-2026-03-17`, OpenAI Responses API, SDK 3.35.1.
+  Evaluation and implementation: AI coding assistant, with human review pending.
+- Protocol: simple versus structured prompt, three independent responses each,
+  paired alternating order, same aggregate results and audience/word instruction;
+  temperature 0.7, reasoning none, maximum 800 output tokens, no tools/retries.
+  Prompt files: `explanation_simple.txt` and `explanation_structured.txt`. Full
+  supplied prompts/settings and the rubric were written before generation.
+- Execution history: first attempt failed authentication because the management
+  identifier was used rather than the secret key. The failure and its protocol
+  remain in `results/genai/`. After the user replaced the local key, all six
+  requests in `results/genai/run_02/` completed. No successful answers were dropped.
+- Outputs: `results/genai/outputs.md` contains all six unedited answers; raw
+  response IDs, timestamps, usage and report checksum are in `attempts.jsonl`.
+  The assessment stores scores, evidence excerpts and qualitative cautions.
+- Findings: all responses used correct numbers and described both error types.
+  Simple responses omitted the 60/140 class denominators; structured responses
+  included them. One structured response exceeded 180 words (193 words).
+  Mean rubric scores: 7.00/8 versus 7.67/8. Differences are descriptive, not
+  statistically significant evidence or proof of general superiority.
+- Corrections and limits: simple responses use approval/rejection language
+  despite the app predicting only classes. Broad phrases about usefulness and
+  error priorities also need caution. The fixed rubric does not capture every
+  framing problem. Raw outputs remain unedited. Assessment is AI-assisted,
+  neither independent nor blinded; Nicolai's review is still pending.
+- Integration: optional live structured-prompt explanation of aggregate results,
+  plus clearly labeled recorded examples from the first completed repetition
+  of each variant. No applicant inputs are sent. The ML pipeline/test is unchanged.
+- Usage: 3,213 input and 1,454 output tokens; estimated standard cost $0.00895
+  at the published rates checked on 20 October 2026, not an account billing total.
+- Report: draft chapter 3 with APA-style references is in `prompts/experiment.md`
+  for transfer to the shared Word document. No competing final report was created.
+- Security: key remains local in the ignored secrets file and is never written
+  to prompts, responses or Git. Provider error bodies are not logged or displayed.
+- Verification: all 31 tests passed, including offline recorded examples,
+  explicit live-call behavior and persistence of the original ML result during
+  AI interaction. Raw outputs, rubric evidence, usage and source checksums were
+  checked. No additional paid calls were made by automated tests.

@@ -64,7 +64,10 @@ From the project directory in PowerShell:
 The command makes at most six requests and refuses to overwrite an existing
 attempt log. Check availability and credit in the provider account. Do not
 delete failed attempts to make the experiment look better; document any repair
-or additional run separately. Ordinary automated tests use synthetic replies
+or additional run separately, using `--output-dir results/genai/run_02` for a
+second run. `results/genai/selected_run.json` identifies the completed run used
+for the demo; earlier failed setup attempts remain visible in the original log.
+Ordinary automated tests use synthetic replies
 and make no paid API calls.
 
 ## Streamlit use
@@ -83,3 +86,83 @@ Saved examples are actual API responses, never invented substitutes.
 
 - OpenAI. (n.d.). *GPT-5.4 mini*. https://developers.openai.com/api/docs/models/gpt-5.4-mini
 - OpenAI. (n.d.). *Create a model response*. https://developers.openai.com/api/reference/python/resources/responses/methods/create
+
+## Execution and results
+
+The experiment is complete. The first setup attempt failed authentication and
+is retained in the original log. After correction, all six requests in `run_02`
+completed. No successful outputs were discarded. See the
+[result overview](../results/genai/README.md), [all actual answers](../results/genai/outputs.md)
+and [AI-assisted assessment](../results/genai/run_02/assessment.json).
+Human review remains pending; do not describe this as an independent human study.
+
+## Report chapter 3 - draft for the shared Word document
+
+### 3. Generative AI experiment
+
+We investigated whether generative AI could explain our credit-scoring results
+clearly without making unsupported claims. The task was to explain the overall
+evaluation to a bank manager without a machine-learning background. We did not
+ask the AI to make credit decisions or explain why an individual applicant
+received a particular prediction.
+
+The experiment used the OpenAI Responses API with the fixed model snapshot
+GPT-5.4 mini, dated 17 March 2026 (OpenAI, n.d.-a, n.d.-b). We compared two
+prompts. The simple version asked: "Explain these credit-scoring results to a
+bank manager." The structured version additionally requested both error types,
+the relevant class denominators and a distinction between accuracy and bad-risk
+detection. It also instructed the model not to invent individual causes, treat
+scores as calibrated default probabilities, describe assumed costs as actual
+savings, or recommend lending decisions or deployment.
+
+Both prompts received the same aggregate results, including 46 of 60 bad risks
+detected and 40 of 140 good risks incorrectly flagged. They also received the
+same audience instruction and a target length of 120-180 words. We generated
+three responses per prompt in alternating order, using temperature 0.7,
+reasoning effort none and a maximum of 800 output tokens. Every request was
+independent. No applicant inputs or personal data were sent to the API. An
+initial authentication failure was retained in the log; the six completed
+responses came from the subsequent run after the local key was corrected.
+
+Before generation, we defined four criteria, each worth up to two points:
+numerical accuracy and completeness, clarity, explanation of both error types,
+and avoidance of specified unsupported claims. Numerical completeness required
+the relevant denominators, not just the numbers of detected or incorrectly
+flagged cases. Clarity included the word target. The assessment was AI-assisted,
+with evidence excerpts recorded for each score; it was not an independent or
+blinded human evaluation. Team review of the answers and assessment is still
+required before final submission.
+
+The simple prompt scored 7 out of 8 in all three responses. The structured
+prompt scored 8, 7 and 8, giving a mean of 7.67. All six responses used correct
+numerical values and explained both error types. The difference in numerical
+scores arose because the simple responses omitted the class denominators of
+60 bad risks and 140 good risks. The structured responses included those
+denominators, making the scale of each error easier to judge. However, one
+structured response contained 193 words and exceeded the requested length.
+
+The qualitative review also found wording that the numerical scores did not
+fully capture. Simple responses described cases as approved or declined,
+although our application only predicts risk classes. One described the model
+as a "useful screening tool", suggesting more practical usefulness than the
+experiment establishes. These observations show that a short scoring rubric
+does not replace reading the actual output. Original responses remain
+unchanged in the experiment log, separate from any wording adopted in the report.
+
+We integrated the structured prompt into the Streamlit demonstration as an
+optional explanation of the aggregate results. It does not alter the saved
+classifier, decision threshold or individual prediction. Recorded real responses
+from both prompts are also available in the app, allowing the experiment to be
+shown without a live API connection.
+
+For this input, the structured prompt produced more complete numerical context,
+but did not guarantee compliance with every instruction. The experiment contains
+only six outputs for one results summary, and the prompts differ in several
+instructions. It therefore provides an illustrative comparison rather than
+evidence of statistical significance or general reliability.
+
+### References for this section
+
+OpenAI. (n.d.-a). *Create a model response*. https://developers.openai.com/api/reference/python/resources/responses/methods/create
+
+OpenAI. (n.d.-b). *GPT-5.4 mini*. https://developers.openai.com/api/docs/models/gpt-5.4-mini

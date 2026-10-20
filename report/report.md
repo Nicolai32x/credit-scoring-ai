@@ -34,6 +34,11 @@ Owner: Nicolai
 
 How did we try using generative AI, what did it produce, and what did we learn
 from checking its output? Use actual examples and refer to `prompts/log.md`.
+The completed experiment and a draft for this chapter are in
+[`prompts/experiment.md`](../prompts/experiment.md); results and raw answers are
+indexed in [`results/genai/README.md`](../results/genai/README.md). Review the
+AI-assisted assessment, then copy/adapt the draft into the shared Word document.
+Do not describe the pending human review as completed.
 
 ## 4. Empirical analysis
 

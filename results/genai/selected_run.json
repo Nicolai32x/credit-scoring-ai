@@ -1,0 +1,7 @@
+{
+  "attempts_file": "run_02/attempts.jsonl",
+  "protocol_file": "run_02/protocol.json",
+  "assessment_file": "run_02/assessment.json",
+  "setup_attempts_file": "attempts.jsonl",
+  "selection_rule": "First fully completed run after correcting the local API key; no successful outputs discarded."
+}

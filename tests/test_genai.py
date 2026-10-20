@@ -16,6 +16,12 @@ import genai  # noqa: E402
 
 
 class GenAITests(unittest.TestCase):
+    def test_management_identifier_is_rejected_before_api_call(self):
+        with patch("genai.OpenAI") as constructor:
+            with self.assertRaises(ValueError):
+                genai.generate_explanation(api_key="key-not-a-secret")
+            constructor.assert_not_called()
+
     def test_request_contains_aggregate_facts_and_fixed_settings_only(self):
         client = MagicMock()
         client.responses.create.return_value = SimpleNamespace(
@@ -90,6 +96,25 @@ class GenAITests(unittest.TestCase):
             self.assertEqual(len(app.exception), 0)
             self.assertTrue(any("unavailable" in item.value for item in app.warning))
             self.assertFalse(any("Do not display" in item.value for item in app.markdown))
+
+    def test_recorded_examples_work_without_a_key_or_api_call(self):
+        index_path = ROOT / "results/genai/selected_run.json"
+        if not index_path.exists():
+            self.skipTest("No completed real experiment has been recorded yet.")
+        index = json.loads(index_path.read_text(encoding="utf-8"))
+        path = ROOT / "results/genai" / index["attempts_file"]
+        records = [json.loads(line) for line in path.read_text(encoding="utf-8").splitlines()]
+        with (patch("genai.get_api_key", return_value=""),
+              patch("genai.generate_explanation", side_effect=AssertionError("Offline preview must not call API")) as generate):
+            app = AppTest.from_file(str(ROOT / "demo/app.py"), default_timeout=30).run()
+            self.assertEqual(len(app.exception), 0)
+            self.assertTrue(app.button(key="generate_explanation").disabled)
+            for variant in ["simple", "structured"]:
+                app.radio(key="recorded_prompt_version").set_value(variant).run()
+                expected = next(record["output_text"] for record in records if record["variant"] == variant)
+                self.assertTrue(any(element.value == expected for element in app.markdown))
+                self.assertTrue(any("Recorded API output" in element.value for element in app.caption))
+            generate.assert_not_called()
 
 
 if __name__ == "__main__":
