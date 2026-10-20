@@ -1,0 +1,316 @@
+{
+  "analysis": "Development data exploration only; no fitted models or test performance",
+  "partition": "development",
+  "source_sha256": "b21f3d81db8071257d5ff1deaeba1fd4303b62712e6fcc9715c7a86202cb5871",
+  "split_sha256": "a4a21bbfb2351908ba0d1b0a7fd6b408bd8f9acf0daa4263f8e46d628fb3df09",
+  "random_seed": 42,
+  "rows": 800,
+  "feature_columns": [
+    "credit_amount",
+    "duration_months",
+    "purpose",
+    "checking_status",
+    "savings_status",
+    "employment_duration",
+    "credit_history"
+  ],
+  "target": {
+    "name": "bad_risk",
+    "labels": {
+      "0": "good risk",
+      "1": "bad risk"
+    }
+  },
+  "package_versions": {
+    "pandas": "3.0.6",
+    "numpy": "2.5.4",
+    "matplotlib": "3.11.2",
+    "scikit-learn": "1.9.1"
+  },
+  "quality_checks": {
+    "missing_input_values": 0,
+    "missing_target_values": 0,
+    "duplicate_input_rows": 0,
+    "unknown_category_codes": 0
+  },
+  "class_summary": [
+    {
+      "bad_risk": 0,
+      "label": "Good risk",
+      "count": 560,
+      "share_percent": 70.0
+    },
+    {
+      "bad_risk": 1,
+      "label": "Bad risk",
+      "count": 240,
+      "share_percent": 30.0
+    }
+  ],
+  "numeric_summary": {
+    "credit_amount": {
+      "count": 800.0,
+      "mean": 3189.59,
+      "std": 2673.55,
+      "min": 276.0,
+      "25%": 1353.0,
+      "50%": 2317.0,
+      "75%": 3933.0,
+      "max": 15945.0
+    },
+    "duration_months": {
+      "count": 800.0,
+      "mean": 20.77,
+      "std": 11.82,
+      "min": 4.0,
+      "25%": 12.0,
+      "50%": 18.0,
+      "75%": 24.0,
+      "max": 60.0
+    }
+  },
+  "category_summaries": {
+    "purpose": [
+      {
+        "code": "A40",
+        "description": "New car",
+        "count": 194,
+        "bad_risk_cases": 70,
+        "bad_risk_percent": 36.1,
+        "small_group_below_20": false
+      },
+      {
+        "code": "A41",
+        "description": "Used car",
+        "count": 84,
+        "bad_risk_cases": 16,
+        "bad_risk_percent": 19.0,
+        "small_group_below_20": false
+      },
+      {
+        "code": "A42",
+        "description": "Furniture/equipment",
+        "count": 149,
+        "bad_risk_cases": 49,
+        "bad_risk_percent": 32.9,
+        "small_group_below_20": false
+      },
+      {
+        "code": "A43",
+        "description": "Radio/television",
+        "count": 215,
+        "bad_risk_cases": 46,
+        "bad_risk_percent": 21.4,
+        "small_group_below_20": false
+      },
+      {
+        "code": "A44",
+        "description": "Domestic appliances",
+        "count": 10,
+        "bad_risk_cases": 3,
+        "bad_risk_percent": 30.0,
+        "small_group_below_20": true
+      },
+      {
+        "code": "A45",
+        "description": "Repairs",
+        "count": 18,
+        "bad_risk_cases": 7,
+        "bad_risk_percent": 38.9,
+        "small_group_below_20": true
+      },
+      {
+        "code": "A46",
+        "description": "Education",
+        "count": 40,
+        "bad_risk_cases": 20,
+        "bad_risk_percent": 50.0,
+        "small_group_below_20": false
+      },
+      {
+        "code": "A48",
+        "description": "Retraining",
+        "count": 5,
+        "bad_risk_cases": 1,
+        "bad_risk_percent": 20.0,
+        "small_group_below_20": true
+      },
+      {
+        "code": "A49",
+        "description": "Business",
+        "count": 79,
+        "bad_risk_cases": 26,
+        "bad_risk_percent": 32.9,
+        "small_group_below_20": false
+      },
+      {
+        "code": "A410",
+        "description": "Other",
+        "count": 6,
+        "bad_risk_cases": 2,
+        "bad_risk_percent": 33.3,
+        "small_group_below_20": true
+      }
+    ],
+    "checking_status": [
+      {
+        "code": "A11",
+        "description": "Below 0 DM",
+        "count": 219,
+        "bad_risk_cases": 105,
+        "bad_risk_percent": 47.9,
+        "small_group_below_20": false
+      },
+      {
+        "code": "A12",
+        "description": "0 to below 200 DM",
+        "count": 214,
+        "bad_risk_cases": 84,
+        "bad_risk_percent": 39.3,
+        "small_group_below_20": false
+      },
+      {
+        "code": "A13",
+        "description": "At least 200 DM / salary assignments for at least one year",
+        "count": 51,
+        "bad_risk_cases": 13,
+        "bad_risk_percent": 25.5,
+        "small_group_below_20": false
+      },
+      {
+        "code": "A14",
+        "description": "No checking account",
+        "count": 316,
+        "bad_risk_cases": 38,
+        "bad_risk_percent": 12.0,
+        "small_group_below_20": false
+      }
+    ],
+    "savings_status": [
+      {
+        "code": "A61",
+        "description": "Below 100 DM",
+        "count": 475,
+        "bad_risk_cases": 173,
+        "bad_risk_percent": 36.4,
+        "small_group_below_20": false
+      },
+      {
+        "code": "A62",
+        "description": "100 to below 500 DM",
+        "count": 90,
+        "bad_risk_cases": 30,
+        "bad_risk_percent": 33.3,
+        "small_group_below_20": false
+      },
+      {
+        "code": "A63",
+        "description": "500 to below 1,000 DM",
+        "count": 50,
+        "bad_risk_cases": 8,
+        "bad_risk_percent": 16.0,
+        "small_group_below_20": false
+      },
+      {
+        "code": "A64",
+        "description": "At least 1,000 DM",
+        "count": 41,
+        "bad_risk_cases": 5,
+        "bad_risk_percent": 12.2,
+        "small_group_below_20": false
+      },
+      {
+        "code": "A65",
+        "description": "Unknown / no savings account",
+        "count": 144,
+        "bad_risk_cases": 24,
+        "bad_risk_percent": 16.7,
+        "small_group_below_20": false
+      }
+    ],
+    "employment_duration": [
+      {
+        "code": "A71",
+        "description": "Unemployed",
+        "count": 41,
+        "bad_risk_cases": 17,
+        "bad_risk_percent": 41.5,
+        "small_group_below_20": false
+      },
+      {
+        "code": "A72",
+        "description": "Less than one year",
+        "count": 143,
+        "bad_risk_cases": 63,
+        "bad_risk_percent": 44.1,
+        "small_group_below_20": false
+      },
+      {
+        "code": "A73",
+        "description": "One to less than four years",
+        "count": 271,
+        "bad_risk_cases": 75,
+        "bad_risk_percent": 27.7,
+        "small_group_below_20": false
+      },
+      {
+        "code": "A74",
+        "description": "Four to less than seven years",
+        "count": 139,
+        "bad_risk_cases": 31,
+        "bad_risk_percent": 22.3,
+        "small_group_below_20": false
+      },
+      {
+        "code": "A75",
+        "description": "At least seven years",
+        "count": 206,
+        "bad_risk_cases": 54,
+        "bad_risk_percent": 26.2,
+        "small_group_below_20": false
+      }
+    ],
+    "credit_history": [
+      {
+        "code": "A30",
+        "description": "No credits taken / all credits repaid duly",
+        "count": 31,
+        "bad_risk_cases": 19,
+        "bad_risk_percent": 61.3,
+        "small_group_below_20": false
+      },
+      {
+        "code": "A31",
+        "description": "All credits at this bank repaid duly",
+        "count": 41,
+        "bad_risk_cases": 22,
+        "bad_risk_percent": 53.7,
+        "small_group_below_20": false
+      },
+      {
+        "code": "A32",
+        "description": "Existing credits repaid duly so far",
+        "count": 416,
+        "bad_risk_cases": 134,
+        "bad_risk_percent": 32.2,
+        "small_group_below_20": false
+      },
+      {
+        "code": "A33",
+        "description": "Previous repayment delay",
+        "count": 72,
+        "bad_risk_cases": 23,
+        "bad_risk_percent": 31.9,
+        "small_group_below_20": false
+      },
+      {
+        "code": "A34",
+        "description": "Critical account / other credits outside this bank",
+        "count": 240,
+        "bad_risk_cases": 42,
+        "bad_risk_percent": 17.5,
+        "small_group_below_20": false
+      }
+    ]
+  }
+}

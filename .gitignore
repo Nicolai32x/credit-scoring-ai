@@ -233,9 +233,14 @@ data/*
 # Generated results; keep descriptions and empty folder structure
 results/*
 !results/README.md
+!results/development_summary.json
 !results/figures/
 results/figures/*
 !results/figures/.gitkeep
+!results/figures/development_class_balance.png
+!results/figures/development_numeric_distributions.png
+!results/figures/development_account_categories.png
+!results/figures/development_background_categories.png
 
 # Generated submission packages; keep the checklist
 submission/*

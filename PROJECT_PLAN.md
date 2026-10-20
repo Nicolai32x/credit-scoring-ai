@@ -3,8 +3,8 @@
 Updated on **20 October 2026** with the agreed roles and writing workflow.
 The kickoff agenda is retained below for reference; no meeting outcomes or
 deadlines have been recorded. The Python environment, named data loader and
-fixed development/test split are ready. Feature transformations, exploration,
-model experiments and the app are still to begin.
+fixed development/test split are ready. Development-only exploration is complete
+in notebook 01. Feature transformations, model experiments and the app are still to begin.
 
 ## What we want to build
 
@@ -17,8 +17,9 @@ It will illustrate the model, not make real lending decisions.
 
 Read [the dataset guide](data/README.md) and [the demo sketch](demo/README.md).
 Data loading, target mapping and the fixed split are implemented. Feature
-encoding/scaling, models and the application are not implemented. The checks
-so far concern structure and isolation, not predictive performance.
+encoding/scaling, models and the application are not implemented. Descriptive
+statistics and plots use development data only; predictive performance has
+not been evaluated.
 
 ## Planned experiment
 

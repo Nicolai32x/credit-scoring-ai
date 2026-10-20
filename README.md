@@ -10,8 +10,9 @@ Streamlit demo with seven inputs.
 The original dataset, its structural review, project plan, and presentation
 outline are ready. Python and package versions are recorded. The named data
 loader and fixed 800/200 development/test split are implemented and checked;
-notebook 01 can load development data. Feature encoding/scaling, exploration,
-trained models, evaluation results, and a working Streamlit app are still pending.
+notebook 01 now includes development-only exploration, tables, four figures and
+interpretation. Feature encoding/scaling, trained models, model evaluation
+results, and a working Streamlit app are still pending.
 The report is written in Word in Teams, and a Canva presentation template is ready.
 
 Start with [the project plan](PROJECT_PLAN.md), [dataset guide](data/README.md),
@@ -46,8 +47,9 @@ uv venv --python 3.12.13 --seed .venv
 On macOS/Linux, use `.venv/bin/python` instead of `.\.venv\Scripts\python.exe`.
 You do not need to activate the environment when using its Python path directly.
 In VS Code, select this `.venv` environment as the interpreter and notebook kernel.
-Open the notebooks in numerical order. Notebook 01 has a working development-data
-loading cell; its exploration sections and notebook 02 are still outlines.
+Open the notebooks in numerical order. Notebook 01 can run end to end to load
+and explore development data and export the descriptive figures and summary.
+Its executed outputs are saved for reading on GitHub. Notebook 02 is still an outline.
 
 `requirements.in` lists the six direct dependencies; `requirements.txt` pins the
 resolved dependencies with platform markers. Install from `requirements.txt`
@@ -76,6 +78,9 @@ validates and reuses it; it only creates a split when the file is absent.
 Do not delete it to try alternative partitions. Notebook 01 calls
 `load_partition()` with its development-only default. Test access is explicit
 and reserved for final evaluation. See [the dataset guide](data/README.md).
+
+Descriptive findings and reusable figures are indexed in
+[`results/README.md`](results/README.md). They are not model-performance results.
 
 ## Structure
 

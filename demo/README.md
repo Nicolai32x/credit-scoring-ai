@@ -29,9 +29,10 @@ Keep category meanings faithful to the dictionary, including combined unknown
 categories. Keep DM labels explicit. Initially show a class, not an unsupported
 percentage probability of future default.
 
-Numeric inputs should stay within the observed teaching-data ranges: amount
-250-18,424 and duration 4-72 months. Staying within those ranges does not ensure
-that a combination is well represented. Other inputs use observed categories.
+For the teaching demo, use the observed development-data ranges: amount
+276-15,945 DM and duration 4-60 months. These are demonstration guardrails,
+not general lending rules. Staying within them does not ensure a combination
+is well represented. Other inputs use observed development categories.
 
 ## Fictional scenarios to try after implementation
 

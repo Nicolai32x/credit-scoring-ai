@@ -99,3 +99,21 @@ This template is not yet a documented generative AI experiment.
 - Limits: no feature encoding/scaling, predictive exploration, cross-validation,
   model fitting or performance evaluation in this step. Test class counts are
   used only to verify stratification. Human review of these changes is pending.
+
+## 2026-10-20: Development data exploration
+
+- Requested by: Nicolai, approving the next notebook-analysis step. This is an
+  English task summary, not a verbatim prompt transcript.
+- Tool: AI coding assistant; model/version not recorded here.
+- Work: extended notebook 01 with feature explanations, quality checks, class
+  balance, numeric distributions, category counts, and descriptive label shares
+  with group sizes. Exported four figures and a JSON summary with provenance.
+- Existing local changes: Nicolai had executed the original loading cell without
+  changing its source. Its code was preserved and rerun with the full notebook.
+- Checks: all cells executed, figures inspected, descriptive summary checked
+  against development-only calculations, original source/split kept unchanged.
+- Interpretation: sparse groups and combined source meanings require caution;
+  no rows or inputs were removed and no causal, fairness, or performance claims
+  are inferred. Demo range guidance now uses development-data support.
+- Limits: no model fitting, feature transformation, or test-set exploration.
+  Human review of the new explanations and figures is pending.

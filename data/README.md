@@ -2,8 +2,9 @@
 
 Downloaded and checked on 16 October 2026; project status updated on 20 October.
 Statlog is the selected teaching dataset. Column naming, target mapping and
-the fixed 800/200 development/test split are implemented. No feature encoding,
-scaling, exploratory analysis or model training has been performed.
+the fixed 800/200 development/test split are implemented. Notebook 01 contains
+development-only exploratory analysis. No feature encoding, scaling or model
+training has been performed.
 
 ## Source, files, and license
 
@@ -68,9 +69,10 @@ Basic test-row counts were checked for split integrity; no test features were
 explored and no model performance was evaluated. The default loader helps
 the workflow; it does not technically prevent someone from opening test data.
 
-The following checks examined the complete downloaded file without modeling
-or exploring feature/target relationships. Predictive exploration will use
-development data only, after reserving the test set.
+The earlier structural checks below examined the complete downloaded file
+without modeling or exploring feature/target relationships. The later
+exploration in notebook 01 uses only the reserved development partition;
+see [the descriptive results](../results/README.md).
 
 | Check | Finding |
 | --- | --- |
