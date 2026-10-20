@@ -1,0 +1,53 @@
+{
+  "frozen_at_utc": "2026-10-20T12:32:17.298714+00:00",
+  "model": "logistic_regression",
+  "model_parameters": {
+    "C": 1.0,
+    "class_weight": "balanced",
+    "dual": false,
+    "fit_intercept": true,
+    "intercept_scaling": 1,
+    "l1_ratio": 0.0,
+    "max_iter": 2000,
+    "n_jobs": null,
+    "penalty": "deprecated",
+    "random_state": 42,
+    "solver": "lbfgs",
+    "tol": 0.0001,
+    "verbose": 0,
+    "warm_start": false
+  },
+  "feature_columns": [
+    "credit_amount",
+    "duration_months",
+    "purpose",
+    "checking_status",
+    "savings_status",
+    "employment_duration",
+    "credit_history"
+  ],
+  "scale_numeric": true,
+  "threshold": 0.5,
+  "prediction_rule": "bad_risk_score >= threshold predicts bad risk (1)",
+  "primary_metric": "balanced_accuracy",
+  "reason": "Highest mean validation balanced accuracy (0.709 versus forest 0.702), lower illustrative validation cost, and simpler model. Small differences do not establish statistical superiority.",
+  "threshold_reason": "Retain the original 0.5 comparison threshold. No operational recall target or real cost estimates justify further tuning. Class-weighted scores are not calibrated default probabilities; the 5:1 illustration does not justify applying a calibrated-probability threshold.",
+  "accepted_validation_tradeoff": {
+    "bad_risks_detected": 171,
+    "bad_risks_total": 240,
+    "false_approvals": 69,
+    "false_rejections": 165,
+    "good_risks_total": 560
+  },
+  "search_history": "Three fixed candidates, five identical development folds; no parameter or threshold search.",
+  "test_results_seen_at_freeze": false,
+  "source_sha256": "b21f3d81db8071257d5ff1deaeba1fd4303b62712e6fcc9715c7a86202cb5871",
+  "split_sha256": "a4a21bbfb2351908ba0d1b0a7fd6b408bd8f9acf0daa4263f8e46d628fb3df09",
+  "comparison_sha256": "45b8e6f199f2c0f157168bd6573070d6850ddefce953f5f3e5775a7fc4806233",
+  "training_code_sha256": {
+    "preprocessing.py": "380ff1d56f51dd1b1a12869d503d0dfa078af7df5911d63585fb4dea2fa32b15",
+    "train.py": "67459116a9e2664d77a19dc52a26b8ebdd1a56197b850fb157d67cb3d923e652",
+    "evaluate.py": "710f003265e1ef30c6ee221be2f97ac27fd83300d596a07c7e1e7ba450db2089"
+  },
+  "final_protocol": "Refit on all 800 development cases; assess the 200 reserved test cases once; do not change the model or threshold based on the test; save this same pipeline for the demo."
+}

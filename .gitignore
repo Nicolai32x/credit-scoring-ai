@@ -238,6 +238,10 @@ results/*
 !results/cv_fold_metrics.csv
 !results/cv_predictions.csv
 !results/model_comparison.json
+!results/model_decision.json
+!results/selected_pipeline.joblib
+!results/final_test_predictions.csv
+!results/final_test.json
 !results/figures/
 results/figures/*
 !results/figures/.gitkeep
@@ -247,6 +251,7 @@ results/figures/*
 !results/figures/development_background_categories.png
 !results/figures/cv_model_comparison.png
 !results/figures/cv_confusion_matrices.png
+!results/figures/final_test_confusion_matrix.png
 
 # Generated submission packages; keep the checklist
 submission/*
