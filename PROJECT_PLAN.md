@@ -119,8 +119,12 @@ working version until the final team review; `report/report.md` is the export
 skeleton, not a parallel draft. Nicolai coordinates the final Markdown/PDF
 versions. Share the Word link with the team once the document is uploaded.
 
-Use English in project files. Work on task branches and review changes before
-merging. Coordinate notebook ownership and avoid editing the same notebook at
-the same time. Never overwrite another member's work to resolve a conflict.
+Use English in project files. Small documentation edits can go directly to
+`main`: start from the latest version with a clean working tree, coordinate
+shared-file edits, and review the diff before committing. Use a separate branch
+for code, data processing, models, dependencies, or larger or uncertain changes;
+validate them before merging and use a pull request when team review is useful.
+Coordinate notebook ownership and avoid editing the same notebook at the same
+time. Never overwrite another member's work to resolve a conflict.
 Record relevant AI prompts, outputs, corrections, and limitations in
 [`prompts/log.md`](prompts/log.md). Everyone must be able to explain their work.

@@ -44,12 +44,15 @@ Agree with the team which section you are editing, then:
 
 1. Open the file on GitHub and click the pencil/edit control.
 2. Edit your section in English and select **Commit changes**.
-3. Add a short description and choose **create a new branch and start a pull request**.
-4. Send Nicolai the link to review together before merging.
+3. Add a short description. For a small, agreed text change, you can commit
+   directly to `main` after checking the change preview.
+4. For a larger or uncertain change, choose **create a new branch and start a
+   pull request**, then send Nicolai the link to review before merging.
 
 A **commit** saves a checkpoint. A **branch** keeps your proposed changes
 separate from `main`, the shared version. A **pull request** asks the team to
-review and combine them. You can do this entirely in your browser.
+review and combine them. You can do this entirely in your browser. Code and
+model changes use a separate branch; you do not need one for every small text edit.
 
 ## Optional: open a local copy
 

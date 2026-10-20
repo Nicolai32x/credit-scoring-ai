@@ -63,10 +63,14 @@ only descriptions of their intended purpose.
 
 ## Collaboration
 
-- Work on a separate branch for each task, e.g. `codex/project-structure`.
-- Check `git status` before making changes and preserve existing team edits.
-- Review changes together through pull requests; avoid force-pushes and
-  destructive resets on shared branches.
+- Small, easy-to-review documentation changes can go directly to `main`.
+  Check `git status` and pull the latest `main` before starting with a clean
+  working tree. Coordinate edits to shared files and review the diff before committing.
+- Use a task branch for code, data processing, models, dependencies, or larger
+  or uncertain changes, including broad AI-generated edits. Review and validate
+  them before merging; use a pull request when team review is useful.
+- Preserve existing team edits. If updates or conflicts are unclear, ask for
+  help; never force-push or use a destructive reset to overwrite shared work.
 - Assign one owner per notebook where possible to reduce merge conflicts.
 - Do not commit credentials or personal credit data.
 - Write project documentation, comments, and notebook explanations in English.
