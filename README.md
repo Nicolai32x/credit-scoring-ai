@@ -2,15 +2,19 @@
 
 Team project for **Introduction to AI in Business**. We investigate how a
 credit-scoring model can support a business decision and assess its results,
-costs, and limitations. Statlog (German Credit Data) is the proposed dataset;
-the team will confirm the plan at the kickoff. No models have been trained.
+costs, and limitations. We will use Statlog (German Credit Data) and a small
+Streamlit demo with seven inputs.
 
-## First team meeting
+## Current status and project documents
 
-Start with [the project plan and meeting agenda](PROJECT_PLAN.md) for Tuesday,
-20 October 2026 (time/location TBD). The preparation includes a
-[dataset guide](data/README.md) and a [seven-input demo sketch](demo/README.md).
-No installation is required to read these files or join the discussion.
+The original dataset, its structural review, project plan, and presentation
+outline are ready. The report is written in Word in Teams, and a Canva
+presentation template has been prepared. No preprocessing pipeline, data splits, trained models,
+evaluation results, or working Streamlit application exist yet.
+
+Start with [the project plan](PROJECT_PLAN.md), [dataset guide](data/README.md),
+[presentation outline](presentation/outline.md), and [demo sketch](demo/README.md).
+No installation is required to read these files or contribute to the written work.
 
 ## Getting started
 
@@ -24,6 +28,8 @@ If you want to try GitHub edits or use an AI assistant with the project, see the
 [optional GitHub and AI tutorial](OPTIONAL_TUTORIAL.md). It is not a prerequisite
 for contributing; you can also share your work with the team and ask for help.
 
+### Technical setup for running Python later
+
 Use Python 3.11 or later. Run these commands from the project directory in PowerShell:
 
 ```powershell
@@ -34,6 +40,8 @@ python -m venv .venv
 
 Open the notebooks in numerical order. They currently contain outlines only.
 Record the package versions in `requirements.txt` before starting shared experiments.
+Streamlit is planned and is not installed by the current requirements; add it
+when implementing the demo. The setup above does not create a working model.
 
 ## Structure
 
@@ -43,8 +51,8 @@ Record the package versions in `requirements.txt` before starting shared experim
 | `notebooks/` | Exploration, baseline, and model comparison with explanations |
 | `data/` | Dataset and documentation of its source |
 | `results/` | Generated metrics, models, and shared figures |
-| `report/` | Report in Markdown and, later, PDF format |
-| `presentation/` | Presentation outline and, later, slides |
+| `report/` | Writing workflow and Markdown skeleton for the final export |
+| `presentation/` | Outline and link to the shared Canva presentation |
 | `prompts/` | Documentation of generative AI use |
 | `demo/` | Practical demo and walkthrough |
 | `submission/` | Checklist for the MS Teams submission package |
@@ -65,15 +73,24 @@ only descriptions of their intended purpose.
 
 | Area | Owner |
 | --- | --- |
-| Technical implementation (data, modeling, demo) | Nicolai, proposed |
-| Business and literature | TBD |
-| Results interpretation and economics | Philipp, proposed |
-| Risks and implementation recommendations | TBD |
+| Technical implementation (data, modeling, demo) | Nicolai |
+| Business and literature | Jan |
+| Results interpretation and economics | Philipp |
+| Risks and implementation recommendations | Zosia |
 
 Each presentation slide must name its actual responsible author(s) in the footer.
 Record the presenter separately if different. Also document report-chapter
-ownership and AI assistance. Proposed roles are detailed in the
-[presentation plan](presentation/outline.md) and will be confirmed together.
+ownership and AI assistance. Roles and speaking sections are detailed in the
+[presentation plan](presentation/outline.md).
+
+## Writing the report
+
+Use the shared Word document in Teams as the working version;
+each person writes their sections and adds sources. Its Teams link still needs
+to be recorded. Word files are kept in Teams rather than this repository.
+Do not maintain a separate competing draft in `report/report.md`.
+After the team review, Nicolai coordinates the Markdown and PDF exports.
+See [the report skeleton and responsibilities](report/report.md).
 
 ## Course requirements
 

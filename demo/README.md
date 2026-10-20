@@ -1,7 +1,7 @@
 # Demo sketch
 
-Proposal for the team meeting; no Streamlit app or scoring model has been built.
-The existing `app.py` remains a placeholder. After agreement, the technical lead
+Planned demo; no Streamlit app or scoring model has been built.
+The existing `app.py` remains a placeholder. Nicolai, the technical lead,
 will connect a saved preprocessing/model pipeline to a small Streamlit form.
 
 ## Planned interface

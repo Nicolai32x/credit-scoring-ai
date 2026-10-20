@@ -1,7 +1,8 @@
 # Dataset guide: Statlog (German Credit Data)
 
-Prepared on 16 October 2026 for the team meeting on 20 October. This is the
-proposed dataset. No preprocessing, splitting, or model training has been done.
+Downloaded and checked on 16 October 2026; project status updated on 20 October.
+Statlog is the selected teaching dataset. No preprocessing, splitting, or model
+training has been done.
 
 ## Source, files, and license
 
@@ -29,6 +30,7 @@ Use the original mixed categorical/numeric `german.data`, not the separately
 transformed `german.data-numeric`. It has no header and uses whitespace between
 fields. Columns 1-20 are inputs; column 21 is the target. Later, load with
 `pandas.read_csv`, `sep=r"\s+"`, and `header=None`, then assign column names.
+Both `.data` and `.doc` are plain-text files; `german.doc` is not a Word document.
 
 ## Target and verified structural checks
 
@@ -61,7 +63,7 @@ silently convert this to zero or discard these cases.
 Always predicting good risk would give 70% accuracy and 0% bad-risk recall on
 the whole file. This is a reference calculation, not a validated model result.
 
-## Seven proposed inputs
+## Seven planned inputs
 
 | Original column | English feature name | Form control |
 | --- | --- | --- |
@@ -109,7 +111,7 @@ telephone, foreign-worker status. Consult `german.doc` for the unused columns.
 - With 1,000 examples, performance and subgroup comparisons can be unstable.
   Some categories are rare: retraining, for example, has 9 records.
 - The original data includes age, personal status/sex, and foreign-worker status.
-  We propose excluding them as inputs. Other features can still act as proxies;
+  The planned seven-input model excludes them. Other features can still act as proxies;
   exclusion alone does not demonstrate fairness.
 - No IDs or dates allow us to independently verify a split by applicant or time.
   A random test split does not demonstrate generalization to today's applicants.

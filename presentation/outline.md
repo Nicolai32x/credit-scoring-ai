@@ -1,12 +1,15 @@
 # Final presentation plan
 
-Draft for discussion at the [team kickoff](../PROJECT_PLAN.md) on 20 October
-2026. This is the final course-presentation plan, not the kickoff agenda.
-No slides or model results exist yet. The course requires a 20-25 minute
+Updated on 20 October 2026. This is the course-presentation plan, not the
+kickoff agenda. The shared Canva template is available; final content and model
+results are still pending. The course requires a 20-25 minute
 presentation and a 5-10 minute practical demo; this plan budgets 24 + 8 minutes.
 Confirm with the lecturer whether the demo has a separate time slot.
 
-## Story and proposed roles
+Use the [shared Canva presentation](https://canva.link/doeibex7blblalaa) for slide
+designs. It is a starting point, not a prescribed layout for each person's part.
+
+## Story and roles
 
 Question: How well can a simple model classify credit risk with seven inputs?
 Explain the business decision, show how it is evaluated, then demonstrate the
@@ -17,31 +20,29 @@ coding effort. Other roles own substantive analysis, evidence, and written
 material, rather than only reading slides prepared by the technical lead.
 Actual authorship and AI assistance must be recorded accurately.
 
-| Role | Proposed owner | Substantive responsibility | Speaking time |
+| Role | Owner | Substantive responsibility | Speaking time |
 | --- | --- | --- | --- |
-| B: Business and literature | Team member, TBD | Business scenario, existing solutions, sources, success criteria | 6 minutes |
-| T: Technical lead | Nicolai, proposed | Data preparation, experiments, evaluation pipeline, app; explain technical choices and GenAI use | 6 minutes |
-| E: Results and economics | Philipp, proposed | Check result tables with technical lead, interpret errors, estimate costs and benefits with explicit assumptions | 6 minutes |
-| R: Risks and implementation | Team member, TBD | Research risks and mitigations, review usability, design demo scenarios, develop implementation recommendations | 6 minutes |
+| B: Business and literature | Jan | Business scenario, existing solutions, sources, success criteria | 6 minutes |
+| T: Technical lead | Nicolai | Data preparation, experiments, evaluation pipeline, app; explain technical choices and GenAI use | 6 minutes |
+| E: Results and economics | Philipp | Check results with technical lead, interpret errors, estimate costs and benefits with explicit assumptions | 6 minutes |
+| R: Risks and conclusions | Zosia | Research risks and mitigations, discuss limitations, lessons learned and next steps | 6 minutes |
 
-This four-person allocation is provisional. For three members, combine E and R
-responsibilities between the two nontechnical leads and allocate about eight
-minutes to each speaker. Confirm names, workload, and ownership at the kickoff;
-do not describe planned work as completed. Equal presentation time does not
-require claiming equal coding contributions.
+Each person also writes the matching report sections. The slide suggestions
+below are flexible: develop your own explanations and visuals within your area,
+while covering the course criteria. Conclusions depend on the actual results.
 
 ## Presentation overview
 
 | Part | Slides / topics | Presenter | Time |
 | --- | --- | --- | --- |
-| Business Context & Project Goal | 1-3: business problem, existing solutions, research question and success criteria | TBD | 6 minutes |
+| Business Context & Project Goal | 1-3: business problem, existing solutions, research question and success criteria | Jan | 6 minutes |
 | Data & Technical Approach | 4-6: dataset and seven inputs, models and evaluation, AI assistance and verification | Nicolai | 6 minutes |
-| Results & Business Value | 7-9: model comparison, prediction errors, implementation costs and benefits | Philipp, proposed | 6 minutes |
-| Risks & Conclusions | 10-12: ethical/legal/social risks, lessons learned, conclusions and next steps | TBD | 6 minutes |
+| Results & Business Value | 7-9: model comparison, prediction errors, implementation costs and benefits | Philipp | 6 minutes |
+| Risks & Conclusions | 10-12: ethical/legal/social risks, lessons learned, conclusions and next steps | Zosia | 6 minutes |
 | Practical Demo | Seven inputs, example scenarios, prediction interpretation and limitations | Everyone; technical lead: Nicolai | 8 minutes |
 
-Total: 24-minute presentation plus 8-minute demo. Confirm the proposed roles
-together at the kickoff.
+Total target: 24-minute presentation plus 8-minute demo. Check actual timings
+during rehearsal and confirm the time slots with the lecturer.
 
 ## Slide-by-slide outline (24 minutes)
 
@@ -53,10 +54,10 @@ together at the kickoff.
 | 4 | Data: what are the labels and seven inputs? | UCI attribution, sample size, class balance, DM units, historical-data caveat | T | 2 |
 | 5 | Method: how do we compare models fairly? | Diagram: test holdout, cross-validation, baseline, logistic regression, random forest | T | 2 |
 | 6 | GenAI and reproducibility: what did AI help with and how did we check it? | One actual prompt, output excerpt, correction, and reproducible pipeline explanation | T | 2 |
-| 7 | Measurable results: what did each model achieve? | Validation mean/variation, final test table, simple baseline; values remain TBD | E | 2 |
+| 7 | Measurable results: what did each model achieve? | Validation comparison and final held-out test result for the selected approach; values remain TBD | E | 2 |
 | 8 | Error interpretation: which mistakes matter to the business? | Confusion matrix and bad-risk recall; historical 5:1 cost example, clearly labeled | E | 2 |
 | 9 | Costs and benefits: what would this take to operate? | Team effort, hosting/maintenance assumptions, data and review needs; no fabricated ROI | E | 2 |
-| 10 | Ethical, legal, and social risks: who could be harmed and how do we mitigate it? | Evidence-backed risk/mitigation table covering all three areas | R | 2 |
+| 10 | Ethical, legal, and social risks: who could be harmed and how do we mitigate it? | Referenced discussion or visual covering all three areas | R | 2 |
 | 11 | Good practices and lessons learned: what worked and what did not? | Actual findings on leakage prevention, evaluation, AI review, usability, and limitations | R | 2 |
 | 12 | Implementation recommendation: what would we do next? | Bounded conclusion, remaining evidence needs, human-review concept, handoff to demo | R | 2 |
 | **Total** | | | | **24** |
@@ -117,7 +118,11 @@ entire codebase, but nobody should present claims they cannot explain.
 ## Report and submission alignment
 
 Use the same research question, dataset, metrics, and figures in report and
-slides. Keep the Markdown report and PDF consistent. Include existing solutions
+slides. Draft the report in one shared Word document in Teams, then export the
+reviewed version to Markdown and PDF. Follow the
+[report outline and workflow](../report/report.md); keep Word files in Teams
+and do not write competing drafts in both formats.
+Include existing solutions
 with references, the GenAI experiment, and empirical goals, assumptions,
 results, and interpretation. Check [the submission checklist](../submission/README.md)
 before the presentation-day MS Teams upload into `YYYYMMDD_Topic`.

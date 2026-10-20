@@ -1,7 +1,8 @@
-# Team kickoff and project plan
+# Project plan
 
-Prepared for **Tuesday, 20 October 2026**. Meeting time and location: TBD.
-This is a proposal for the team to discuss, not a record of a team decision.
+Updated on **20 October 2026** with the agreed roles and writing workflow.
+The kickoff agenda is retained below for reference; no meeting outcomes or
+deadlines have been recorded. Implementation is still to begin.
 
 ## What we want to build
 
@@ -16,7 +17,7 @@ Read [the dataset guide](data/README.md) and [the demo sketch](demo/README.md).
 Models, preprocessing, data splits, and the application have not been implemented.
 The dataset review is preparation, not an evaluation of predictive performance.
 
-## Proposed experiment
+## Planned experiment
 
 | Step | Plan |
 | --- | --- |
@@ -60,13 +61,16 @@ Source for validation and preprocessing:
    compare the reference and two models in notebook 02 using validation only.
 3. **Evaluate and demonstrate:** freeze the chosen approach, run the final test,
    and connect the same saved pipeline to the seven-field Streamlit form.
-4. **Explain the outcome:** finish the Markdown/PDF report, slides, GenAI log,
-   and demo rehearsal. Use the [submission checklist](submission/README.md).
+4. **Explain the outcome:** write the report in one shared Word document in
+   Teams, complete the Canva slides, GenAI log, and demo rehearsal. After team
+   review, export the report to Markdown and PDF. Use the
+   [submission checklist](submission/README.md).
 
-Dates and owners are to be agreed by the team. Prefer a small complete analysis
+Roles are assigned below; task dates and reviewers still need agreement.
+Prefer a small complete analysis
 over adding more algorithms or application features.
 
-## First meeting agenda (about 45 minutes)
+## Kickoff agenda for 20 October 2026 (about 45 minutes)
 
 | Topic | Minutes | Outcome |
 | --- | --- | --- |
@@ -76,37 +80,44 @@ over adding more algorithms or application features.
 | GitHub access and setup needs | 10 | Everyone can access the files; identify who needs help |
 | Responsibilities and next milestone | 10 | Owners, dates, and next meeting recorded |
 
-Before the meeting, create a GitHub account if needed, accept the repository
-invitation, and read this page. No software installation is needed for the
-discussion. Nicolai and Philipp have experience with similar projects and can
-help with setup. Nicolai is proposed as technical lead and Philipp for results
-and economics; confirm roles and review responsibilities together.
+Read this page before the discussion. GitHub and AI setup is optional; use the
+[optional tutorial](OPTIONAL_TUTORIAL.md) if interested. Nicolai leads the
+technical implementation. The shared Word document supports contributions
+without requiring local development tools.
 
-## Decisions to make together
+## Items still to agree or record
 
-- Confirm Statlog and the seven-input scope, including historical DM units.
-- Confirm the split, metrics, models, and the primary model-selection metric.
-- Confirm Streamlit as the demo tool; keep output to a risk class initially.
-- Assign owners and a reviewer/buddy for each area below.
+- Review the planned experiment and primary model-selection metric before implementation.
+- Record the shared Word document link and choose reviewers for each area.
+- Confirm presentation/demo time slots with the lecturer.
 - Check the presentation date, topic approval, and any additional course rules.
 - Agree on the first milestone date and next meeting time.
 
 | Area | Suggested first task | Owner / reviewer | Due |
 | --- | --- | --- | --- |
-| Technical implementation | Data preparation, experiments, reproducible evaluation, and demo | Nicolai (proposed) / reviewer TBD | TBD |
-| Business and literature | Define the decision, existing solutions, references, and success criteria | TBD | TBD |
-| Results and economics | Review outputs, interpret errors, and estimate costs with explicit assumptions | Philipp (proposed) / reviewer TBD | TBD |
-| Risks and implementation | Research risks, propose mitigations, and review demo scenarios/usability | TBD | TBD |
+| Technical implementation | Data preparation, experiments, reproducible evaluation, and demo | Nicolai / reviewer TBD | TBD |
+| Business and literature | Define the decision, existing solutions, references, and success criteria | Jan / reviewer TBD | TBD |
+| Results and economics | Review outputs, interpret errors, and estimate costs with explicit assumptions | Philipp / reviewer TBD | TBD |
+| Risks and implementation | Research risks, propose mitigations, and review demo scenarios/usability | Zosia / reviewer TBD | TBD |
 
 These areas can overlap; each person should understand the overall analysis.
 See the [presentation plan](presentation/outline.md) for proposed speaking
-sections and concrete contributions. One technical lead is compatible with
+sections and contributions. The report headings and slide suggestions can be
+adapted within each person's area while covering the course criteria.
+One technical lead is compatible with
 substantial non-coding contributions. Assign credit based on actual work,
 record AI assistance, and distinguish content authors from presenters.
 The proposed first milestone is a reproducible development-data exploration
 and a baseline validation result, with the test data still unused.
 
 ## How we work
+
+Write the report together in one shared Word document in Teams. Keep the Word
+file there; the repository contains the workflow and final export skeleton.
+Add references alongside claims and use comments for discussion. This is the
+working version until the final team review; `report/report.md` is the export
+skeleton, not a parallel draft. Nicolai coordinates the final Markdown/PDF
+versions. Share the Word link with the team once the document is uploaded.
 
 Use English in project files. Work on task branches and review changes before
 merging. Coordinate notebook ownership and avoid editing the same notebook at

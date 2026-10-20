@@ -1,4 +1,4 @@
-"""Entry point for the future demo; the interface and model are still undecided."""
+"""Placeholder for the planned seven-input Streamlit credit-risk demo."""
 
 
 def main():

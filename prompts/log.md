@@ -43,3 +43,22 @@ This template is not yet a documented generative AI experiment.
 - Later action: retain the original conversation if an exact prompt transcript
   is needed; log actual coding experiments separately with their exact prompts,
   outputs, human review, and corrections.
+
+## 2026-10-20: Repository consistency review
+
+- Requested by: Nicolai. Request summary (English paraphrase): review the entire
+  repository and update it to reflect the current project arrangements.
+- Tool: AI coding assistant; model/version not recorded in this log.
+- Changes: synchronized Jan, Nicolai, Philipp and Zosia's roles; recorded the
+  shared Word writing workflow and Canva template; corrected outdated dataset
+  and implementation-status descriptions. The Word template was prepared and
+  simplified earlier following Nicolai's feedback; it is not a completed report.
+  At Nicolai's request, Word files are kept in Teams and the local template was
+  removed from the repository workspace before publication.
+- Scope: documentation and placeholder descriptions only. Original data stays
+  unchanged; no preprocessing, training, test split or Streamlit implementation.
+- Checks: data integrity, document links, notebook structure, Python syntax and
+  agreement between the role and workflow descriptions.
+- Pending: team review of these updates, the actual shared Word link, dates and
+  eventual empirical results. Preserve the conversation for exact user prompts;
+  this entry is a summary, not a verbatim transcript.

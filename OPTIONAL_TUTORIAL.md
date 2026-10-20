@@ -23,7 +23,7 @@ Try this prompt:
 
 ```text
 These files describe our university credit-scoring project.
-My name is [NAME]. Explain the project and my proposed role in simple English.
+My name is [NAME]. Explain the project and my role in simple English.
 What already exists, and what is only planned?
 Suggest one small task I could work on. Do not change any files.
 Tell me if you cannot read the files I provided.
@@ -34,6 +34,11 @@ for the team. Check its answers and references; it should not invent results.
 Document relevant AI-assisted work in `prompts/log.md`.
 
 ## 3. Try a small text change, if you want
+
+We write the report in one shared Word document in Teams. Edit that document
+for report contributions; `report/report.md` is reserved for the final export.
+The GitHub steps below are optional for other agreed text changes, such as
+adding a source note to your presentation outline.
 
 Agree with the team which section you are editing, then:
 

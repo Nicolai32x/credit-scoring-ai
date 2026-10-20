@@ -219,6 +219,9 @@ __marimo__/
 # Streamlit
 .streamlit/secrets.toml
 
+# Temporary lock files created while Word documents are open
+~$*.docx
+
 # Project datasets: track only the reviewed public UCI originals and documentation
 data/*
 !data/README.md
