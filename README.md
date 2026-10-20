@@ -80,16 +80,16 @@ only descriptions of their intended purpose.
 
 ## Collaboration
 
-- Small, easy-to-review documentation changes can go directly to `main`.
-  Check `git status` and pull the latest `main` before starting with a clean
-  working tree. Coordinate edits to shared files and review the diff before committing.
-- Use a task branch for code, data processing, models, dependencies, or larger
-  or uncertain changes, including broad AI-generated edits. Review and validate
-  them before merging; use a pull request when team review is useful.
+- Work directly on `main` by default, including technical changes. Check
+  `git status` and update from the remote before starting with a clean working
+  tree. Coordinate edits to shared files.
+- Review changes locally and run the relevant checks before committing and
+  pushing. Nicolai can inspect the local changes; if he asks to review first,
+  wait for that review before publishing. Use a separate branch only when
+  explicitly requested.
 - Preserve existing team edits. If updates or conflicts are unclear, ask for
   help; never force-push or use a destructive reset to overwrite shared work.
-- After each completed and checked work step, commit and push the checkpoint
-  to its current branch. Pushing a task branch does not merge it into `main`.
+- After each completed and checked work step, commit and push directly to `main`.
 - Assign one owner per notebook where possible to reduce merge conflicts.
 - Do not commit credentials or personal credit data.
 - Write project documentation, comments, and notebook explanations in English.

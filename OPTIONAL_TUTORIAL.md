@@ -44,15 +44,16 @@ Agree with the team which section you are editing, then:
 
 1. Open the file on GitHub and click the pencil/edit control.
 2. Edit your section in English and select **Commit changes**.
-3. Add a short description. For a small, agreed text change, you can commit
-   directly to `main` after checking the change preview.
-4. For a larger or uncertain change, choose **create a new branch and start a
-   pull request**, then send Nicolai the link to review before merging.
+3. Check the change preview, add a short description, and commit directly to
+   `main`. This is our default workflow for agreed changes.
+4. If you are unsure about an edit, ask Nicolai to review your suggestion before
+   saving it to the shared version.
 
-A **commit** saves a checkpoint. A **branch** keeps your proposed changes
-separate from `main`, the shared version. A **pull request** asks the team to
-review and combine them. You can do this entirely in your browser. Code and
-model changes use a separate branch; you do not need one for every small text edit.
+A **commit** saves a checkpoint. Changes saved on GitHub are already online.
+When working locally, a **push** uploads your commits. We use `main`, the shared
+version, directly and check changes before publishing. Separate branches and
+pull requests are available if explicitly requested; they are not required for
+our normal workflow.
 
 ## Optional: open a local copy
 
