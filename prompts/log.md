@@ -62,3 +62,21 @@ This template is not yet a documented generative AI experiment.
 - Pending: team review of these updates, the actual shared Word link, dates and
   eventual empirical results. Preserve the conversation for exact user prompts;
   this entry is a summary, not a verbatim transcript.
+
+## 2026-10-20: Python environment setup
+
+- Requested by: Nicolai, approving step 1 of the technical work. Request summary
+  (English paraphrase): prepare the Python environment before working with data.
+- Tool: AI coding assistant; model/version not recorded in this log.
+- Work: reused the existing uv-managed Python 3.12.13 installation, created the
+  local `.venv`, and resolved the six direct dependencies from `requirements.in`
+  into pinned `requirements.txt` entries with platform markers. Python version
+  recorded in `.python-version`; setup instructions updated.
+- Checks: imported the analysis libraries, rendered a small in-memory figure,
+  validated the empty notebook templates, and checked package compatibility.
+  A temporary Jupyter kernel executed a simple calculation using the project
+  interpreter. No dataset was loaded or split and no model was fitted.
+- Limitation: the environment has been exercised on Windows only. Package pins
+  contain platform markers, but macOS/Linux setup still needs verification.
+- Human review of this setup is pending. This entry summarizes the work rather
+  than reproducing the exact user prompts.

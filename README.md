@@ -8,7 +8,8 @@ Streamlit demo with seven inputs.
 ## Current status and project documents
 
 The original dataset, its structural review, project plan, and presentation
-outline are ready. The report is written in Word in Teams, and a Canva
+outline are ready. A local Python environment is set up and the package
+versions are recorded. The report is written in Word in Teams, and a Canva
 presentation template has been prepared. No preprocessing pipeline, data splits, trained models,
 evaluation results, or working Streamlit application exist yet.
 
@@ -30,16 +31,32 @@ for contributing; you can also share your work with the team and ask for help.
 
 ### Technical setup for running Python later
 
-Use Python 3.11 or later. Run these commands from the project directory in PowerShell:
+The development environment uses **Python 3.12.13**, recorded in `.python-version`.
+Use [uv](https://docs.astral.sh/uv/guides/install-python/) to find or install that
+version and create the environment. Create `.venv` only once; for an existing
+environment, skip the first command. From the project directory in PowerShell:
 
 ```powershell
-python -m venv .venv
+uv venv --python 3.12.13 --seed .venv
 .\.venv\Scripts\python.exe -m pip install -r requirements.txt
 .\.venv\Scripts\python.exe -m jupyterlab
 ```
 
+On macOS/Linux, use `.venv/bin/python` instead of `.\.venv\Scripts\python.exe`.
+You do not need to activate the environment when using its Python path directly.
+In VS Code, select this `.venv` environment as the interpreter and notebook kernel.
 Open the notebooks in numerical order. They currently contain outlines only.
-Record the package versions in `requirements.txt` before starting shared experiments.
+
+`requirements.in` lists the six direct dependencies; `requirements.txt` pins the
+resolved dependencies with platform markers. Install from `requirements.txt`
+for repeatable setup. The environment itself stays local and is ignored by Git.
+Only Windows has been verified locally; other platforms still need a setup check.
+When deliberately updating packages, regenerate the pins and rerun the checks:
+
+```powershell
+uv pip compile requirements.in --python-version 3.12.13 --universal --no-annotate --output-file requirements.txt
+```
+
 Streamlit is planned and is not installed by the current requirements; add it
 when implementing the demo. The setup above does not create a working model.
 
@@ -71,6 +88,8 @@ only descriptions of their intended purpose.
   them before merging; use a pull request when team review is useful.
 - Preserve existing team edits. If updates or conflicts are unclear, ask for
   help; never force-push or use a destructive reset to overwrite shared work.
+- After each completed and checked work step, commit and push the checkpoint
+  to its current branch. Pushing a task branch does not merge it into `main`.
 - Assign one owner per notebook where possible to reduce merge conflicts.
 - Do not commit credentials or personal credit data.
 - Write project documentation, comments, and notebook explanations in English.

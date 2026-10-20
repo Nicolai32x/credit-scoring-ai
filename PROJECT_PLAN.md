@@ -2,7 +2,8 @@
 
 Updated on **20 October 2026** with the agreed roles and writing workflow.
 The kickoff agenda is retained below for reference; no meeting outcomes or
-deadlines have been recorded. Implementation is still to begin.
+deadlines have been recorded. The Python environment is prepared; data processing,
+experiments, and the app are still to begin.
 
 ## What we want to build
 
@@ -54,8 +55,8 @@ Source for validation and preprocessing:
 
 ## Delivery stages after the meeting
 
-1. **Understand the data:** agree on the feature definitions, document limitations,
-   pin package versions, and create the untouched test split before exploratory
+1. **Understand the data:** review the feature definitions and limitations,
+   use the recorded package versions, and create the untouched test split before exploratory
    modeling. Explore the development data in notebook 01.
 2. **Compare models:** implement preprocessing and shared functions in `code/`;
    compare the reference and two models in notebook 02 using validation only.

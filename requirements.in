@@ -1,0 +1,8 @@
+# Direct dependencies for the Python 3.12 analysis environment.
+# requirements.txt contains the resolved versions used for installation.
+pandas
+numpy
+scikit-learn
+matplotlib
+jupyterlab
+ipykernel
