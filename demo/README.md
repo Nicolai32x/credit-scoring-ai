@@ -75,10 +75,14 @@ From the project directory in PowerShell, with the existing `.venv`:
 
 ```powershell
 .\.venv\Scripts\python.exe -m pip install -r requirements.txt
-.\.venv\Scripts\python.exe -m streamlit run demo/app.py --server.address 127.0.0.1 --browser.gatherUsageStats false
+.\.venv\Scripts\python.exe demo/run.py
 ```
 
 Open the local URL printed in the terminal (normally `http://127.0.0.1:8501`).
+The launcher adds the shared `code/` directory to `PYTHONPATH` before Streamlit
+starts, so its imported modules are watched and reloaded. If using the direct
+`streamlit run` command instead, restart the server after shared-code changes;
+refreshing the browser alone can leave old module signatures in memory.
 Stop the server with `Ctrl+C`. On macOS/Linux, use `.venv/bin/python`; those
 platforms have not yet been checked. Risk predictions and recorded explanation
 examples need no API key or external service. Optional live explanations use

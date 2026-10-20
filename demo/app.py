@@ -2,6 +2,7 @@
 
 from hashlib import sha256
 import json
+import logging
 from pathlib import Path
 import sys
 
@@ -14,7 +15,7 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "code"))
 from final_model import predict_risk  # noqa: E402
 from preprocessing import CATEGORICAL_FEATURES, FEATURE_COLUMNS  # noqa: E402
-from genai import generate_explanation, get_api_key  # noqa: E402
+from genai import explanation_error_message, generate_explanation, get_api_key  # noqa: E402
 from explain import profile_context  # noqa: E402
 
 CATEGORY_LABELS = {
@@ -102,9 +103,9 @@ def render_genai_panel():
                 st.session_state["ai_explanation"] = response["output_text"]
             else:
                 st.warning("The explanation was incomplete. Use a recorded example below.")
-        except Exception:
-            st.warning("The AI service is unavailable. The credit-risk demo still works; "
-                       "use a recorded example below.")
+        except Exception as error:
+            logging.getLogger(__name__).warning("Aggregate explanation failed: %s", type(error).__name__)
+            st.warning(explanation_error_message(error))
     if not key:
         st.caption("Live explanations need a locally configured OpenAI API key. "
                    "Recorded experiment examples work without a key.")
@@ -163,8 +164,9 @@ def render_profile_explanation(bundle, values):
                 st.session_state["profile_explanation"] = response["output_text"]
             else:
                 st.warning("The profile explanation was incomplete. The model contributions are shown below.")
-        except Exception:
-            st.warning("The AI explanation is unavailable. The risk prediction and model contributions still work.")
+        except Exception as error:
+            logging.getLogger(__name__).warning("Profile explanation failed: %s", type(error).__name__)
+            st.warning(explanation_error_message(error))
     if "profile_explanation" in st.session_state:
         st.caption("AI explanation of the last submitted profile · based on this model's calculated contributions")
         st.write(st.session_state["profile_explanation"])

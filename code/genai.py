@@ -10,6 +10,29 @@ import tomllib
 
 from openai import OpenAI
 
+
+def explanation_error_message(error):
+    """Return actionable fixed text without displaying provider bodies or keys."""
+    name = type(error).__name__
+    if isinstance(error, TypeError) and "unexpected keyword argument 'context'" in str(error):
+        return "The app has an older explanation module loaded. Restart the local Streamlit server and try again."
+    if name == "AuthenticationError":
+        return "OpenAI rejected the API key. Check the secret key in the local configuration."
+    if name == "PermissionDeniedError":
+        return "This OpenAI project does not have permission to use the selected model."
+    if name == "RateLimitError":
+        if getattr(error, "code", None) in {
+            "insufficient_quota", "billing_hard_limit_reached", "organization_spend_limit_exceeded",
+            "project_spend_limit_exceeded", "organization_usage_limit_exceeded",
+        }:
+            return "The OpenAI account has reached a credit, billing or spending limit. Check the API project's billing settings before retrying."
+        return "OpenAI is temporarily limiting requests. Wait before trying again."
+    if name == "APITimeoutError":
+        return "The OpenAI request timed out. Try again later; the risk prediction is unchanged."
+    if name == "APIConnectionError":
+        return "The app could not connect to OpenAI. Check the connection and try again."
+    return "The AI explanation is unavailable. The risk prediction still works; use the calculated contributions or recorded examples."
+
 ROOT = Path(__file__).resolve().parents[1]
 MODEL = "gpt-5.4-mini-2026-03-17"
 MAX_OUTPUT_TOKENS = 800

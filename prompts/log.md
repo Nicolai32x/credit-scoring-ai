@@ -281,3 +281,21 @@ is documented in the 20 October entry below and `results/genai/README.md`.
 - Checks: all 36 tests passed. The local server is healthy, both fictional
   integration outputs were checked against the supplied contribution directions,
   and the frozen model, final test and original experiment remain unchanged.
+
+## 2026-10-20: Fix stale Streamlit explanation imports
+
+- Trigger: Nicolai reported that the profile explanation was unavailable, while
+  the aggregate explanation worked. Browser inspection confirmed a stale imported
+  `genai` module: the running process lacked the updated context-aware function
+  and could not import a newly added error helper despite its presence on disk.
+- Fix: restarted the owned local server and added `demo/run.py`. The launcher
+  places the shared `code/` folder on `PYTHONPATH` before Streamlit starts so its
+  imported modules are watched. Startup instructions now use this launcher.
+- Errors: added fixed, actionable messages for stale code, authentication,
+  permission, request limits, billing limits, timeouts and connection failures.
+  Logs include only exception class names; provider bodies and keys remain hidden.
+- Verification: 38 tests passed, including launcher-path and safe-message
+  regressions. Restored the fictional browser profile and verified a successful
+  live profile explanation in the actual running app. This troubleshooting call
+  is not part of the completed six-response experiment. The original model,
+  threshold and evaluation were not changed.

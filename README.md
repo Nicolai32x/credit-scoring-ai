@@ -75,7 +75,7 @@ uv pip compile requirements.in --python-version 3.12.13 --universal --no-annotat
 To start the demo with the saved model, run from the project directory:
 
 ```powershell
-.\.venv\Scripts\python.exe -m streamlit run demo/app.py --server.address 127.0.0.1 --browser.gatherUsageStats false
+.\.venv\Scripts\python.exe demo/run.py
 ```
 
 Read [the demo guide](demo/README.md) for the walkthrough and fictional profiles.
