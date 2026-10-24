@@ -1,0 +1,326 @@
+{
+  "created_at_utc": "2026-10-24T12:47:37.811106+00:00",
+  "question": "How consistently do two unchanged prompts explain counts, both errors and limits across three aggregate scenarios?",
+  "relationship_to_pilot": "Prospective extension after inspecting the original six answers; pilot results are not pooled. No claim of an independent confirmatory study.",
+  "model": "gpt-5.4-mini-2026-03-17",
+  "instructions": "Write in English for a bank manager without a machine-learning background. Use 120-180 words.",
+  "settings": {
+    "temperature": 0.7,
+    "reasoning_effort": "none",
+    "max_output_tokens": 800,
+    "store": false,
+    "max_retries": 0
+  },
+  "repetitions_per_variant_per_scenario": 5,
+  "planned_requests": 30,
+  "request_order_seed": 42,
+  "order_note": "Shuffled scenario/repetition blocks, randomized prompt order within each block. API generation itself is not seeded.",
+  "order": [
+    {
+      "scenario": "high_accuracy_low_detection",
+      "repetition": 4,
+      "variant": "structured"
+    },
+    {
+      "scenario": "high_accuracy_low_detection",
+      "repetition": 4,
+      "variant": "simple"
+    },
+    {
+      "scenario": "high_detection_many_false_flags",
+      "repetition": 4,
+      "variant": "structured"
+    },
+    {
+      "scenario": "high_detection_many_false_flags",
+      "repetition": 4,
+      "variant": "simple"
+    },
+    {
+      "scenario": "high_accuracy_low_detection",
+      "repetition": 3,
+      "variant": "structured"
+    },
+    {
+      "scenario": "high_accuracy_low_detection",
+      "repetition": 3,
+      "variant": "simple"
+    },
+    {
+      "scenario": "high_accuracy_low_detection",
+      "repetition": 2,
+      "variant": "structured"
+    },
+    {
+      "scenario": "high_accuracy_low_detection",
+      "repetition": 2,
+      "variant": "simple"
+    },
+    {
+      "scenario": "high_detection_many_false_flags",
+      "repetition": 5,
+      "variant": "structured"
+    },
+    {
+      "scenario": "high_detection_many_false_flags",
+      "repetition": 5,
+      "variant": "simple"
+    },
+    {
+      "scenario": "high_detection_many_false_flags",
+      "repetition": 3,
+      "variant": "structured"
+    },
+    {
+      "scenario": "high_detection_many_false_flags",
+      "repetition": 3,
+      "variant": "simple"
+    },
+    {
+      "scenario": "high_accuracy_low_detection",
+      "repetition": 1,
+      "variant": "structured"
+    },
+    {
+      "scenario": "high_accuracy_low_detection",
+      "repetition": 1,
+      "variant": "simple"
+    },
+    {
+      "scenario": "actual_results",
+      "repetition": 3,
+      "variant": "simple"
+    },
+    {
+      "scenario": "actual_results",
+      "repetition": 3,
+      "variant": "structured"
+    },
+    {
+      "scenario": "high_accuracy_low_detection",
+      "repetition": 5,
+      "variant": "structured"
+    },
+    {
+      "scenario": "high_accuracy_low_detection",
+      "repetition": 5,
+      "variant": "simple"
+    },
+    {
+      "scenario": "actual_results",
+      "repetition": 4,
+      "variant": "simple"
+    },
+    {
+      "scenario": "actual_results",
+      "repetition": 4,
+      "variant": "structured"
+    },
+    {
+      "scenario": "actual_results",
+      "repetition": 5,
+      "variant": "simple"
+    },
+    {
+      "scenario": "actual_results",
+      "repetition": 5,
+      "variant": "structured"
+    },
+    {
+      "scenario": "high_detection_many_false_flags",
+      "repetition": 2,
+      "variant": "structured"
+    },
+    {
+      "scenario": "high_detection_many_false_flags",
+      "repetition": 2,
+      "variant": "simple"
+    },
+    {
+      "scenario": "actual_results",
+      "repetition": 1,
+      "variant": "structured"
+    },
+    {
+      "scenario": "actual_results",
+      "repetition": 1,
+      "variant": "simple"
+    },
+    {
+      "scenario": "actual_results",
+      "repetition": 2,
+      "variant": "simple"
+    },
+    {
+      "scenario": "actual_results",
+      "repetition": 2,
+      "variant": "structured"
+    },
+    {
+      "scenario": "high_detection_many_false_flags",
+      "repetition": 1,
+      "variant": "simple"
+    },
+    {
+      "scenario": "high_detection_many_false_flags",
+      "repetition": 1,
+      "variant": "structured"
+    }
+  ],
+  "contexts": {
+    "actual_results": {
+      "dataset": "UCI Statlog German Credit Data, historical teaching dataset",
+      "model": "Logistic regression, balanced class weights, seven inputs, score threshold 0.5",
+      "training_cases": 800,
+      "test_cases": 200,
+      "actual_good_risks": 140,
+      "actual_bad_risks": 60,
+      "test_metrics": {
+        "accuracy": 0.73,
+        "balanced_accuracy": 0.7404761904761905,
+        "bad_precision": 0.5348837209302325,
+        "bad_recall": 0.7666666666666667,
+        "bad_f1": 0.6301369863013698,
+        "roc_auc": 0.8101190476190476,
+        "cost_per_case": 0.55,
+        "true_good": 100,
+        "false_rejections": 40,
+        "false_approvals": 14,
+        "true_bad": 46
+      },
+      "always_good_reference": {
+        "accuracy": 0.7,
+        "balanced_accuracy": 0.5,
+        "bad_precision": 0.0,
+        "bad_recall": 0.0,
+        "bad_f1": 0.0,
+        "roc_auc": 0.5,
+        "cost_per_case": 1.5,
+        "true_good": 140,
+        "false_rejections": 0,
+        "false_approvals": 60,
+        "true_bad": 0
+      },
+      "error_definitions": {
+        "false_approval": "bad risk predicted good",
+        "false_rejection": "good risk predicted bad"
+      },
+      "cost_assumption": "5 per false approval, 1 per false rejection, 0 if correct; illustrative units, not currency",
+      "limits": "Historical labels; scores not calibrated default probabilities; no fairness or present-day lending suitability demonstrated.",
+      "evidence_type": "Actual saved project test results; not newly evaluated."
+    },
+    "high_accuracy_low_detection": {
+      "evidence_type": "SYNTHETIC arithmetic test scenario, not observed project results or a fitted model.",
+      "dataset": "Invented aggregate counts for testing an explanation; no applicant records.",
+      "model": "Fictional classifier; no model was trained for this scenario.",
+      "test_cases": 200,
+      "actual_good_risks": 180,
+      "actual_bad_risks": 20,
+      "test_metrics": {
+        "accuracy": 0.9,
+        "balanced_accuracy": 0.5888888888888889,
+        "bad_precision": 0.5,
+        "bad_recall": 0.2,
+        "bad_f1": 0.2857142857142857,
+        "cost_per_case": 0.42,
+        "true_good": 176,
+        "false_rejections": 4,
+        "false_approvals": 16,
+        "true_bad": 4
+      },
+      "always_good_reference": {
+        "accuracy": 0.9,
+        "balanced_accuracy": 0.5,
+        "bad_precision": 0,
+        "bad_recall": 0.0,
+        "bad_f1": 0.0,
+        "cost_per_case": 0.5,
+        "true_good": 180,
+        "false_rejections": 0,
+        "false_approvals": 20,
+        "true_bad": 0
+      },
+      "error_definitions": {
+        "false_approval": "bad risk predicted good",
+        "false_rejection": "good risk predicted bad"
+      },
+      "cost_assumption": "5 per false approval, 1 per false rejection, 0 if correct; illustrative units, not currency",
+      "limits": "Synthetic teaching example only. No future default probabilities, fairness, profit or present-day lending suitability demonstrated. AUC is not available."
+    },
+    "high_detection_many_false_flags": {
+      "evidence_type": "SYNTHETIC arithmetic test scenario, not observed project results or a fitted model.",
+      "dataset": "Invented aggregate counts for testing an explanation; no applicant records.",
+      "model": "Fictional classifier; no model was trained for this scenario.",
+      "test_cases": 200,
+      "actual_good_risks": 100,
+      "actual_bad_risks": 100,
+      "test_metrics": {
+        "accuracy": 0.675,
+        "balanced_accuracy": 0.675,
+        "bad_precision": 0.6206896551724138,
+        "bad_recall": 0.9,
+        "bad_f1": 0.7346938775510204,
+        "cost_per_case": 0.525,
+        "true_good": 45,
+        "false_rejections": 55,
+        "false_approvals": 10,
+        "true_bad": 90
+      },
+      "always_good_reference": {
+        "accuracy": 0.5,
+        "balanced_accuracy": 0.5,
+        "bad_precision": 0,
+        "bad_recall": 0.0,
+        "bad_f1": 0.0,
+        "cost_per_case": 2.5,
+        "true_good": 100,
+        "false_rejections": 0,
+        "false_approvals": 100,
+        "true_bad": 0
+      },
+      "error_definitions": {
+        "false_approval": "bad risk predicted good",
+        "false_rejection": "good risk predicted bad"
+      },
+      "cost_assumption": "5 per false approval, 1 per false rejection, 0 if correct; illustrative units, not currency",
+      "limits": "Synthetic teaching example only. No future default probabilities, fairness, profit or present-day lending suitability demonstrated. AUC is not available."
+    }
+  },
+  "prompts": {
+    "actual_results": {
+      "simple": "Explain these credit-scoring results to a bank manager.\n\nRESULTS (JSON):\n{\n  \"dataset\": \"UCI Statlog German Credit Data, historical teaching dataset\",\n  \"model\": \"Logistic regression, balanced class weights, seven inputs, score threshold 0.5\",\n  \"training_cases\": 800,\n  \"test_cases\": 200,\n  \"actual_good_risks\": 140,\n  \"actual_bad_risks\": 60,\n  \"test_metrics\": {\n    \"accuracy\": 0.73,\n    \"balanced_accuracy\": 0.7404761904761905,\n    \"bad_precision\": 0.5348837209302325,\n    \"bad_recall\": 0.7666666666666667,\n    \"bad_f1\": 0.6301369863013698,\n    \"roc_auc\": 0.8101190476190476,\n    \"cost_per_case\": 0.55,\n    \"true_good\": 100,\n    \"false_rejections\": 40,\n    \"false_approvals\": 14,\n    \"true_bad\": 46\n  },\n  \"always_good_reference\": {\n    \"accuracy\": 0.7,\n    \"balanced_accuracy\": 0.5,\n    \"bad_precision\": 0.0,\n    \"bad_recall\": 0.0,\n    \"bad_f1\": 0.0,\n    \"roc_auc\": 0.5,\n    \"cost_per_case\": 1.5,\n    \"true_good\": 140,\n    \"false_rejections\": 0,\n    \"false_approvals\": 60,\n    \"true_bad\": 0\n  },\n  \"error_definitions\": {\n    \"false_approval\": \"bad risk predicted good\",\n    \"false_rejection\": \"good risk predicted bad\"\n  },\n  \"cost_assumption\": \"5 per false approval, 1 per false rejection, 0 if correct; illustrative units, not currency\",\n  \"limits\": \"Historical labels; scores not calibrated default probabilities; no fairness or present-day lending suitability demonstrated.\",\n  \"evidence_type\": \"Actual saved project test results; not newly evaluated.\"\n}",
+      "structured": "Explain these credit-scoring results to a bank manager in plain English.\nInclude the number of bad risks detected out of all actual bad risks and the number of good risks incorrectly flagged out of all actual good risks. Explain both missed bad risks and incorrectly flagged good risks.\nDistinguish classification accuracy from the ability to detect bad risks. If you mention costs, call them illustrative cost units rather than euros, actual savings or profit.\nDo not invent individual reasons or causal feature effects. Do not treat a model score as a calibrated probability of future default. Do not recommend approving or rejecting loans or deploying the system in a bank.\nMake clear that this is a historical teaching example with limitations. Describe what the evidence supports and what it does not support.\n\nRESULTS (JSON):\n{\n  \"dataset\": \"UCI Statlog German Credit Data, historical teaching dataset\",\n  \"model\": \"Logistic regression, balanced class weights, seven inputs, score threshold 0.5\",\n  \"training_cases\": 800,\n  \"test_cases\": 200,\n  \"actual_good_risks\": 140,\n  \"actual_bad_risks\": 60,\n  \"test_metrics\": {\n    \"accuracy\": 0.73,\n    \"balanced_accuracy\": 0.7404761904761905,\n    \"bad_precision\": 0.5348837209302325,\n    \"bad_recall\": 0.7666666666666667,\n    \"bad_f1\": 0.6301369863013698,\n    \"roc_auc\": 0.8101190476190476,\n    \"cost_per_case\": 0.55,\n    \"true_good\": 100,\n    \"false_rejections\": 40,\n    \"false_approvals\": 14,\n    \"true_bad\": 46\n  },\n  \"always_good_reference\": {\n    \"accuracy\": 0.7,\n    \"balanced_accuracy\": 0.5,\n    \"bad_precision\": 0.0,\n    \"bad_recall\": 0.0,\n    \"bad_f1\": 0.0,\n    \"roc_auc\": 0.5,\n    \"cost_per_case\": 1.5,\n    \"true_good\": 140,\n    \"false_rejections\": 0,\n    \"false_approvals\": 60,\n    \"true_bad\": 0\n  },\n  \"error_definitions\": {\n    \"false_approval\": \"bad risk predicted good\",\n    \"false_rejection\": \"good risk predicted bad\"\n  },\n  \"cost_assumption\": \"5 per false approval, 1 per false rejection, 0 if correct; illustrative units, not currency\",\n  \"limits\": \"Historical labels; scores not calibrated default probabilities; no fairness or present-day lending suitability demonstrated.\",\n  \"evidence_type\": \"Actual saved project test results; not newly evaluated.\"\n}"
+    },
+    "high_accuracy_low_detection": {
+      "simple": "Explain these credit-scoring results to a bank manager.\n\nRESULTS (JSON):\n{\n  \"evidence_type\": \"SYNTHETIC arithmetic test scenario, not observed project results or a fitted model.\",\n  \"dataset\": \"Invented aggregate counts for testing an explanation; no applicant records.\",\n  \"model\": \"Fictional classifier; no model was trained for this scenario.\",\n  \"test_cases\": 200,\n  \"actual_good_risks\": 180,\n  \"actual_bad_risks\": 20,\n  \"test_metrics\": {\n    \"accuracy\": 0.9,\n    \"balanced_accuracy\": 0.5888888888888889,\n    \"bad_precision\": 0.5,\n    \"bad_recall\": 0.2,\n    \"bad_f1\": 0.2857142857142857,\n    \"cost_per_case\": 0.42,\n    \"true_good\": 176,\n    \"false_rejections\": 4,\n    \"false_approvals\": 16,\n    \"true_bad\": 4\n  },\n  \"always_good_reference\": {\n    \"accuracy\": 0.9,\n    \"balanced_accuracy\": 0.5,\n    \"bad_precision\": 0,\n    \"bad_recall\": 0.0,\n    \"bad_f1\": 0.0,\n    \"cost_per_case\": 0.5,\n    \"true_good\": 180,\n    \"false_rejections\": 0,\n    \"false_approvals\": 20,\n    \"true_bad\": 0\n  },\n  \"error_definitions\": {\n    \"false_approval\": \"bad risk predicted good\",\n    \"false_rejection\": \"good risk predicted bad\"\n  },\n  \"cost_assumption\": \"5 per false approval, 1 per false rejection, 0 if correct; illustrative units, not currency\",\n  \"limits\": \"Synthetic teaching example only. No future default probabilities, fairness, profit or present-day lending suitability demonstrated. AUC is not available.\"\n}",
+      "structured": "Explain these credit-scoring results to a bank manager in plain English.\nInclude the number of bad risks detected out of all actual bad risks and the number of good risks incorrectly flagged out of all actual good risks. Explain both missed bad risks and incorrectly flagged good risks.\nDistinguish classification accuracy from the ability to detect bad risks. If you mention costs, call them illustrative cost units rather than euros, actual savings or profit.\nDo not invent individual reasons or causal feature effects. Do not treat a model score as a calibrated probability of future default. Do not recommend approving or rejecting loans or deploying the system in a bank.\nMake clear that this is a historical teaching example with limitations. Describe what the evidence supports and what it does not support.\n\nRESULTS (JSON):\n{\n  \"evidence_type\": \"SYNTHETIC arithmetic test scenario, not observed project results or a fitted model.\",\n  \"dataset\": \"Invented aggregate counts for testing an explanation; no applicant records.\",\n  \"model\": \"Fictional classifier; no model was trained for this scenario.\",\n  \"test_cases\": 200,\n  \"actual_good_risks\": 180,\n  \"actual_bad_risks\": 20,\n  \"test_metrics\": {\n    \"accuracy\": 0.9,\n    \"balanced_accuracy\": 0.5888888888888889,\n    \"bad_precision\": 0.5,\n    \"bad_recall\": 0.2,\n    \"bad_f1\": 0.2857142857142857,\n    \"cost_per_case\": 0.42,\n    \"true_good\": 176,\n    \"false_rejections\": 4,\n    \"false_approvals\": 16,\n    \"true_bad\": 4\n  },\n  \"always_good_reference\": {\n    \"accuracy\": 0.9,\n    \"balanced_accuracy\": 0.5,\n    \"bad_precision\": 0,\n    \"bad_recall\": 0.0,\n    \"bad_f1\": 0.0,\n    \"cost_per_case\": 0.5,\n    \"true_good\": 180,\n    \"false_rejections\": 0,\n    \"false_approvals\": 20,\n    \"true_bad\": 0\n  },\n  \"error_definitions\": {\n    \"false_approval\": \"bad risk predicted good\",\n    \"false_rejection\": \"good risk predicted bad\"\n  },\n  \"cost_assumption\": \"5 per false approval, 1 per false rejection, 0 if correct; illustrative units, not currency\",\n  \"limits\": \"Synthetic teaching example only. No future default probabilities, fairness, profit or present-day lending suitability demonstrated. AUC is not available.\"\n}"
+    },
+    "high_detection_many_false_flags": {
+      "simple": "Explain these credit-scoring results to a bank manager.\n\nRESULTS (JSON):\n{\n  \"evidence_type\": \"SYNTHETIC arithmetic test scenario, not observed project results or a fitted model.\",\n  \"dataset\": \"Invented aggregate counts for testing an explanation; no applicant records.\",\n  \"model\": \"Fictional classifier; no model was trained for this scenario.\",\n  \"test_cases\": 200,\n  \"actual_good_risks\": 100,\n  \"actual_bad_risks\": 100,\n  \"test_metrics\": {\n    \"accuracy\": 0.675,\n    \"balanced_accuracy\": 0.675,\n    \"bad_precision\": 0.6206896551724138,\n    \"bad_recall\": 0.9,\n    \"bad_f1\": 0.7346938775510204,\n    \"cost_per_case\": 0.525,\n    \"true_good\": 45,\n    \"false_rejections\": 55,\n    \"false_approvals\": 10,\n    \"true_bad\": 90\n  },\n  \"always_good_reference\": {\n    \"accuracy\": 0.5,\n    \"balanced_accuracy\": 0.5,\n    \"bad_precision\": 0,\n    \"bad_recall\": 0.0,\n    \"bad_f1\": 0.0,\n    \"cost_per_case\": 2.5,\n    \"true_good\": 100,\n    \"false_rejections\": 0,\n    \"false_approvals\": 100,\n    \"true_bad\": 0\n  },\n  \"error_definitions\": {\n    \"false_approval\": \"bad risk predicted good\",\n    \"false_rejection\": \"good risk predicted bad\"\n  },\n  \"cost_assumption\": \"5 per false approval, 1 per false rejection, 0 if correct; illustrative units, not currency\",\n  \"limits\": \"Synthetic teaching example only. No future default probabilities, fairness, profit or present-day lending suitability demonstrated. AUC is not available.\"\n}",
+      "structured": "Explain these credit-scoring results to a bank manager in plain English.\nInclude the number of bad risks detected out of all actual bad risks and the number of good risks incorrectly flagged out of all actual good risks. Explain both missed bad risks and incorrectly flagged good risks.\nDistinguish classification accuracy from the ability to detect bad risks. If you mention costs, call them illustrative cost units rather than euros, actual savings or profit.\nDo not invent individual reasons or causal feature effects. Do not treat a model score as a calibrated probability of future default. Do not recommend approving or rejecting loans or deploying the system in a bank.\nMake clear that this is a historical teaching example with limitations. Describe what the evidence supports and what it does not support.\n\nRESULTS (JSON):\n{\n  \"evidence_type\": \"SYNTHETIC arithmetic test scenario, not observed project results or a fitted model.\",\n  \"dataset\": \"Invented aggregate counts for testing an explanation; no applicant records.\",\n  \"model\": \"Fictional classifier; no model was trained for this scenario.\",\n  \"test_cases\": 200,\n  \"actual_good_risks\": 100,\n  \"actual_bad_risks\": 100,\n  \"test_metrics\": {\n    \"accuracy\": 0.675,\n    \"balanced_accuracy\": 0.675,\n    \"bad_precision\": 0.6206896551724138,\n    \"bad_recall\": 0.9,\n    \"bad_f1\": 0.7346938775510204,\n    \"cost_per_case\": 0.525,\n    \"true_good\": 45,\n    \"false_rejections\": 55,\n    \"false_approvals\": 10,\n    \"true_bad\": 90\n  },\n  \"always_good_reference\": {\n    \"accuracy\": 0.5,\n    \"balanced_accuracy\": 0.5,\n    \"bad_precision\": 0,\n    \"bad_recall\": 0.0,\n    \"bad_f1\": 0.0,\n    \"cost_per_case\": 2.5,\n    \"true_good\": 100,\n    \"false_rejections\": 0,\n    \"false_approvals\": 100,\n    \"true_bad\": 0\n  },\n  \"error_definitions\": {\n    \"false_approval\": \"bad risk predicted good\",\n    \"false_rejection\": \"good risk predicted bad\"\n  },\n  \"cost_assumption\": \"5 per false approval, 1 per false rejection, 0 if correct; illustrative units, not currency\",\n  \"limits\": \"Synthetic teaching example only. No future default probabilities, fairness, profit or present-day lending suitability demonstrated. AUC is not available.\"\n}"
+    }
+  },
+  "source_fingerprints": {
+    "code/genai_comparison.py": "bf81241f9e1a410acea572fcaa0b06d6a252dfe76ca3c177870a11067d6c7814",
+    "code/genai.py": "b031d4d12a155861f2b5041a4b09ff8143796ddae50da44bc33fedd8ccb26135",
+    "results/final_test.json": "893d8327ad3a6b31ad61d7424cb09e42ea5c9969eb3bd84c6f6e6109b44af03e",
+    "prompts/explanation_simple.txt": "046472b75f9173da1394a5a42865b458c6c270fd9fcb7f97d793219b95a5ba5b",
+    "prompts/explanation_structured.txt": "9d08a639959fe0e305780ecd47649eec914b7bae7730ef2523bea5e79a3fba5d"
+  },
+  "criteria": {
+    "numerical_accuracy": "Pass if every numerical claim matches the context or a correctly rounded derivation; omission alone is not an error. Fail for wrong values, denominators or metric meanings.",
+    "complete_denominators": "Pass only if both detected bad cases out of all actual bad cases AND falsely flagged good cases out of all actual good cases are explicitly stated with correct counts and denominators. Percentages alone do not pass.",
+    "both_errors": "Pass if both bad cases predicted good and good cases predicted bad are described unambiguously. Correct false-approval/false-rejection labels with counts suffice. Merely listing metrics does not.",
+    "bounded_claims": "Pass if the answer explicitly limits the example to historical/teaching or synthetic evidence AND makes no unsupported causal, default-probability, actual-profit, fairness or deployment claim. Conditional illustrative costs are allowed; recommendations to approve/reject loans or deploy are not. Generalizations beyond the evidence fail even with a disclaimer.",
+    "word_limit": "Automatic pass for 120-180 whitespace-separated words inclusive, including headings and Markdown tokens. Otherwise fail. This is length compliance, not a measure of clarity."
+  },
+  "review_method": "Deterministic word counts plus AI-assisted reading of every response against its context, with evidence excerpts. Not blinded or independent. Human sign-off pending. No extra API grading requests.",
+  "analysis_plan": "Report criterion pass counts by scenario and prompt, plus totals out of 15 per prompt. No composite score or significance claim. Preserve every attempt, including incomplete/failed responses. Stop on the first failed/incomplete request; no automatic retry or replacement.",
+  "limits": "Only three purposefully selected scenarios, one model and five responses per cell. Two scenarios are synthetic; wording, class balance and error patterns vary together. Prompts differ in several instructions, and their requested criteria partly overlap the evaluation. Repetitions are not independent task samples. This tests prompt compliance, not ML prediction performance or general model quality.",
+  "pricing_reference": "https://developers.openai.com/api/docs/models/gpt-5.4-mini",
+  "estimated_cost_rates_usd_per_million": {
+    "input": 0.75,
+    "cached_input": 0.075,
+    "output": 4.5
+  }
+}
