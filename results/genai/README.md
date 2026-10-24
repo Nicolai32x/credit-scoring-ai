@@ -1,167 +1,230 @@
 # Generative AI experiment
 
-**Question:** Can generative AI explain credit-scoring results clearly without unsupported claims?
+**Question:** How consistently do two prompts explain credit-scoring results,
+both error types and the limits of the evidence?
 
-We asked the same model to explain the same aggregate results with two different
-prompts, three times each. The simple prompt asked for an explanation for a bank
-manager. The structured prompt explicitly requested error types, denominators
-and limits. Both received the same facts and a 120-180-word target.
+## Expanded comparison: 30 new responses
 
-## What happened
+We kept the same two prompts and model settings, but tested three scenarios with
+five responses per prompt per scenario: **3 x 2 x 5 = 30 responses**.
+The original six-response pilot is retained separately, not pooled into this result.
 
-| | Simple prompt | Structured prompt |
+| Scenario | What the explanation needs to notice |
+| --- | --- |
+| **Actual project results** | 46/60 bad risks detected; 40/140 good risks falsely flagged |
+| **Synthetic: high accuracy, low detection** | 90% accuracy, but only 4/20 bad risks detected; 4/180 good risks falsely flagged |
+| **Synthetic: high detection, many false flags** | 90/100 bad risks detected, but 55/100 good risks falsely flagged |
+
+The last two scenarios contain **invented aggregate counts**, not new results of
+our credit model. No classifier was trained or tested for those scenarios.
+The ML model, its final test results and its threshold remain unchanged.
+
+### What happened
+
+Counts below are out of **15 responses per prompt** in the expanded comparison.
+The word-limit check is automatic; the other checks are an **AI-assisted reading
+of all 30 answers, not independent or blinded human ratings**.
+
+| Criterion passed | Simple prompt | Structured prompt |
 | --- | --- | --- |
-| Completed responses | 3 | 3 |
-| Correct numerical values | All 3 | All 3 |
-| Both error types explained | All 3 | All 3 |
-| Includes the 60 bad / 140 good case denominators | None | All 3 |
-| Meets the word target | All 3 | 2 of 3; one had 193 words |
-| Mean rubric score / 8 | 7.00 | 7.67 |
+| No numerical error identified | 15/15 | 15/15 |
+| Both class denominators and relevant counts explicit | 10/15 | 15/15 |
+| Both error types explained | 15/15 | 15/15 |
+| Scope stated and no clear unsupported claim identified | 10/15 | 15/15 |
+| Within 120-180 words | 15/15 | 12/15 |
 
-The structured prompt supplied more complete numerical context in this example.
-It did not fix fabricated numbers: neither version invented any. Six answers to
-one input do not establish statistical significance or general prompt superiority.
+**Takeaway:** the structured prompt more consistently included complete numerical
+context and avoided clear overreach under the stated rubric. It also exceeded
+the word limit three times (183, 192 and 183 words). Neither prompt had an
+identified numerical error in this sample; this does not establish an error-free model.
 
-The assessment is **AI-assisted, not independent or blinded; human sign-off is
-still pending**. Its four criteria were fixed before generation, each worth 0-2:
-numerical accuracy/completeness, clarity/length, explanation of both errors, and
-avoidance of specified unsupported claims. A high score does not certify every
-phrase: simple answers used approval/rejection language, one called the model a
-"useful screening tool", and another generalized error priorities beyond our
-historical cost assumption. Keep the raw answers unchanged when correcting wording.
+Explicit denominators can occur in a different sentence from their corresponding
+counts; a literal "out of" phrase is not required. Percentages alone do not pass.
+The structured prompt explicitly asks for these details, so this is partly a
+compliance check, not a neutral test of overall writing quality.
+
+Five simple responses were flagged for claims beyond the evidence, including
+"useful for reducing credit losses", "more useful as a decision-support tool",
+and "missing a bad borrower is usually the costliest mistake". These judgements
+are qualitative: borderline cases and the exact interpretation are documented in
+the assessment. Another reviewer could reasonably score some wording differently.
+Both prompts also sometimes describe classification as actual approval/rejection;
+that wording must not be adopted as a description of what our app does.
+
+### Results by scenario
+
+Each cell shows **simple / structured passes out of 5**.
+
+| Scenario | Numerical accuracy | Complete denominators | Both errors | Bounded claims | Word limit |
+| --- | --- | --- | --- | --- | --- |
+| Actual results | 5 / 5 | 1 / 5 | 5 / 5 | 3 / 5 | 5 / 4 |
+| Synthetic: high accuracy | 5 / 5 | 5 / 5 | 5 / 5 | 5 / 5 | 5 / 3 |
+| Synthetic: high detection | 5 / 5 | 4 / 5 | 5 / 5 | 2 / 5 | 5 / 5 |
+
+Human sign-off is **still pending**. More responses do not replace human review.
+There are only three purposefully chosen scenarios and one model. Repetitions
+are not independent real-world tasks. The extension was designed after looking
+at the pilot; it is exploratory, not a confirmatory statistical study. Synthetic
+examples vary in more than one respect, so differences cannot be attributed to
+just one factor. Many structured answers call invented scenarios "historical";
+most also explicitly say they are invented, but "synthetic" is the accurate term.
 
 ## What to read or show
 
-- [All six real answers](outputs.md): readable directly on GitHub.
-- [Assessment with scores, evidence and cautions](run_02/assessment.json): optional detail.
-- In Streamlit, open **Recorded experiment: simple vs structured prompt**. It shows
-  the first completed answer per version, with a model name and timestamp. This
-  works without an API key or network access; examples were not chosen by score.
-- [Demo guide](../../demo/README.md): live aggregate and individual-profile explanations.
-  Profile explanations are a later extension, outside this six-answer comparison.
+- [All 30 answers](run_03/outputs.md): readable, unedited response text.
+- [Assessment](run_03/assessment.json): every response, numerical excerpts,
+  criterion decisions, cautions, exact word counts and recorded token usage.
+- [Protocol](run_03/protocol.json): contexts, exact prompts, order and criteria,
+  committed as `e4dec48` **before** the first API request.
+- [Raw API records](run_03/attempts.jsonl): all 30 requests completed; none replaced.
+- In Streamlit, open **Recorded experiment: simple vs structured prompt**.
+  Actual project results are selected first. The two synthetic options carry a
+  warning. Each option shows the first completed response for that prompt and
+  scenario in recorded request order, not the best-scored response. This works offline.
+- [Demo guide](../../demo/README.md): the aggregate and profile explanations are
+  separate features. Profile explanations are outside this prompt comparison.
+
+## Review before using the results
+
+Nicolai should read the raw answers and compare the assessment with the protocol.
+Pay particular attention to the five flagged simple answers (4, 12, 19, 21, 29),
+the borderline statements in answers 10 and 27, the three length failures
+(1, 7, 25), and approval/rejection wording in both variants. Then record any
+corrections and actual human review; do not replace the original responses.
 
 <details>
-<summary>Optional: exact protocol, execution history and technical evidence</summary>
+<summary>Optional: protocol, usage and original pilot</summary>
 
-Model: `gpt-5.4-mini-2026-03-17`, OpenAI Responses API, temperature 0.7,
-reasoning effort none, maximum 800 output tokens, no tools or automatic retries.
-Requests were independent and alternated simple/structured for three repetitions.
-Only aggregate facts were sent in this experiment, not applicant inputs.
+Both phases use `gpt-5.4-mini-2026-03-17`, temperature 0.7, reasoning effort none,
+maximum 800 output tokens, no tools or automatic retries, and a 120-180-word
+instruction. Requests are independent. The expansion shuffles scenario/repetition
+blocks and prompt order within each pair using order seed 42. Generation itself
+is not seeded. Criteria were fixed before generating the extension and are
+reported separately without a composite score; the pilot's /8 scores are not
+comparable to the extension's five pass/fail criteria.
 
-- [Full protocol and exact prompts](run_02/protocol.json), written before generation.
-- [All raw responses, timestamps, IDs and usage](run_02/attempts.jsonl).
-- [Full scoring rubric](run_02/protocol.json) and [assessment](run_02/assessment.json).
-- [Run index used by the demo](selected_run.json).
-- [Initial setup protocol](protocol.json) and [authentication failure](attempts.jsonl).
-  That failure was retained; after the key was corrected all six requests completed.
-  No successful answers were discarded.
-- [First profile integration example](profile_example.json) and
-  [refined profile example](profile_example_refined.json). The first contained
-  technical labels/raw values and a counting slip; the refined prompt requests
-  friendly labels, an explicit reference and only 2-3 features. These additional
-  checks are not part of the original experiment or its score/cost total.
+Expanded usage: **15,915 input + 6,845 output tokens**, no cached input.
+Estimated standard API cost: **$0.04274**, not an account billing statement.
+It excludes the pilot and other app requests. Rates were checked on 24 October
+2026: $0.75/million input and $4.50/million output tokens.
+[Official model/pricing reference](https://developers.openai.com/api/docs/models/gpt-5.4-mini).
+`store=False` is used; this is not a zero-provider-retention claim.
 
-Recorded experiment usage: 3,213 input and 1,454 output tokens. Estimated standard
-cost: $0.00895 using the published rates checked on 20 October 2026, not an account
-billing statement. [Official model/pricing reference](https://developers.openai.com/api/docs/models/gpt-5.4-mini).
-The API requests use `store=False`; this is not a claim of zero provider retention.
+The initial pilot compared three answers per prompt on the actual project
+results. All six had correct numbers and explained both error types; the simple
+answers omitted class denominators. One structured answer exceeded the word
+limit. The AI-assisted /8 means were 7.00 and 7.67. Human sign-off remains pending.
 
-The protocol and attempts are preserved as evidence. Do not rerun the experiment
-just for the presentation. Ordinary automated tests use synthetic replies.
-For a separately justified new run, the technical command is:
+- [Pilot answers](outputs.md), [protocol](run_02/protocol.json),
+  [raw records](run_02/attempts.jsonl), [assessment](run_02/assessment.json).
+- [Initial authentication failure](attempts.jsonl) and [setup protocol](protocol.json)
+  remain as a record; no successful answer was discarded.
+- [First profile example](profile_example.json) and
+  [refined profile example](profile_example_refined.json) are separate integration
+  checks, not part of either comparison. The first had technical names/raw values
+  and a counting slip; the refined prompt asks for friendly labels and 2-3 features.
+
+Ordinary automated tests use fake replies, not paid API calls. Do not regenerate
+responses for the presentation. The extension runner refuses to overwrite attempts
+and validates the frozen protocol's source fingerprints. A future separately
+justified run needs a new output folder and a new prepared protocol:
 
 ```powershell
-.\.venv\Scripts\python.exe -u code/genai.py --output-dir results/genai/new_run
+.\.venv\Scripts\python.exe code/genai_comparison.py prepare --output-dir results/genai/new_run
+.\.venv\Scripts\python.exe code/genai_comparison.py run --output-dir results/genai/new_run
+.\.venv\Scripts\python.exe code/genai_comparison.py export --output-dir results/genai/new_run
 ```
 
-Use a new folder and keep earlier attempts; never include credentials in prompts
-or Git. API setup belongs in the [demo guide](../../demo/README.md).
+[Evaluation design reference](https://developers.openai.com/api/docs/guides/evaluation-best-practices).
 
 </details>
 
 <details>
-<summary>Optional: chapter 3 reference text to copy into the shared Word report</summary>
+<summary>Optional: updated chapter 3 reference text for the shared Word report</summary>
 
-This is copy-ready reference material, not a second working report. Edit the
-shared Word document in Teams. Read the real answers and assessment before
-adopting the text; human review has not been recorded as complete.
+This is reference text to adapt in the shared Word document, not another working
+draft. Check the real answers and assessment before adopting it. Human review
+has not been recorded as complete.
 
 ### 3. Generative AI experiment
 
-We investigated whether generative AI could explain our credit-scoring results
-clearly without making unsupported claims. The task was to explain the overall
-evaluation to a bank manager without a machine-learning background. We did not
-ask the AI to make credit decisions or explain why an individual applicant
-received a particular prediction.
+We investigated whether generative AI could explain credit-scoring results to a
+bank manager without a machine-learning background. The task concerned an
+aggregate evaluation, not individual lending decisions. We used the OpenAI
+Responses API with the fixed GPT-5.4 mini snapshot dated 17 March 2026
+(OpenAI, n.d.-a, n.d.-c).
 
-The experiment used the OpenAI Responses API with the fixed model snapshot
-GPT-5.4 mini, dated 17 March 2026 (OpenAI, n.d.-a, n.d.-b). We compared two
-prompts. The simple version asked: "Explain these credit-scoring results to a
-bank manager." The structured version additionally requested both error types,
-the relevant class denominators and a distinction between accuracy and bad-risk
-detection. It also instructed the model not to invent individual causes, treat
-scores as calibrated default probabilities, describe assumed costs as actual
-savings, or recommend lending decisions or deployment.
+We compared a simple prompt asking for an explanation with a structured version
+requesting both error types, class denominators and a distinction between accuracy
+and bad-risk detection. The structured version also warned against invented
+causes, calibrated-default claims, treating illustrative costs as actual savings,
+and recommending lending decisions or deployment. Both received identical facts
+within each scenario and the same 120-180-word instruction.
 
-Both prompts received the same aggregate results, including 46 of 60 bad risks
-detected and 40 of 140 good risks incorrectly flagged. They also received the
-same audience instruction and a target length of 120-180 words. We generated
-three responses per prompt in alternating order, using temperature 0.7,
-reasoning effort none and a maximum of 800 output tokens. Every request was
-independent. No applicant inputs or personal data were sent to the API. An
-initial authentication failure was retained in the log; the six completed
-responses came from the subsequent run after the local key was corrected.
+The first six-response pilot used our actual results only. After inspecting that
+pilot, we designed a separate extension with three scenarios and five responses
+per prompt per scenario, giving 30 new responses. One scenario used the saved
+project test results: 46 of 60 bad risks detected and 40 of 140 good risks wrongly
+flagged. Two explicitly synthetic scenarios tested different trade-offs. One had
+90% accuracy but detected only 4 of 20 bad risks; the other detected 90 of 100 bad
+risks but wrongly flagged 55 of 100 good risks. These invented counts were used
+to test explanations; they are not additional results of our credit model.
 
-Before generation, we defined four criteria, each worth up to two points:
-numerical accuracy and completeness, clarity, explanation of both error types,
-and avoidance of specified unsupported claims. Numerical completeness required
-the relevant denominators, not just the numbers of detected or incorrectly
-flagged cases. Clarity included the word target. The assessment was AI-assisted,
-with evidence excerpts recorded for each score; it was not an independent or
-blinded human evaluation. Team review of the answers and assessment is still
-required before final submission.
+The extension kept the original prompts and settings: temperature 0.7, reasoning
+effort none, maximum 800 output tokens, no tools and no automatic retries.
+Scenario/repetition blocks and prompt order within each pair were shuffled using
+a fixed order seed. This did not seed the language model's generation. The full
+protocol, inputs and criteria were committed before generation, and all 30
+requests completed. No successful response was replaced or discarded. Only
+aggregate facts were sent, not applicant records. The original pilot remains
+separate and is not pooled into the new comparison.
 
-The simple prompt scored 7 out of 8 in all three responses. The structured
-prompt scored 8, 7 and 8, giving a mean of 7.67. All six responses used correct
-numerical values and explained both error types. The difference in numerical
-scores arose because the simple responses omitted the class denominators of
-60 bad risks and 140 good risks. The structured responses included those
-denominators, making the scale of each error easier to judge. However, one
-structured response contained 193 words and exceeded the requested length.
+Before generation, we defined five pass/fail checks: numerical accuracy, complete
+class denominators and relevant counts, explanation of both error types, bounded
+claims, and the word limit. Length was checked automatically; the other criteria
+were assessed by an AI-assisted reading against the supplied facts, with
+numerical excerpts and reasons recorded. Class totals and corresponding counts
+could occur in separate clearly linked sentences. There was no composite score.
+The assessment was not blinded or independent, and human sign-off is pending.
 
-The qualitative review also found wording that the numerical scores did not
-fully capture. Simple responses described cases as approved or declined,
-although our application only predicts risk classes. One described the model
-as a "useful screening tool", suggesting more practical usefulness than the
-experiment establishes. These observations show that a short scoring rubric
-does not replace reading the actual output. Original responses remain
-unchanged in the experiment log, separate from any wording adopted in the report.
+In the extension, no numerical error was identified in either prompt's 15
+responses, and both error types were explained throughout. The simple prompt
+provided complete denominators and counts in 10 of 15 responses, compared with
+15 of 15 for the structured prompt. Five simple responses were flagged for clear
+claims beyond the evidence, such as practical screening usefulness or a general
+claim about the costliest lending mistake. No clear failure of that criterion
+was identified in the structured responses, although both variants sometimes
+used approval/rejection language for classification. Borderline judgements and
+synthetic-versus-historical wording are documented for human review. The simple
+prompt met the word target in all 15 responses; the structured prompt met it in
+12, with three responses containing 183, 192 and 183 words.
 
-We integrated the structured prompt into the Streamlit demonstration as an
-optional explanation of the aggregate results. It does not alter the saved
-classifier, decision threshold or individual prediction. Recorded real responses
-from both prompts are also available in the app, allowing the experiment to be
-shown without a live API connection.
+The result supports a limited observation: explicit instructions made the
+requested numerical context more consistent in these scenarios, but did not
+guarantee compliance with every constraint. The structured prompt explicitly
+requests content used in the scoring criteria, so this partly measures prompt
+compliance rather than overall writing quality. The extension was designed after
+seeing the pilot, includes only three selected scenarios and one model, and
+contains repeated answers rather than 30 independent tasks. It cannot establish
+general reliability or statistical superiority. Automated checks should be
+combined with human judgement (OpenAI, n.d.-b).
 
-Separately, we added an optional explanation of the last submitted fictional
-profile. This feature calculates contributions from the saved logistic-regression
-coefficients relative to mean transformed development inputs and supplies them
-to the language model. It does not ask the language model to infer reasons from
-the class label alone. After an explicit button click, the seven fictional
-inputs, predicted class and contributions are sent to OpenAI. These explanations
-describe the fitted model's calculation, not causal effects or future default
-probabilities. This extension was not part of the six-response prompt comparison.
-
-For this input, the structured prompt produced more complete numerical context,
-but did not guarantee compliance with every instruction. The experiment contains
-only six outputs for one results summary, and the prompts differ in several
-instructions. It therefore provides an illustrative comparison rather than
-evidence of statistical significance or general reliability.
+The Streamlit demo provides recorded responses for all three scenarios without
+a live connection, with synthetic examples clearly labelled. Its live aggregate
+explanation uses the actual project results. Separately, an optional explanation
+of a submitted fictional profile uses calculated logistic-regression contributions
+relative to mean transformed development inputs. After an explicit click, those
+seven fictional inputs, the predicted class and contributions are sent to OpenAI.
+This describes the fitted calculation, not causal effects or future default
+probabilities. It is outside both prompt comparisons and does not alter the
+classifier or its threshold.
 
 ### References for this section
 
 OpenAI. (n.d.-a). *Create a model response*. https://developers.openai.com/api/reference/python/resources/responses/methods/create
 
-OpenAI. (n.d.-b). *GPT-5.4 mini*. https://developers.openai.com/api/docs/models/gpt-5.4-mini
+OpenAI. (n.d.-b). *Evaluation best practices*. https://developers.openai.com/api/docs/guides/evaluation-best-practices
+
+OpenAI. (n.d.-c). *GPT-5.4 mini*. https://developers.openai.com/api/docs/models/gpt-5.4-mini
 
 </details>

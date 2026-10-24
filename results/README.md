@@ -76,11 +76,16 @@ out-of-fold predictions and must not be labeled as test results.
 
 ## 3. GenAI and the demo
 
-Nicolai compared two prompts, three real responses each. All six gave correct
-numbers; the structured prompt consistently included both class denominators.
-One structured answer exceeded the word limit. AI-assisted rubric means were
-7.00/8 and 7.67/8; this small example does not prove general superiority.
-**Human review of the assessment is still pending.**
+After a six-response pilot, Nicolai ran a separate comparison: three scenarios,
+two unchanged prompts and five repetitions, giving **30 new responses**.
+Only one scenario uses actual project results; two use clearly labelled invented
+counts to test different error trade-offs. They are not new ML test results.
+The AI-assisted review found complete class denominators/counts in 10/15 simple
+and 15/15 structured responses. Neither version had an identified numerical
+error; both explained both errors in all responses. Five simple responses were
+flagged for clear overreach under the rubric. All simple responses met the word
+limit, compared with 12/15 structured responses. This small, non-independent
+comparison does not prove general superiority. **Human review is still pending.**
 
 Read [the GenAI summary and actual answers](genai/README.md) for Nicolai's section.
 The [demo guide](../demo/README.md) explains the three separate features:

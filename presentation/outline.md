@@ -18,15 +18,16 @@ slides and the matching report section. Figures and numbers are already saved.
 | 1 | Jan | Business problem | Who needs support, and what decision is involved? | 2 |
 | 2 | Jan | Existing approaches | Referenced comparison of rules, scorecards and ML | 2 |
 | 3 | Jan | Project goal | Seven-input scope, success criteria and the two error types | 2 |
-| 4 | Nicolai | Data | 1,000 UCI historical cases, seven inputs, 70:30 labels, DM units | 2 |
-| 5 | Nicolai | Method | 800 development / 200 test; same five validation folds; baseline, logistic regression, forest; freeze before test | 2 |
-| 6 | Nicolai | GenAI and checking | Two prompts, six real answers; denominators clearer, one length failure; AI-assisted assessment and limits | 2 |
-| 7 | Philipp | Results | Validation comparison, then the selected model's separate test result: 74.0% balanced accuracy | 2 |
-| 8 | Philipp | Prediction errors | 46/60 bad risks detected, 40/140 good risks wrongly flagged; 5:1 assumed costs | 2 |
-| 9 | Philipp | Costs and benefits | Implementation effort, hosting/maintenance and review needs; explicit assumptions, no fabricated ROI | 2 |
-| 10 | Zosia | Ethical, legal and social risks | Referenced risks, affected people and mitigations | 2 |
-| 11 | Zosia | Lessons learned | Actual findings: leakage prevention, moderate performance, AI review, usability | 2 |
-| 12 | Zosia | Conclusion and next steps | Bounded recommendation, evidence still missing, transition to demo | 2 |
+| 4 | Nicolai | Our dataset and seven inputs | 1,000 UCI historical cases, seven inputs, 70:30 labels, DM units | 1.25 |
+| 5 | Nicolai | Training, validation and testing | 800 development / 200 test; five validation folds; freeze model and threshold before test | 1.5 |
+| 6 | Nicolai | The models we compared | Always-Good baseline, logistic regression, random forest; select using balanced accuracy | 1.25 |
+| 7 | Nicolai | Using and checking generative AI | Separate 30-response extension: 3 scenarios x 2 prompts x 5 repetitions. Denominators 10/15 vs 15/15; word limit 15/15 vs 12/15. Two scenarios synthetic; AI-assisted review, human sign-off pending | 2 |
+| 8 | Philipp | Results | Validation comparison, then the selected model's separate test result: 74.0% balanced accuracy | 2 |
+| 9 | Philipp | Prediction errors | 46/60 bad risks detected, 40/140 good risks wrongly flagged; 5:1 assumed costs | 2 |
+| 10 | Philipp | Costs and benefits | Implementation effort, hosting/maintenance and review needs; explicit assumptions, no fabricated ROI | 2 |
+| 11 | Zosia | Ethical, legal and social risks | Referenced risks, affected people and mitigations | 2 |
+| 12 | Zosia | Lessons learned | Actual findings: leakage prevention, moderate performance, AI review, usability | 2 |
+| 13 | Zosia | Conclusion and next steps | Bounded recommendation, evidence still missing, transition to demo | 2 |
 
 ## Material to use
 
@@ -35,7 +36,7 @@ slides and the matching report section. Figures and numbers are already saved.
 - **Nicolai:** saved [notebook 01](../notebooks/01_exploration.ipynb),
   [notebook 02](../notebooks/02_model_comparison.ipynb) and
   [GenAI summary/answers](../results/genai/README.md). The profile explanation is
-  a later demo feature, separate from the original six-answer experiment.
+  a separate demo feature, outside the pilot and expanded aggregate comparison.
 - **Jan and Zosia:** use those same results as factual context, then add sources
   for your own business/literature and risk claims.
 
@@ -74,13 +75,13 @@ recorded aggregate answers also work offline. Prepare screenshots as a fallback.
 | Requirement | Where |
 | --- | --- |
 | Business problem | 1 and 3 |
-| AI method/technology | 2, 5 and 6 |
+| AI method/technology | 2, 5, 6 and 7 |
 | Data | 4 |
-| Measurable results | 7 and 8 |
-| Implementation costs | 9 |
-| Ethical, legal and social risks | 10 |
-| Good practices and insights | 6 and 11 |
-| Prompt design, output and limitations | 6 and the demo |
+| Measurable results | 8 and 9 |
+| Implementation costs | 10 |
+| Ethical, legal and social risks | 11 |
+| Good practices and insights | 7 and 12 |
+| Prompt design, output and limitations | 7 and the demo |
 | Responsible authorship | Every slide footer |
 
 </details>

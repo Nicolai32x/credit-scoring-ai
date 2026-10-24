@@ -1,5 +1,6 @@
 """Check the expanded comparison without calling a paid API."""
 
+from hashlib import sha256
 import json
 from pathlib import Path
 import sys
@@ -12,6 +13,35 @@ import genai_comparison as comparison
 
 
 class ExpandedComparisonTests(unittest.TestCase):
+    def test_recorded_assessment_matches_all_attempts_and_objective_counts(self):
+        folder = comparison.OUTPUT
+        if not (folder / "assessment.json").exists():
+            self.skipTest("Expanded comparison not yet recorded.")
+        protocol = json.loads((folder / "protocol.json").read_text())
+        assessment = json.loads((folder / "assessment.json").read_text(encoding="utf-8"))
+        records = [json.loads(line) for line in
+                   (folder / "attempts.jsonl").read_text(encoding="utf-8").splitlines()]
+        self.assertEqual(len(records), protocol["planned_requests"])
+        self.assertEqual(len(assessment["results"]), len(records))
+        self.assertEqual(assessment["protocol_sha256"], sha256((folder / "protocol.json").read_bytes()).hexdigest())
+        self.assertEqual(assessment["attempts_sha256"], sha256((folder / "attempts.jsonl").read_bytes()).hexdigest())
+        self.assertEqual(protocol["source_fingerprints"], comparison.fingerprints())
+        for trial, record, review in zip(protocol["order"], records, assessment["results"]):
+            for key, value in trial.items():
+                self.assertEqual(record[key], value)
+                self.assertEqual(review[key], value)
+            self.assertEqual(record["prompt"], protocol["prompts"][trial["scenario"]][trial["variant"]])
+            self.assertEqual(record["status"], "completed")
+            words = len(record["output_text"].split())
+            self.assertEqual(review["word_count"], words)
+            self.assertEqual(review["criteria"]["word_limit"]["pass"], 120 <= words <= 180)
+        for summary in assessment["summary"]:
+            group = [row for row in assessment["results"] if row["variant"] == summary["variant"]
+                     and (summary["scenario"] == "all" or row["scenario"] == summary["scenario"])]
+            self.assertEqual(summary["responses"], len(group))
+            for criterion, count in summary["passes"].items():
+                self.assertEqual(count, sum(row["criteria"][criterion]["pass"] for row in group))
+
     def test_synthetic_arithmetic_and_labels_do_not_change_actual_results(self):
         contexts = comparison.scenarios()
         self.assertEqual(contexts["actual_results"]["test_metrics"]["true_bad"], 46)

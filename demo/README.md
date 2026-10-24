@@ -17,6 +17,8 @@ approve loans, predict a calibrated default probability or establish real lendin
    risks detected and 40/140 good risks wrongly flagged.
 5. **AI explanation of our results** explains the aggregate evaluation. Its
    recorded simple/structured examples work without internet or an API key.
+   The expanded comparison offers actual project results and two clearly marked
+   synthetic explanation tests. Those invented counts are not new model results.
 
 The ML classifier and generative AI are separate. No button retrains the model
 or changes the frozen threshold. AI responses must still be checked.
@@ -93,7 +95,7 @@ The first [profile integration output](../results/genai/profile_example.json)
 used technical labels/raw values and said two smaller features while listing
 three. The [refined output](../results/genai/profile_example_refined.json) used
 friendlier labels and correctly described the supplied major directions. Both
-remain unedited. They are outside the [six-response experiment](../results/genai/README.md)
+remain unedited. They are outside the [aggregate prompt comparisons](../results/genai/README.md)
 and do not prove every future profile explanation will follow instructions.
 
 </details>

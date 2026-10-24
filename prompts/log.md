@@ -325,3 +325,40 @@ is documented in the 20 October entry below and `results/genai/README.md`.
   All 38 tests passed without paid API calls. The first test import hit a local
   OpenBLAS memory-allocation error; the successful run limited BLAS/OMP threads
   to one for that process, without changing packages or model settings.
+
+## 2026-10-24: Expand the aggregate GenAI prompt comparison
+
+- Requested by: Nicolai, approving 30 new responses after discussing the limits
+  of the six-response pilot while preparing his presentation slides.
+- Design: unchanged simple/structured prompts, three scenarios and five
+  repetitions per cell. One scenario uses the saved actual test summary; two use
+  explicitly synthetic confusion counts. No ML fit, threshold change or new test
+  evaluation. The pilot and all earlier evidence remain unchanged and separate.
+- Pre-registration: `run_03/protocol.json` and the tested runner were committed as
+  `e4dec48` before the first request. The protocol fixes contexts, criteria,
+  source fingerprints and shuffled pair order. All 30 requests completed; no
+  retries, discarded answers or replacements. Only aggregate facts were sent.
+- Assessment: deterministic length checks and AI-assisted reading of every raw
+  output; not independent or blinded. Human sign-off remains pending. Explicit
+  class totals and linked counts in different sentences qualify as complete.
+  No numerical error was identified in either prompt. Complete counts/denominators:
+  simple 10/15, structured 15/15. Both errors: 15/15 each. Clear unsupported-claim
+  flags: 5 simple, 0 structured, with borderline cases documented. Word target:
+  simple 15/15, structured 12/15. No composite score or significance claim.
+- Cautions: prompt compliance is part of the rubric; five repetitions do not
+  create five independent task scenarios. Invented examples are not credit-model
+  results. Both variants sometimes imply approval/rejection; some structured
+  answers echo historical wording for synthetic cases. All raw text is retained.
+- Usage: 15,915 input and 6,845 output tokens; estimated standard cost $0.04274,
+  not an account billing statement. API credentials stay local and ignored.
+- Handover: updated existing overview, result summary, optional chapter 3 draft,
+  report map and the approved four-slide Nicolai section. Streamlit now offers
+  actual/synthetic recorded scenarios, defaults to actual results and displays
+  the first completed answer per cell rather than choosing by score.
+- Checks: offline tests cover synthetic arithmetic, balanced/frozen protocol,
+  exact context routing, failure retention, overwrite protection and saved
+  assessment provenance/summary counts; Streamlit checks both actual and
+  synthetic recorded answers without API calls.
+  All 44 offline tests passed. Final checks found no broken local documentation
+  links or credential patterns in the new evidence; protected ML artifacts,
+  datasets, exact prompts and original pilot records were confirmed unchanged.

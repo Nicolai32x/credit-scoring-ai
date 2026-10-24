@@ -1,0 +1,466 @@
+# Expanded comparison: all recorded answers
+
+Actual results and explicitly synthetic scenarios are separate. Raw text is unchanged.
+Word counts use whitespace-separated tokens; they do not measure clarity.
+
+## Attempt 1: high_accuracy_low_detection / structured
+
+Repetition 4 of 5. Status: completed.
+
+Word count: 183; within 120-180: False.
+
+This is a **historical teaching example**, not a real lending study. It uses invented totals, so it shows how to read the metrics, but it does **not** prove how a live credit model would perform.
+
+Out of **20 actual bad risks**, the classifier detected **4** and **missed 16**. So it caught only **1 in 5 bad risks**.  
+Out of **180 actual good risks**, it incorrectly flagged **4** as bad. So it wrongly rejected **4 out of 180 good cases**.
+
+That difference matters:  
+- **Missed bad risks** are the bad cases predicted as good.  
+- **Incorrectly flagged good risks** are the good cases predicted as bad.
+
+The **accuracy** is **90%**, which sounds strong, but that is mainly because most cases are good. Accuracy alone does **not** show how well the system finds bad risks. The **balanced accuracy** is much lower, showing weaker ability to separate good and bad cases.
+
+If you use the illustrative cost setup, the model has lower cost per case than always calling everyone good, but this is only a teaching calculation in **illustrative cost units**, not a real profit estimate.
+
+## Attempt 2: high_accuracy_low_detection / simple
+
+Repetition 4 of 5. Status: completed.
+
+Word count: 155; within 120-180: True.
+
+These results come from a synthetic test, so they are only for illustration. In this example, there were 200 cases: 180 good risks and 20 bad risks.
+
+The scoring model correctly identified 176 good risks and 4 bad risks. It made 16 false approvals, meaning it approved borrowers who were actually bad risks, and 4 false rejections, meaning it turned down borrowers who were actually good risks.
+
+Compared with a simple rule that approves everyone, the model does not improve overall accuracy: both show 90% accuracy. However, the model is better at catching bad risks. It finds 20% of bad cases, while the “approve everyone” rule finds none. That said, it still misses most bad risks.
+
+The cost measure also improves from 0.50 to 0.42 per case, because false approvals are much more expensive than false rejections in this setup. So the model is somewhat useful, but it is still weak at identifying risky borrowers.
+
+## Attempt 3: high_detection_many_false_flags / structured
+
+Repetition 4 of 5. Status: completed.
+
+Word count: 174; within 120-180: True.
+
+This is a **historical teaching example**, not evidence from real applicants or a trained lending model. It shows what the numbers would mean, but it does **not** prove future default rates, profitability, fairness, or suitability for bank use.
+
+Out of **100 actual bad risks**, the system detected **90** and **missed 10**. So it caught most bad cases, but not all.
+
+Out of **100 actual good risks**, it incorrectly flagged **55** as bad. That means many good applicants would be turned away in this example.
+
+Overall **accuracy** is **67.5%**: the model got 135 of 200 cases right. But accuracy alone can hide the trade-off. The more important measure for risk detection is **bad-risk recall**, which is **90%** here, meaning it found 9 out of 10 bad risks.
+
+Using the stated illustrative cost units, the average cost is **0.525 per case**, versus **2.5** for always treating everyone as good. This supports only a limited teaching point: the model is better at spotting bad risks than the simple reference, but it also creates many incorrect good-risk flags.
+
+## Attempt 4: high_detection_many_false_flags / simple
+
+Repetition 4 of 5. Status: completed.
+
+Word count: 167; within 120-180: True.
+
+This is a **teaching example**, not a real credit model result, so it should not be used to make lending decisions.
+
+In this test of **200 cases**, there were **100 good risks** and **100 bad risks**. The model correctly identified **90 bad risks** and **45 good risks**. That means it made **10 false approvals** (bad applicants approved) and **55 false rejections** (good applicants declined).
+
+The main strength is that it catches most risky applicants: **bad recall = 90%**. In plain terms, it finds 9 out of 10 bad cases, which is useful for reducing credit losses. However, it is stricter than ideal for good customers, since it wrongly rejects 55 of them.
+
+Overall accuracy is **67.5%**, but for credit decisions the cost matters more. Using the stated cost rule, the model’s **cost per case is 0.525**, which is much better than the **always approve** reference at **2.5**. So this model is better at limiting costly bad approvals, but it does so by turning away many good customers.
+
+## Attempt 5: high_accuracy_low_detection / structured
+
+Repetition 3 of 5. Status: completed.
+
+Word count: 169; within 120-180: True.
+
+This is a synthetic teaching example, not a real lending study. It uses 200 invented cases: 180 actual good risks and 20 actual bad risks. The classifier correctly identified 176 good risks and 4 bad risks.
+
+In plain English, it caught 4 out of 20 bad risks, so it missed 16 bad risks. That is the model’s weak point: it found only 20% of the actual bad risks. It also incorrectly flagged 4 out of 180 good risks as bad, which means some good applicants were wrongly rejected.
+
+So, classification accuracy was 90%, but that can be misleading here because most cases were good risks. The more important measure for detecting bad risks is recall: how many bad risks were found. On that measure, the result is limited.
+
+Using the illustrative cost units provided, the model averages 0.42 cost units per case versus 0.50 for always calling everyone good. This supports only a limited historical comparison, not a prediction of future default or a recommendation for use in lending.
+
+## Attempt 6: high_accuracy_low_detection / simple
+
+Repetition 3 of 5. Status: completed.
+
+Word count: 175; within 120-180: True.
+
+These results come from a synthetic test example, so they should be used only to understand the trade-off, not as evidence for a real lending policy.
+
+Out of 200 cases, 180 were actually good risks and 20 were bad risks. The scoring model correctly identified 176 good risks and 4 bad risks. It made 16 false approvals, meaning 16 bad applicants were mistakenly treated as good. It also made 4 false rejections, meaning 4 good applicants were wrongly declined.
+
+The headline accuracy is 90%, but that is misleading here because most applicants are good. The more important measure is how well the model finds bad risks. On that point, it is weak: it catches only 20% of bad cases. In other words, it misses 16 out of 20 bad applicants.
+
+Compared with an “always approve” approach, the model reduces the average cost per case from 0.50 to 0.42, but it still allows many bad risks through. So this model is better than a naive rule, but not strong enough on its own for credit decisions.
+
+## Attempt 7: high_accuracy_low_detection / structured
+
+Repetition 2 of 5. Status: completed.
+
+Word count: 192; within 120-180: False.
+
+This is a **historical teaching example**, not a real lending study and not a fitted model. It uses invented totals only, so it shows what the numbers mean, but **not** how any real customer would behave.
+
+Out of **20 actual bad risks**, the system detected **4** and missed **16**. So it caught only **20%** of the bad cases.  
+Out of **180 actual good risks**, it incorrectly flagged **4** as bad. So **176** good cases were correctly left as good, and **4/180** good cases were wrongly rejected.
+
+That means:
+
+- **Missed bad risks** = 16 cases where a bad risk was predicted as good.
+- **Incorrectly flagged good risks** = 4 cases where a good risk was predicted as bad.
+
+Overall **accuracy** was **90%**, but that mainly reflects that most cases were good. Accuracy alone does **not** show how well bad risks are detected. The better measure for that is **bad recall**, which here is **20%**.
+
+Using the illustrative cost units, the average cost was **0.42 per case**, compared with **0.50** for always calling everyone good. This supports only a limited historical comparison, not a prediction of future default or a lending decision.
+
+## Attempt 8: high_accuracy_low_detection / simple
+
+Repetition 2 of 5. Status: completed.
+
+Word count: 152; within 120-180: True.
+
+This is a **synthetic teaching example**, not a real lending model. Out of **200 cases**, there were **180 good risks** and **20 bad risks**.
+
+The scoring model got **90% accuracy**, which sounds strong, but accuracy alone is misleading because most applicants are good risks. The more important result is that it correctly identified only **4 of the 20 bad risks**. That means it **missed 16 bad applicants** and approved them anyway. It also wrongly rejected **4 good applicants**.
+
+Compared with an “always approve” approach, the model is only slightly better on cost: **0.42 vs 0.50 per case** under the stated assumptions. However, it does a much better job than the always-approve rule at catching bad risks, even though it still misses many.
+
+In plain terms: the model is **not very reliable at spotting bad borrowers**, so it should not be used alone for credit decisions. It would need further improvement and review.
+
+## Attempt 9: high_detection_many_false_flags / structured
+
+Repetition 5 of 5. Status: completed.
+
+Word count: 176; within 120-180: True.
+
+This is a **historical teaching example**, not evidence from real applicants or a trained bank model. It shows what the numbers would mean, but it does **not** prove future default probabilities, fairness, profit, or suitability for lending decisions.
+
+Out of **100 actual bad risks**, the system detected **90** and **missed 10**. Those 10 missed bad risks are **false approvals**: cases where a bad risk was predicted as good.
+
+Out of **100 actual good risks**, the system correctly accepted **45** and incorrectly flagged **55** as bad. Those 55 are **false rejections**: good risks predicted as bad.
+
+So the model’s **accuracy** is **67.5%**, meaning it was correct on about two-thirds of all cases. But accuracy alone can hide the pattern of errors. Here, the key strength is **detecting bad risks**: it found **90%** of them. The trade-off is that it incorrectly rejected many good risks.
+
+Using the illustrative cost assumption, the model averages **0.525 cost units per case**, versus **2.5** for always approving. That supports only a cost comparison in this synthetic example, not a real business recommendation.
+
+## Attempt 10: high_detection_many_false_flags / simple
+
+Repetition 5 of 5. Status: completed.
+
+Word count: 151; within 120-180: True.
+
+These results come from a synthetic test, so they are useful for illustration only.
+
+Out of 200 cases, the model correctly identified 90 bad risks and 45 good risks. That gives an overall accuracy of 67.5%, which is better than the simple fallback rule of approving everyone as good, which would only achieve 50%.
+
+The most important point is that the model catches 90% of bad risks. In lending, that is valuable because missed bad cases are costly. It does, however, wrongly reject 55 good applicants, so it is fairly cautious. It also wrongly approves 10 bad applicants.
+
+Using the example cost settings, the model’s average cost is 0.525 per case, compared with 2.5 for the “always approve” approach. So the model is much better at reducing costly mistakes, mainly by avoiding bad approvals.
+
+In short: this model is conservative, good at spotting risky applicants, but it rejects many acceptable ones.
+
+## Attempt 11: high_detection_many_false_flags / structured
+
+Repetition 3 of 5. Status: completed.
+
+Word count: 168; within 120-180: True.
+
+This is a **historical teaching example**, not evidence from real applicants or a trained bank model. It shows what a classifier did on **200 invented cases**: 100 actual good risks and 100 actual bad risks.
+
+The model correctly identified **90 of 100 bad risks**. So it **missed 10 bad risks** by classifying them as good. It also correctly identified **45 of 100 good risks**, but **incorrectly flagged 55 good risks** as bad.
+
+So, the model’s **accuracy** was **67.5%** overall: it got 135 out of 200 cases right. But accuracy alone can hide what matters for credit risk. Its ability to **detect bad risks** was stronger: it found **90% of the actual bad risks**. At the same time, it was less effective at avoiding false alarms on good risks, wrongly rejecting **55% of the good cases**.
+
+Using the stated illustrative cost units, this setup had a lower average cost than the “always good” reference. However, this does **not** prove future profitability, default prediction, or suitability for real lending decisions.
+
+## Attempt 12: high_detection_many_false_flags / simple
+
+Repetition 3 of 5. Status: completed.
+
+Word count: 171; within 120-180: True.
+
+This is a **synthetic teaching example**, not a real lending study, so it should not be used to judge actual applicants or set policy by itself.
+
+Here is the plain-English takeaway:
+
+- The test set had **200 cases**: **100 good risks** and **100 bad risks**.
+- The scoring method correctly identified **90 of the 100 bad risks**. That means it is **good at catching risky applicants**.
+- It also correctly approved **45 of the 100 good risks**.
+- However, it wrongly rejected **55 good applicants** and wrongly approved **10 bad applicants**.
+
+Compared with an “always approve” approach, this model is much better:
+- **Accuracy** improved from **50% to 67.5%**.
+- The average error cost fell from **2.5 to 0.525 per case**, using the example cost rule.
+
+The main trade-off is clear: the model is **conservative**. It protects the bank well against bad loans, but at the cost of turning away many good customers. In practice, that means it may reduce credit losses, but it could also reduce sales and customer acceptance.
+
+## Attempt 13: high_accuracy_low_detection / structured
+
+Repetition 1 of 5. Status: completed.
+
+Word count: 172; within 120-180: True.
+
+This is a **historical teaching example**, not a real lending study and not a trained model. It uses invented counts only, so it shows what the metrics mean, but **does not prove future default risk, fairness, or business value**.
+
+Out of **20 actual bad risks**, the system detected **4** and **missed 16**. So its ability to catch bad risks was weak: it found only **1 in 5** bad cases.
+
+Out of **180 actual good risks**, it incorrectly flagged **4** as bad. These are the **false rejections**. The other **176 good risks** were correctly accepted.
+
+Overall **accuracy** was **90%**, but that is mostly because good risks were common. Accuracy alone can look strong even when the system misses many bad risks. So accuracy is **not the same as** the ability to detect bad risks.
+
+Using the illustrative cost assumption, the model averaged **0.42 cost units per case**, compared with **0.50** for always calling everyone good. That suggests lower illustrative error cost, but it does **not** establish real savings or justify a lending decision.
+
+## Attempt 14: high_accuracy_low_detection / simple
+
+Repetition 1 of 5. Status: completed.
+
+Word count: 159; within 120-180: True.
+
+These results come from a **synthetic test example**, not from real customers or a live lending model.
+
+In this test set of **200 cases**, there were **180 good risks** and **20 bad risks**. The scoring model correctly identified **176 good risks** and **4 bad risks**. It also made **16 false approvals** — meaning risky applicants were approved — and **4 false rejections** — meaning good applicants were turned down.
+
+The headline **accuracy is 90%**, which looks strong, but that is mainly because most applicants are good risks. A better measure for credit decisions is how well the model finds bad risks. On that point, performance is weak: it caught only **20% of bad applicants** and correctly separated good from bad only modestly better than chance.
+
+The **cost per case is 0.42**, which is better than the **0.50** from an “always approve as good” approach. So the model reduces expected cost a little, but it still misses many bad risks.
+
+## Attempt 15: actual_results / simple
+
+Repetition 3 of 5. Status: completed.
+
+Word count: 160; within 120-180: True.
+
+This model is a simple credit-screening tool built from a historical German credit dataset. On the test set of 200 cases, it correctly identified 46 bad risks and 100 good risks. It made 14 costly mistakes by approving bad applicants, and 40 conservative mistakes by rejecting good applicants.
+
+For lending, the key question is the trade-off between approving risky borrowers and turning away safe ones. Here, the model catches about 77% of bad risks, which is much better than a “approve everyone” approach. Its overall accuracy is 73%, and its risk-ranking ability is solid (ROC AUC 0.81).
+
+Using the illustrative cost rule provided, the model’s average cost is 0.55 per case, versus 1.5 for always approving everyone as good. So it appears materially better than a naive policy.
+
+Important caveat: these are historical test results only. The scores are not calibrated as true default probabilities, and this does not prove the model is fair or suitable for current lending decisions.
+
+## Attempt 16: actual_results / structured
+
+Repetition 3 of 5. Status: completed.
+
+Word count: 172; within 120-180: True.
+
+This is a **historical teaching example**, not proof of how the model would perform in today’s lending process.
+
+On the 200 test cases, there were **60 actual bad risks** and **140 actual good risks**. The model correctly detected **46 of the 60 bad risks**, so it **missed 14 bad risks**. It also correctly kept **100 of the 140 good risks** as good, but **incorrectly flagged 40 good risks** as bad.
+
+So, in plain terms:
+- **Bad-risk detection:** 46 out of 60 bad cases found
+- **Good cases wrongly flagged:** 40 out of 140 good cases
+
+The model’s **accuracy was 73%**, which means it got 73 out of every 100 cases right overall. But accuracy alone does not show how well it finds bad risks. Here, the **bad-risk recall was 76.7%**, which is the more relevant measure for detection.
+
+The evidence supports that this model separated bad and good cases better than a simple “always good” rule in this test set. It does **not** show calibrated default probabilities, causal reasons, or present-day suitability.
+
+## Attempt 17: high_accuracy_low_detection / structured
+
+Repetition 5 of 5. Status: completed.
+
+Word count: 177; within 120-180: True.
+
+This is a **historical teaching example**, not real lending data and not a trained model. It shows what the counts mean, but it does **not** prove how the system would perform on future applicants.
+
+Out of **20 actual bad risks**, the classifier detected **4** and missed **16**. So it caught only **20%** of the bad risks. Out of **180 actual good risks**, it incorrectly flagged **4** as bad, meaning **176** were correctly left as good. That means **4 out of 180** good risks were false alarms.
+
+So there are two kinds of mistakes:
+- **Missed bad risks**: 16 bad cases were predicted as good.
+- **Incorrectly flagged good risks**: 4 good cases were predicted as bad.
+
+The overall **accuracy** is **90%**, but that is mostly because good cases are common. A better measure for spotting bad risks is **bad recall**, and here it is low at **20%**. In illustrative cost units, the average cost is **0.42 per case**, compared with **0.50** for always classifying everyone as good. This supports only a limited comparison on this synthetic example.
+
+## Attempt 18: high_accuracy_low_detection / simple
+
+Repetition 5 of 5. Status: completed.
+
+Word count: 158; within 120-180: True.
+
+These results come from a **synthetic test example**, so they should be read as a teaching illustration, not as evidence for a real lending policy.
+
+Out of **200 cases**, there were **180 good risks** and **20 bad risks**. The scoring model correctly identified **176 good** and **4 bad** cases. It made **16 false approvals** — meaning it approved applicants who were actually bad risks — and **4 false rejections** — meaning it declined applicants who were actually good risks.
+
+The headline accuracy is **90%**, but that is misleading because most applicants are good risks. A better view is the model’s ability to catch bad risks: it found only **20%** of them. In other words, it misses **most** bad applicants.
+
+Compared with an “always approve” approach, this model has the **same accuracy**, but slightly lower estimated cost per case (**0.42 vs 0.50**) because it catches some bad risks. Still, the improvement is modest, and the bad-risk detection is weak.
+
+## Attempt 19: actual_results / simple
+
+Repetition 4 of 5. Status: completed.
+
+Word count: 162; within 120-180: True.
+
+This model is a **credit screening tool** tested on a historical German credit dataset, not a production lending model. On the test set of 200 cases, it correctly identified **46 bad risks** and **100 good risks**. It made **14 false approvals** (bad applicants predicted as good) and **40 false rejections** (good applicants predicted as bad).
+
+For a bank, the key point is the trade-off: it catches about **77% of bad risks** while still approving many good ones. Its **balanced accuracy of 74%** and **ROC AUC of 0.81** suggest it separates good and bad applicants reasonably well. However, the model is more useful as a **decision-support tool** than as an automatic approval rule.
+
+Compared with an “always approve” approach, it reduces expected decision cost from **1.5 to 0.55 per case** under the stated cost assumptions. That is a meaningful improvement, but the results are based on historical labels, and the scores are **not calibrated probabilities**. Fairness and current-day suitability still need separate review.
+
+## Attempt 20: actual_results / structured
+
+Repetition 4 of 5. Status: completed.
+
+Word count: 178; within 120-180: True.
+
+This is a historical teaching example, so it shows how the model performed on past data, not how it would behave in today’s lending decisions.
+
+On the test set, there were 60 actual bad risks and 140 actual good risks. The model correctly identified 46 of the 60 bad risks, so it detected about 77% of the bad cases. It missed 14 bad risks, meaning those were incorrectly classified as good.
+
+For good risks, it correctly accepted 100 of 140, but it incorrectly flagged 40 good risks as bad. So the model is better at catching bad risks than simply relying on accuracy alone might suggest.
+
+Overall accuracy was 73%, but accuracy can hide the balance between the two kinds of mistakes. What matters more here is that the model found many bad risks, while still making some false alarms on good risks.
+
+In this test, the illustrative cost was 0.55 cost units per case, better than the always-good reference at 1.5. That supports historical predictive value, but not a calibrated default probability, and not present-day deployment suitability.
+
+## Attempt 21: actual_results / simple
+
+Repetition 5 of 5. Status: completed.
+
+Word count: 159; within 120-180: True.
+
+This model is a simple credit-screening tool tested on a historical German credit dataset. On the test set of 200 cases, it correctly identified 46 bad risks and 100 good risks. That means it caught about 77% of the bad applicants, which is useful because missing a bad borrower is usually the costliest mistake.
+
+However, it also wrongly rejected 40 good applicants. In plain terms, the model is cautious: it avoids many risky loans, but at the expense of turning away some acceptable customers.
+
+Compared with an “always approve” approach, the model is much better. Always approving would let through all 60 bad risks and cost more overall. Under the illustrative cost rule, the model’s cost per case is 0.55 versus 1.5 for always approving.
+
+Important caveat: these are historical test results, not proof the model is suitable for today’s lending decisions. It has not been checked for fairness, and its scores should not be treated as exact probabilities.
+
+## Attempt 22: actual_results / structured
+
+Repetition 5 of 5. Status: completed.
+
+Word count: 178; within 120-180: True.
+
+This is a historical teaching example, not proof of how the model would work in today’s lending process. On the 200 test cases, there were 60 actual bad risks and 140 actual good risks.
+
+The model correctly identified 46 of the 60 bad risks, so it detected about 77% of the bad cases. It missed 14 bad risks, meaning those were incorrectly treated as good. It also incorrectly flagged 40 of the 140 good risks as bad, so about 29% of good cases were rejected by mistake.
+
+Overall accuracy was 73%, but accuracy alone can be misleading because it mixes good and bad cases together. The more important question for credit risk is how well the model finds bad risks: here, that ability was moderate, not perfect.
+
+The score is not a calibrated probability of default, and the results do not show why any individual case was classified a certain way. Using the illustrative cost assumption, the model averaged 0.55 cost units per case versus 1.5 for always calling cases good, but that is only a historical comparison.
+
+## Attempt 23: high_detection_many_false_flags / structured
+
+Repetition 2 of 5. Status: completed.
+
+Word count: 179; within 120-180: True.
+
+This is a synthetic teaching example, not a real lending study. It uses invented totals only, so it shows how to read the metrics, but it does not prove how the system would perform on future applicants.
+
+Out of 100 actual bad risks, the classifier detected 90. That means it missed 10 bad risks, which were incorrectly treated as good risks. Out of 100 actual good risks, it incorrectly flagged 55 as bad risks. So it got 45 good risks right and 55 wrong.
+
+Overall accuracy was 67.5%, meaning 135 out of 200 cases were classified correctly. But accuracy alone can hide the main trade-off. The model was much better at finding bad risks: its bad-risk recall was 90%, so it caught most of the actual bad cases. At the same time, it wrongly rejected many good cases.
+
+Using the illustrative cost units provided, the average cost was 0.525 per case, versus 2.5 for an “always good” rule. This suggests lower historical cost in this toy example, but it does not establish real savings, profit, or suitability for deployment.
+
+## Attempt 24: high_detection_many_false_flags / simple
+
+Repetition 2 of 5. Status: completed.
+
+Word count: 149; within 120-180: True.
+
+This is a **synthetic teaching example**, not a real lending model. It compares a credit-scoring rule against a very simple benchmark: **approving everyone**.
+
+Out of **200 cases**, there were **100 good** and **100 bad** risks. The scoring rule got **135 right** overall, so its **accuracy was 67.5%**. More importantly for lending, it identified **90 of the 100 bad risks** correctly, which means it caught most risky applicants. Its **bad-risk recall was 90%**, a strong result if the goal is to avoid lending to poor risks.
+
+The trade-off is that it wrongly rejected **55 good applicants**. It also wrongly approved **10 bad applicants**. Using the example cost assumptions, the model’s **cost per case was 0.525**, much better than the **2.5** cost of approving everyone.
+
+In plain terms: this rule is more cautious than “approve all,” and it reduces risky approvals, but at the expense of turning away many good customers.
+
+## Attempt 25: actual_results / structured
+
+Repetition 1 of 5. Status: completed.
+
+Word count: 183; within 120-180: False.
+
+This is a historical teaching example, not proof of how the model would work in today’s lending process.
+
+On the 200 test cases, there were 60 actual bad risks and 140 actual good risks. The model correctly detected 46 of the 60 bad risks, so it missed 14 bad risks. It also incorrectly flagged 40 of the 140 good risks as bad. In other words, it caught about 77% of the bad risks, but it also wrongly rejected about 29% of the good risks.
+
+Overall accuracy was 73%, which means it got 146 out of 200 cases right. But accuracy alone can hide important details. A model can have decent accuracy while still missing some bad risks or wrongly flagging good ones. Here, the evidence supports that the model was better than an “always good” reference at separating bad from good cases, but it does not prove that the score is a true probability of default or that the system is suitable for present-day lending decisions.
+
+Using the illustrative cost units, the model averaged 0.55 per case versus 1.5 for the always-good reference.
+
+## Attempt 26: actual_results / simple
+
+Repetition 1 of 5. Status: completed.
+
+Word count: 158; within 120-180: True.
+
+On this historical test set, the model does better than simply approving everyone. It correctly identified 46 of the 60 bad risks, while wrongly approving 14 bad risks. It also wrongly rejected 40 good customers.
+
+In plain terms, the model is fairly strong at spotting risky applicants: it catches about 77% of bad cases. Its overall accuracy is 73%, and the ROC AUC of 0.81 suggests it separates good and bad applicants reasonably well.
+
+The most important business point is cost. Using the stated assumptions, the model’s average cost is 0.55 per case, versus 1.5 per case if we approved everyone. That is a meaningful improvement.
+
+However, there is a trade-off: to catch more bad risks, it also rejects some good borrowers. Also, these results come from an old teaching dataset, not current customers, and the scores are not calibrated as true default probabilities. So this is useful evidence, but not enough by itself for production lending decisions.
+
+## Attempt 27: actual_results / simple
+
+Repetition 2 of 5. Status: completed.
+
+Word count: 167; within 120-180: True.
+
+These results show the model is better than approving everyone, but it is still a screening tool, not a final lending decision.
+
+On the 200 test cases, there were 140 good risks and 60 bad risks. The model correctly identified 46 of the bad risks, but missed 14 bad cases and wrongly rejected 40 good customers. In banking terms, that means it catches about 77% of the risky applicants, but at the cost of turning away some acceptable ones.
+
+Overall accuracy is 73%, which is modestly better than the “always approve” baseline at 70%. The more important figure here is the estimated cost per case: 0.55 versus 1.5 for always approving. That suggests the model could reduce expected losses if the cost assumptions are roughly right.
+
+The model’s ability to separate good from bad applicants is also decent, with an ROC AUC of 0.81. However, these are historical teaching data, so the results do not prove the model is fair, calibrated, or suitable for today’s lending policy.
+
+## Attempt 28: actual_results / structured
+
+Repetition 2 of 5. Status: completed.
+
+Word count: 178; within 120-180: True.
+
+This is a historical teaching example, not proof that the model should be used for current lending decisions.
+
+On the 200 test cases, there were 60 actual bad risks and 140 actual good risks. The model correctly detected 46 of the 60 bad risks, so it missed 14 bad risks. That is the main measure of how well it catches bad risks. It also incorrectly flagged 40 of the 140 good risks as bad, so those would have been false rejections.
+
+Overall accuracy was 73%, meaning it got 146 out of 200 cases right. But accuracy alone can hide the important trade-off: a model can look decent overall while still missing some bad risks and wrongly blocking some good ones. Here, bad-risk detection was stronger than a simple “always good” reference, which would catch no bad risks at all.
+
+The score is not a calibrated probability of default, and the results do not show why individual cases were classified as they were. The illustrative cost figure is 0.55 cost units per case, versus 1.5 for the always-good reference.
+
+## Attempt 29: high_detection_many_false_flags / simple
+
+Repetition 1 of 5. Status: completed.
+
+Word count: 167; within 120-180: True.
+
+This is a **synthetic teaching example**, not a real lending model, so it should not be used to make policy decisions directly.
+
+Here is the plain-English takeaway:
+
+- The test included **200 cases**: 100 good risks and 100 bad risks.
+- The model correctly identified **90 of the 100 bad risks**, which is strong at catching likely problem borrowers.
+- It also correctly approved **45 of the 100 good risks**.
+- The trade-off is that it **wrongly rejected 55 good applicants** and **wrongly approved 10 bad applicants**.
+
+Overall performance:
+- **Accuracy: 67.5%**
+- **Balanced accuracy: 67.5%**
+
+For credit decisions, the most important point is that the model is much better at spotting bad risks than simply approving everyone. Compared with an “always approve” approach, it reduces the average expected error cost from **2.5 to 0.525 per case** under the example cost assumptions.
+
+In short: this model is useful as a screening tool, but it is **too strict on good borrowers** and would need tuning before real-world use.
+
+## Attempt 30: high_detection_many_false_flags / structured
+
+Repetition 1 of 5. Status: completed.
+
+Word count: 170; within 120-180: True.
+
+This is a **historical teaching example only**, based on invented counts, not real applicants or a trained model. It shows what the evidence supports: how well the classifier separated **good** from **bad** risks in this test set. It does **not** show future default probabilities, and it does **not** justify any lending decision.
+
+Out of **100 actual bad risks**, the model detected **90** and **missed 10**. Those 10 missed bad risks are **false approvals**: cases predicted good but actually bad.  
+Out of **100 actual good risks**, the model correctly identified **45** and incorrectly flagged **55** as bad. Those 55 are **false rejections**: cases predicted bad but actually good.
+
+Overall **accuracy** was **67.5%**, meaning 135 of 200 cases were classified correctly. But accuracy alone hides the balance of errors. The key point for credit screening is the ability to detect bad risks: here, **bad-risk recall was 90%**, so most bad risks were caught.  
+
+Using the illustrative cost units given, the average cost was **0.525 per case**, versus **2.5** for the always-good reference.

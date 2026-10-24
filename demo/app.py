@@ -117,23 +117,34 @@ def render_genai_panel():
                            key="recorded_prompt_version")
         experiment_dir = ROOT / "results" / "genai"
         index_path = experiment_dir / "selected_run.json"
+        selected_run = {}
         if index_path.exists():
             selected_run = json.loads(index_path.read_text(encoding="utf-8"))
             attempts_path = experiment_dir / selected_run["attempts_file"]
         else:
             attempts_path = experiment_dir / "attempts.jsonl"
+        scenarios = selected_run.get("scenarios", {"actual_results": "Actual project results"})
+        scenario = st.selectbox("Explanation scenario", list(scenarios),
+                                format_func=lambda name: scenarios[name], key="recorded_scenario")
+        if scenario == "actual_results":
+            st.caption("Actual saved project results; no new model test was run.")
+        else:
+            st.warning("Synthetic explanation test: invented counts, not our credit model's results.")
         if attempts_path.exists():
             records = [json.loads(line) for line in attempts_path.read_text(encoding="utf-8").splitlines() if line]
             matching = [record for record in records if record.get("variant") == variant
+                        and record.get("scenario", "actual_results") == scenario
                         and record.get("status") == "completed" and record.get("output_text")]
             if matching:
                 record = matching[0]
                 st.caption(f"Recorded API output · {record['returned_model']} · "
-                           f"{record['created_at_utc']} · repetition {record['repetition']} of 3")
+                           f"{record['created_at_utc']} · repetition {record['repetition']} "
+                           f"of {selected_run.get('repetitions_per_cell', 3)}")
                 st.text(record["prompt"].split("\n\nRESULTS (JSON):")[0])
                 st.write(record["output_text"])
-                st.caption("This is a saved real response, not a new API call. All six "
-                           "attempts and their assessment are available in the repository.")
+                st.caption("This is a saved real API response, not a new API call. "
+                           "The first completed response for this scenario and prompt is shown; "
+                           "all responses and the AI-assisted assessment are in the repository.")
             else:
                 st.info("No completed recorded example is available for this prompt yet.")
         else:

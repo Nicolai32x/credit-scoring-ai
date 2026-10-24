@@ -111,9 +111,17 @@ class GenAITests(unittest.TestCase):
             self.assertTrue(app.button(key="generate_explanation").disabled)
             for variant in ["simple", "structured"]:
                 app.radio(key="recorded_prompt_version").set_value(variant).run()
-                expected = next(record["output_text"] for record in records if record["variant"] == variant)
+                expected = next(record["output_text"] for record in records if record["variant"] == variant
+                                and record.get("scenario", "actual_results") == "actual_results")
                 self.assertTrue(any(element.value == expected for element in app.markdown))
                 self.assertTrue(any("Recorded API output" in element.value for element in app.caption))
+            if "scenarios" in index:
+                scenario = "high_accuracy_low_detection"
+                app.selectbox(key="recorded_scenario").set_value(scenario).run()
+                expected = next(record["output_text"] for record in records
+                                if record["variant"] == "structured" and record["scenario"] == scenario)
+                self.assertTrue(any(element.value == expected for element in app.markdown))
+                self.assertTrue(any("Synthetic explanation test" in element.value for element in app.warning))
             generate.assert_not_called()
 
 

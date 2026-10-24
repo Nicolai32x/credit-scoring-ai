@@ -23,7 +23,8 @@ class DemoTests(unittest.TestCase):
             app.run()
             self.assertEqual(len(app.exception), 0)
             self.assertEqual(len(app.number_input), 2)
-            self.assertEqual(len(app.selectbox), 5)
+            profile_selectors = [item for item in app.selectbox if item.key != "recorded_scenario"]
+            self.assertEqual(len(profile_selectors), 5)
             self.assertEqual(len(app.button), 2)
             self.assertFalse(any("Predicted class:" in element.value for element in app.info))
             self.assertEqual(app.number_input(key="credit_amount").min, 276)

@@ -25,8 +25,10 @@ After team review, Nicolai replaces this map with the final report and exports
 
 - Distinguish validation means from the final held-out test result.
 - Cost units are not euros, bank savings or observed profit.
-- The original six-response GenAI comparison concerns aggregate results. The
-  later profile explanation sends fictional inputs only after an explicit click;
+- The GenAI comparison now has a six-response pilot and a separate 30-response
+  extension (one actual-results scenario, two synthetic). Replace older chapter 3
+  wording using the updated reference in the GenAI summary; do not pool phases.
+  The profile explanation sends fictional inputs only after an explicit click;
   any older sentence saying the app never sends profile inputs needs qualification.
 - Human review of the AI-assisted assessment has not been recorded as complete.
 - Record actual authorship and AI assistance; verify claims and sources.

@@ -1,7 +1,15 @@
 {
-  "attempts_file": "run_02/attempts.jsonl",
-  "protocol_file": "run_02/protocol.json",
-  "assessment_file": "run_02/assessment.json",
+  "attempts_file": "run_03/attempts.jsonl",
+  "protocol_file": "run_03/protocol.json",
+  "assessment_file": "run_03/assessment.json",
   "setup_attempts_file": "attempts.jsonl",
-  "selection_rule": "First fully completed run after correcting the local API key; no successful outputs discarded."
+  "pilot_attempts_file": "run_02/attempts.jsonl",
+  "repetitions_per_cell": 5,
+  "response_count": 30,
+  "scenarios": {
+    "actual_results": "Actual project results",
+    "high_accuracy_low_detection": "Synthetic: high accuracy, low bad-risk detection",
+    "high_detection_many_false_flags": "Synthetic: high detection, many false flags"
+  },
+  "selection_rule": "Show the first completed response in recorded request order for each scenario and prompt, not the highest-scored answer. The separate 30-response extension was planned after inspecting the six-response pilot; no outputs were discarded or pooled."
 }
