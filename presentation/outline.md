@@ -21,7 +21,7 @@ slides and the matching report section. Figures and numbers are already saved.
 | 4 | Nicolai | Our dataset and seven inputs | 1,000 UCI historical cases, seven inputs, 70:30 labels, DM units | 1.25 |
 | 5 | Nicolai | Training, validation and testing | 800 development / 200 test; five validation folds; freeze model and threshold before test | 1.5 |
 | 6 | Nicolai | The models we compared | Always-Good baseline, logistic regression, random forest; select using balanced accuracy | 1.25 |
-| 7 | Nicolai | Using and checking generative AI | Separate 30-response extension: 3 scenarios x 2 prompts x 5 repetitions. Denominators 10/15 vs 15/15; word limit 15/15 vs 12/15. Two scenarios synthetic; AI-assisted review, human sign-off pending | 2 |
+| 7 | Nicolai | Using and checking generative AI | Separate 30-response extension: 3 scenarios x 2 prompts x 5 repetitions. Denominators 10/15 vs 15/15; word limit 15/15 vs 12/15. Two scenarios synthetic; AI-assisted assessment, reviewed by Nicolai Hönnige | 2 |
 | 8 | Philipp | Results | Validation comparison, then the selected model's separate test result: 74.0% balanced accuracy | 2 |
 | 9 | Philipp | Prediction errors | 46/60 bad risks detected, 40/140 good risks wrongly flagged; 5:1 assumed costs | 2 |
 | 10 | Philipp | Costs and benefits | Implementation effort, hosting/maintenance and review needs; explicit assumptions, no fabricated ROI | 2 |
@@ -64,7 +64,9 @@ recorded aggregate answers also work offline. Prepare screenshots as a fallback.
 
 - Everyone can explain historical risk labels, training/validation/test separation,
   both error types and the limits of the model and AI explanations.
-- Read the actual AI outputs; the assessment is AI-assisted, with human sign-off pending.
+- Nicolai confirmed review of the expanded comparison on 24 October 2026. The
+  assessment is AI-assisted, not independent or blinded; others should read the
+  actual answers before presenting them.
 - Rehearse content, then time the full presentation and demo. Test a second computer.
 - Use the same figures, numbers and APA references as the shared Word report.
 - Complete [the submission checklist](../submission/README.md).

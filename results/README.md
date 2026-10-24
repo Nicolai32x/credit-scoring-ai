@@ -85,7 +85,8 @@ and 15/15 structured responses. Neither version had an identified numerical
 error; both explained both errors in all responses. Five simple responses were
 flagged for clear overreach under the rubric. All simple responses met the word
 limit, compared with 12/15 structured responses. This small, non-independent
-comparison does not prove general superiority. **Human review is still pending.**
+comparison does not prove general superiority. **Nicolai confirmed human review
+of the expanded comparison on 24 October 2026; no corrections were reported.**
 
 Read [the GenAI summary and actual answers](genai/README.md) for Nicolai's section.
 The [demo guide](../demo/README.md) explains the three separate features:

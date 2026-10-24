@@ -61,7 +61,9 @@ Each cell shows **simple / structured passes out of 5**.
 | Synthetic: high accuracy | 5 / 5 | 5 / 5 | 5 / 5 | 5 / 5 | 5 / 3 |
 | Synthetic: high detection | 5 / 5 | 4 / 5 | 5 / 5 | 2 / 5 | 5 / 5 |
 
-Human sign-off is **still pending**. More responses do not replace human review.
+**Nicolai Hönnige confirmed human review of the 30 responses and their assessment
+on 24 October 2026. No corrections were reported.** The assessment remains
+AI-assisted, not independent or blinded. Human review does not remove its limits.
 There are only three purposefully chosen scenarios and one model. Repetitions
 are not independent real-world tasks. The extension was designed after looking
 at the pilot; it is exploratory, not a confirmatory statistical study. Synthetic
@@ -84,13 +86,17 @@ most also explicitly say they are invented, but "synthetic" is the accurate term
 - [Demo guide](../../demo/README.md): the aggregate and profile explanations are
   separate features. Profile explanations are outside this prompt comparison.
 
-## Review before using the results
+## Human review
 
-Nicolai should read the raw answers and compare the assessment with the protocol.
-Pay particular attention to the five flagged simple answers (4, 12, 19, 21, 29),
-the borderline statements in answers 10 and 27, the three length failures
-(1, 7, 25), and approval/rejection wording in both variants. Then record any
-corrections and actual human review; do not replace the original responses.
+Nicolai confirmed in chat that he completed the review on 24 October 2026.
+No corrections were reported; the original AI-assisted scores and responses are
+unchanged. This confirmation concerns the expanded comparison, not an independent
+or blinded evaluation or a second review by another team member.
+
+For other readers, useful checks include the five flagged simple answers
+(4, 12, 19, 21, 29), borderline statements in 10 and 27, length failures
+(1, 7, 25), and approval/rejection wording in both variants. The frozen protocol
+retains its original prospective pending-review wording as an audit record.
 
 <details>
 <summary>Optional: protocol, usage and original pilot</summary>
@@ -143,8 +149,9 @@ justified run needs a new output folder and a new prepared protocol:
 <summary>Optional: updated chapter 3 reference text for the shared Word report</summary>
 
 This is reference text to adapt in the shared Word document, not another working
-draft. Check the real answers and assessment before adopting it. Human review
-has not been recorded as complete.
+draft. Nicolai confirmed human review of the expanded comparison on 24 October
+2026; no corrections were reported. Other authors should check the material
+before adopting it.
 
 ### 3. Generative AI experiment
 
@@ -185,7 +192,9 @@ claims, and the word limit. Length was checked automatically; the other criteria
 were assessed by an AI-assisted reading against the supplied facts, with
 numerical excerpts and reasons recorded. Class totals and corresponding counts
 could occur in separate clearly linked sentences. There was no composite score.
-The assessment was not blinded or independent, and human sign-off is pending.
+The assessment was not blinded or independent. Nicolai Hönnige subsequently
+confirmed human review of the 30 answers and assessment on 24 October 2026;
+no corrections were reported.
 
 In the extension, no numerical error was identified in either prompt's 15
 responses, and both error types were explained throughout. The simple prompt
@@ -195,7 +204,7 @@ claims beyond the evidence, such as practical screening usefulness or a general
 claim about the costliest lending mistake. No clear failure of that criterion
 was identified in the structured responses, although both variants sometimes
 used approval/rejection language for classification. Borderline judgements and
-synthetic-versus-historical wording are documented for human review. The simple
+synthetic-versus-historical wording remain documented as cautions. The simple
 prompt met the word target in all 15 responses; the structured prompt met it in
 12, with three responses containing 183, 192 and 183 words.
 

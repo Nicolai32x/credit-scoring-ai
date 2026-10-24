@@ -32,6 +32,9 @@ is optional; it is not required to contribute.
    two GenAI prompts in a six-response pilot and a separate 30-response extension
    across three scenarios (one actual, two explicitly synthetic).
 
+Nicolai confirmed human review of the expanded GenAI comparison on 24 October
+2026. The assessment remains AI-assisted, not independent or blinded.
+
 In plain English: **training** learns patterns, **validation** compares approaches,
 and the separate **test** gives the final check. The ML model predicts the risk
 class; generative AI explains results and model contributions, without deciding the class.
@@ -58,8 +61,6 @@ it is an export skeleton, not another draft to edit alongside Word.
 ## Remaining team checks
 
 - Finish/review the shared report and slides; keep numbers and sources consistent.
-- Nicolai reviews the GenAI answers and the AI-assisted assessment, including the
-  expanded comparison's synthetic scenarios and wording cautions.
 - Rehearse the 24-minute presentation and 8-minute demo; confirm the lecturer's time slots.
 - Check startup on a second computer and prepare fallback screenshots.
 - Export the reviewed report as Markdown/PDF and follow the [submission checklist](submission/README.md).

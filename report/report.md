@@ -30,6 +30,8 @@ After team review, Nicolai replaces this map with the final report and exports
   wording using the updated reference in the GenAI summary; do not pool phases.
   The profile explanation sends fictional inputs only after an explicit click;
   any older sentence saying the app never sends profile inputs needs qualification.
-- Human review of the AI-assisted assessment has not been recorded as complete.
+- Nicolai confirmed review of the expanded comparison on 24 October 2026, with
+  no corrections reported. Update older pending-review wording in Word; retain
+  the disclosure that the assessment is AI-assisted, not independent or blinded.
 - Record actual authorship and AI assistance; verify claims and sources.
 - Finish the team review and [submission checklist](../submission/README.md).

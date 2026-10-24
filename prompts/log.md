@@ -362,3 +362,15 @@ is documented in the 20 October entry below and `results/genai/README.md`.
   All 44 offline tests passed. Final checks found no broken local documentation
   links or credential patterns in the new evidence; protected ML artifacts,
   datasets, exact prompts and original pilot records were confirmed unchanged.
+
+## 2026-10-24: Record completed human review of the expanded comparison
+
+- Nicolai confirmed in chat that he had read the 30 new answers and checked the
+  AI-assisted assessment. No corrections or separate human scores were reported.
+- Recorded the reviewer, confirmation date and scope in the assessment metadata;
+  updated current overview, presentation and report-reference wording. The
+  assessment remains AI-assisted, not independent or blinded, and no review by
+  another team member is implied.
+- Original criterion decisions, quotations, raw answers, protocol, prompts,
+  usage and model artifacts remain unchanged. Frozen prospective protocol text
+  and original pilot records retain their historical review status.

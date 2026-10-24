@@ -3,7 +3,7 @@
   "protocol_sha256": "2f811cfc08ba6005d77cd7ea835f569d90886f5b693bbb9ad9a5e7163129879d",
   "attempts_sha256": "cde6b37102b93e5a262037156d27028d3f0403917885fceb3e435f972d8208ab",
   "review_type": "AI-assisted qualitative reading by the coding assistant, not a separate API judge. Objective length checks are deterministic.",
-  "human_sign_off": "pending",
+  "human_sign_off": "completed",
   "independent_or_blinded_review": false,
   "denominator_interpretation": "Explicit class totals in one sentence and clearly linked detected-bad / falsely-flagged-good counts in another qualify. The literal phrase out of is not required. This avoids penalizing equivalent prose structures; percentages alone do not qualify.",
   "criteria": {
@@ -1252,5 +1252,13 @@
     "Pass counts describe this assistant interpretation of the rubric, not validated human ground truth. No composite score or statistical significance test is used.",
     "The extension was designed after seeing pilot outputs. Its two prompts have multiple differences, and the structured prompt explicitly requests content measured by the rubric. This tests compliance with instructions; it does not isolate one causal prompt feature.",
     "Thirty answers contain only three task scenarios, two of them synthetic. They are not thirty independent real-world credit tasks. The pilot is reported separately rather than pooled."
-  ]
+  ],
+  "human_review": {
+    "reviewer": "Nicolai Hönnige",
+    "confirmed_on": "2026-10-24",
+    "scope": "Expanded 30-response comparison: raw answers and AI-assisted assessment.",
+    "evidence": "Nicolai confirmed in the project chat that he completed the review.",
+    "corrections_reported": false,
+    "limitations": "No separate human scores or detailed review notes were supplied. This is not an independent or blinded evaluation or a review by the full team."
+  }
 }
