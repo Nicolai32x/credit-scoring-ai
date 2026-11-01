@@ -27,7 +27,7 @@ explanations require a separately configured OpenAI API key.
 | Document | Content |
 | --- | --- |
 | **[Report (PDF)](report/report.pdf)** · [Markdown](report/report.md) | Complete analysis, results, business implications, limitations and references |
-| **[Presentation (PDF)](presentation/credit_risk_prediction.pdf)** | Final 19-slide presentation |
+| **[Presentation (PDF)](presentation/credit_risk_prediction.pdf)** | Final 20-slide presentation |
 | [Results](results/README.md) | Model comparison, final test results and figures |
 | [Generative AI experiment](results/genai/README.md) | Prompt comparison, recorded responses and assessment |
 
