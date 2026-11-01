@@ -6,6 +6,22 @@ A university project for **Introduction to AI in Business and Management**.
 
 The project combines a comparison of classification models, a Streamlit demonstration and a generative AI explanation experiment. It uses the historical UCI German Credit dataset and is a teaching prototype, not a lending system.
 
+## Reading the downloaded ZIP
+
+Extract the ZIP before opening its contents and keep the folder structure intact.
+Start with `report/report.pdf` for the full report and
+`presentation/credit_risk_prediction.pdf` for the slides. Both open in a normal
+PDF reader without Python or installation. Figures are included in the archive.
+
+For easier navigation, formatted Markdown and saved notebook outputs, open the
+**[public GitHub repository](https://github.com/Nicolai32x/credit-scoring-ai)**.
+No GitHub account is required to read or download the project. The ZIP contains
+the version downloaded at that time; GitHub shows the current published version.
+
+The Streamlit app runs locally using the instructions under **Run the demo** below.
+Its predictions and recorded AI examples work without an API key; live AI
+explanations require a separately configured OpenAI API key.
+
 ## Report and presentation
 
 | Document | Content |
