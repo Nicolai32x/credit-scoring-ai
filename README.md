@@ -10,6 +10,7 @@ You can read the text, view/download figures and open the saved notebook outputs
 
 | Read | What you get |
 | --- | --- |
+| **[Presentation slides (PDF)](presentation/credit_risk_prediction.pdf)** | Reviewed 19-slide export; the editable version remains in Canva |
 | **[Results and figures](results/README.md)** | The model results, errors, cost illustration and reusable graphics |
 | **[Presentation outline](presentation/outline.md)** | Everyone's section, slide suggestions and demo sequence |
 | [GenAI experiment](results/genai/README.md) | The prompt comparison, real answers and assessment |
