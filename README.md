@@ -11,6 +11,7 @@ You can read the text, view/download figures and open the saved notebook outputs
 | Read | What you get |
 | --- | --- |
 | **[Presentation slides (PDF)](presentation/credit_risk_prediction.pdf)** | Reviewed 19-slide export; the editable version remains in Canva |
+| **[Final report](report/report.md)** · **[PDF](report/report.pdf)** | Reviewed report with the same content in Markdown and PDF |
 | **[Results and figures](results/README.md)** | The model results, errors, cost illustration and reusable graphics |
 | **[Presentation outline](presentation/outline.md)** | Everyone's section, slide suggestions and demo sequence |
 | [GenAI experiment](results/genai/README.md) | The prompt comparison, real answers and assessment |
@@ -56,18 +57,19 @@ The results page explains these numbers and the 5:1 assumed error-cost illustrat
 
 Write the report in the **shared Word document in Teams** and slides in the
 [shared Canva presentation](https://canva.link/doeibex7vw4e04b). Use actual authorship
-and record AI assistance. The [report map](report/report.md) identifies sections;
-it is an export skeleton, not another draft to edit alongside Word.
+and record AI assistance. The reviewed report is available as
+[Markdown](report/report.md) and [PDF](report/report.pdf). Keep any later corrections
+consistent across both exports and the Word source.
 
 ## Remaining team checks
 
-- Finish/review the shared report and slides; keep numbers and sources consistent.
+- Keep the final report and slides consistent if any further corrections are made.
 - Rehearse the 24-minute presentation and 8-minute demo; confirm the lecturer's time slots.
 - Check startup on a second computer and prepare fallback screenshots.
-- Export the reviewed report as Markdown/PDF and follow the [submission checklist](submission/README.md).
+- Assemble the final files and follow the [submission checklist](submission/README.md).
 
-Presentation date, final topic name and the shared Word link still need to be
-recorded. Technical implementation is complete; report/slide readiness is a team check.
+Presentation date: **3 November 2026**. The reviewed report and presentation
+exports are available above; rehearsal and final submission checks remain.
 
 ## Optional: run or inspect the implementation
 
