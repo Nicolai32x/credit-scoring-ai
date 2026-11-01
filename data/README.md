@@ -18,9 +18,7 @@ Repository. DOI: https://doi.org/10.24432/C5NC77
   or adapting the data. See [LICENSE.md](LICENSE.md).
 
 `german.data` and `german.doc` were downloaded unchanged on 16 October 2026.
-They are explicitly allowed in Git because they are small, publicly licensed
-files. Other datasets remain ignored. Include these originals and attribution
-in the eventual submission package.
+The originals are included with their attribution and license reference.
 
 | File | Bytes | SHA-256 |
 | --- | --- | --- |
@@ -83,7 +81,7 @@ see [the descriptive results](../results/README.md).
 | Blank rows / common missing tokens | 0 / 0; checked `?`, `NA`, `NaN`, `null`, `none` |
 | Exact duplicate rows | 0 |
 | Identical full inputs with conflicting targets | 0 |
-| Repeated vectors across the seven proposed inputs | 0 |
+| Repeated vectors across the seven selected inputs | 0 |
 | Unexpected categorical codes against dictionary | 0 |
 | Duration | 4-72 months |
 | Credit amount | 250-18,424; keep historical DM context explicit |
@@ -124,8 +122,8 @@ than interpreting the source codes as ordered numeric risk scores.
 | Credit history | A30: no credits taken / all credits repaid duly; A31: all credits at this bank repaid duly; A32: existing credits repaid duly so far; A33: previous repayment delay; A34: critical account / other credits outside this bank |
 | Purpose | A40: new car; A41: used car; A42: furniture/equipment; A43: radio/television; A44: domestic appliances; A45: repairs; A46: education; A48: retraining; A49: business; A410: other |
 
-A47 (vacation) appears in the dictionary but not the data; omit it from the
-first demo. A95 in the unused personal-status/sex column is also documented but
+A47 (vacation) appears in the dictionary but not the data; it is excluded from the
+demo. A95 in the unused personal-status/sex column is also documented but
 absent. Neither absence indicates a missing row.
 
 All 20 original input columns, in order: checking account, duration, credit
@@ -134,7 +132,7 @@ personal status/sex, other debtors/guarantors, residence duration, property,
 age, other installment plans, housing, existing credits, job, dependants,
 telephone, foreign-worker status. Consult `german.doc` for the unused columns.
 
-## Limits to explain in the report
+## Limitations
 
 - The dataset was donated in 1994. The source does not establish a precise
   observation period or prediction horizon; donation date is not collection date.

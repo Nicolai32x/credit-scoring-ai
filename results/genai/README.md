@@ -71,7 +71,7 @@ examples vary in more than one respect, so differences cannot be attributed to
 just one factor. Many structured answers call invented scenarios "historical";
 most also explicitly say they are invented, but "synthetic" is the accurate term.
 
-## What to read or show
+## Experiment records
 
 - [All 30 answers](run_03/outputs.md): readable, unedited response text.
 - [Assessment](run_03/assessment.json): every response, numerical excerpts,
@@ -85,18 +85,6 @@ most also explicitly say they are invented, but "synthetic" is the accurate term
   scenario in recorded request order, not the best-scored response. This works offline.
 - [Demo guide](../../demo/README.md): the aggregate and profile explanations are
   separate features. Profile explanations are outside this prompt comparison.
-
-## Human review
-
-Nicolai confirmed in chat that he completed the review on 24 October 2026.
-No corrections were reported; the original AI-assisted scores and responses are
-unchanged. This confirmation concerns the expanded comparison, not an independent
-or blinded evaluation or a second review by another team member.
-
-For other readers, useful checks include the five flagged simple answers
-(4, 12, 19, 21, 29), borderline statements in 10 and 27, length failures
-(1, 7, 25), and approval/rejection wording in both variants. The frozen protocol
-retains its original prospective pending-review wording as an audit record.
 
 <details>
 <summary>Optional: protocol, usage and original pilot</summary>
@@ -119,7 +107,7 @@ It excludes the pilot and other app requests. Rates were checked on 24 October
 The initial pilot compared three answers per prompt on the actual project
 results. All six had correct numbers and explained both error types; the simple
 answers omitted class denominators. One structured answer exceeded the word
-limit. The AI-assisted /8 means were 7.00 and 7.67. Human sign-off remains pending.
+limit. The AI-assisted /8 means were 7.00 and 7.67. No separate human sign-off is recorded for the pilot.
 
 - [Pilot answers](outputs.md), [protocol](run_02/protocol.json),
   [raw records](run_02/attempts.jsonl), [assessment](run_02/assessment.json).
@@ -130,110 +118,10 @@ limit. The AI-assisted /8 means were 7.00 and 7.67. Human sign-off remains pendi
   checks, not part of either comparison. The first had technical names/raw values
   and a counting slip; the refined prompt asks for friendly labels and 2-3 features.
 
-Ordinary automated tests use fake replies, not paid API calls. Do not regenerate
-responses for the presentation. The extension runner refuses to overwrite attempts
-and validates the frozen protocol's source fingerprints. A future separately
-justified run needs a new output folder and a new prepared protocol:
-
-```powershell
-.\.venv\Scripts\python.exe code/genai_comparison.py prepare --output-dir results/genai/new_run
-.\.venv\Scripts\python.exe code/genai_comparison.py run --output-dir results/genai/new_run
-.\.venv\Scripts\python.exe code/genai_comparison.py export --output-dir results/genai/new_run
-```
+Automated tests use simulated replies and make no paid API calls. The experiment runner preserves existing records and validates the frozen protocol fingerprints.
 
 [Evaluation design reference](https://developers.openai.com/api/docs/guides/evaluation-best-practices).
 
 </details>
 
-<details>
-<summary>Optional: updated chapter 3 reference text for the shared Word report</summary>
-
-This is reference text to adapt in the shared Word document, not another working
-draft. Nicolai confirmed human review of the expanded comparison on 24 October
-2026; no corrections were reported. Other authors should check the material
-before adopting it.
-
-### 3. Generative AI experiment
-
-We investigated whether generative AI could explain credit-scoring results to a
-bank manager without a machine-learning background. The task concerned an
-aggregate evaluation, not individual lending decisions. We used the OpenAI
-Responses API with the fixed GPT-5.4 mini snapshot dated 17 March 2026
-(OpenAI, n.d.-a, n.d.-c).
-
-We compared a simple prompt asking for an explanation with a structured version
-requesting both error types, class denominators and a distinction between accuracy
-and bad-risk detection. The structured version also warned against invented
-causes, calibrated-default claims, treating illustrative costs as actual savings,
-and recommending lending decisions or deployment. Both received identical facts
-within each scenario and the same 120-180-word instruction.
-
-The first six-response pilot used our actual results only. After inspecting that
-pilot, we designed a separate extension with three scenarios and five responses
-per prompt per scenario, giving 30 new responses. One scenario used the saved
-project test results: 46 of 60 bad risks detected and 40 of 140 good risks wrongly
-flagged. Two explicitly synthetic scenarios tested different trade-offs. One had
-90% accuracy but detected only 4 of 20 bad risks; the other detected 90 of 100 bad
-risks but wrongly flagged 55 of 100 good risks. These invented counts were used
-to test explanations; they are not additional results of our credit model.
-
-The extension kept the original prompts and settings: temperature 0.7, reasoning
-effort none, maximum 800 output tokens, no tools and no automatic retries.
-Scenario/repetition blocks and prompt order within each pair were shuffled using
-a fixed order seed. This did not seed the language model's generation. The full
-protocol, inputs and criteria were committed before generation, and all 30
-requests completed. No successful response was replaced or discarded. Only
-aggregate facts were sent, not applicant records. The original pilot remains
-separate and is not pooled into the new comparison.
-
-Before generation, we defined five pass/fail checks: numerical accuracy, complete
-class denominators and relevant counts, explanation of both error types, bounded
-claims, and the word limit. Length was checked automatically; the other criteria
-were assessed by an AI-assisted reading against the supplied facts, with
-numerical excerpts and reasons recorded. Class totals and corresponding counts
-could occur in separate clearly linked sentences. There was no composite score.
-The assessment was not blinded or independent. Nicolai Hönnige subsequently
-confirmed human review of the 30 answers and assessment on 24 October 2026;
-no corrections were reported.
-
-In the extension, no numerical error was identified in either prompt's 15
-responses, and both error types were explained throughout. The simple prompt
-provided complete denominators and counts in 10 of 15 responses, compared with
-15 of 15 for the structured prompt. Five simple responses were flagged for clear
-claims beyond the evidence, such as practical screening usefulness or a general
-claim about the costliest lending mistake. No clear failure of that criterion
-was identified in the structured responses, although both variants sometimes
-used approval/rejection language for classification. Borderline judgements and
-synthetic-versus-historical wording remain documented as cautions. The simple
-prompt met the word target in all 15 responses; the structured prompt met it in
-12, with three responses containing 183, 192 and 183 words.
-
-The result supports a limited observation: explicit instructions made the
-requested numerical context more consistent in these scenarios, but did not
-guarantee compliance with every constraint. The structured prompt explicitly
-requests content used in the scoring criteria, so this partly measures prompt
-compliance rather than overall writing quality. The extension was designed after
-seeing the pilot, includes only three selected scenarios and one model, and
-contains repeated answers rather than 30 independent tasks. It cannot establish
-general reliability or statistical superiority. Automated checks should be
-combined with human judgement (OpenAI, n.d.-b).
-
-The Streamlit demo provides recorded responses for all three scenarios without
-a live connection, with synthetic examples clearly labelled. Its live aggregate
-explanation uses the actual project results. Separately, an optional explanation
-of a submitted fictional profile uses calculated logistic-regression contributions
-relative to mean transformed development inputs. After an explicit click, those
-seven fictional inputs, the predicted class and contributions are sent to OpenAI.
-This describes the fitted calculation, not causal effects or future default
-probabilities. It is outside both prompt comparisons and does not alter the
-classifier or its threshold.
-
-### References for this section
-
-OpenAI. (n.d.-a). *Create a model response*. https://developers.openai.com/api/reference/python/resources/responses/methods/create
-
-OpenAI. (n.d.-b). *Evaluation best practices*. https://developers.openai.com/api/docs/guides/evaluation-best-practices
-
-OpenAI. (n.d.-c). *GPT-5.4 mini*. https://developers.openai.com/api/docs/models/gpt-5.4-mini
-
-</details>
+The full written analysis is in [Section 3 of the report](../../report/report.md#3-generative-ai-experiment).

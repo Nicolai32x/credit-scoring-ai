@@ -1,7 +1,6 @@
-# Results — what the team needs
+# Model and experiment results
 
-**Use this page for the report and presentation.** Everything is saved and can be
-read on GitHub without running code. The final model is logistic regression.
+All results are saved and can be read on GitHub without running code. The final model is logistic regression.
 The dataset is historical; Good/Bad risk are dataset labels, not credit decisions
 or calibrated probabilities of future default.
 
@@ -39,7 +38,7 @@ A similar accuracy to the baseline therefore hides a very different error tradeo
 
 [Download the final test confusion matrix](figures/final_test_confusion_matrix.png).
 
-### Cost illustration for Philipp
+### Illustrative error costs
 
 The source assigns **5 units per false approval**, **1 per false rejection**,
 and zero for a correct prediction:
@@ -88,12 +87,12 @@ limit, compared with 12/15 structured responses. This small, non-independent
 comparison does not prove general superiority. **Nicolai confirmed human review
 of the expanded comparison on 24 October 2026; no corrections were reported.**
 
-Read [the GenAI summary and actual answers](genai/README.md) for Nicolai's section.
+Read [the GenAI summary and actual answers](genai/README.md) for the complete experiment.
 The [demo guide](../demo/README.md) explains the three separate features:
 ML risk prediction, AI explanation of overall results, and optional explanation
 of a submitted fictional profile using calculated model contributions.
 
-## 4. Limits to keep in the story
+## 4. Limitations
 
 - Only 1,000 historical records, including 200 test cases and 60 bad-risk test cases.
   One test case changes bad-risk recall by about 1.7 percentage points.
@@ -109,14 +108,14 @@ of a submitted fictional profile using calculated model contributions.
 A fair conclusion is: **a working teaching demo that detects bad risks, with a
 substantial false-rejection tradeoff and insufficient evidence for real lending.**
 
-## Figures to reuse
+## Figures
 
 | For | Figure |
 | --- | --- |
-| Philipp: validation comparison | [Model comparison](figures/cv_model_comparison.png) |
-| Philipp: final errors | [Test confusion matrix](figures/final_test_confusion_matrix.png) |
+| Validation comparison | [Model comparison](figures/cv_model_comparison.png) |
+| Final errors | [Test confusion matrix](figures/final_test_confusion_matrix.png) |
 | Optional validation detail | [Out-of-fold confusion matrices](figures/cv_confusion_matrices.png) |
-| Nicolai: class imbalance | [Development class balance](figures/development_class_balance.png) |
+| Class imbalance | [Development class balance](figures/development_class_balance.png) |
 | Optional data exploration | [Amounts/duration](figures/development_numeric_distributions.png), [accounts](figures/development_account_categories.png), [background categories](figures/development_background_categories.png) |
 
 Use these existing figures and distinguish development, validation and test.
@@ -142,6 +141,6 @@ Dataset source, license and category meanings: [dataset guide](../data/README.md
 Fold averages and pooled predictions are different summaries, especially for
 ROC-AUC and precision/F1. The artifacts label them separately. Keep original
 files and decisions intact; read the saved final assessment rather than rerunning
-it. Technical setup and checks are in the root README's optional section.
+it. Technical setup and checks are in the [project overview](../README.md).
 
 </details>

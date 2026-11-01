@@ -257,6 +257,5 @@ results/figures/*
 !results/figures/cv_confusion_matrices.png
 !results/figures/final_test_confusion_matrix.png
 
-# Generated submission packages; keep the checklist
+# Local submission bundles
 submission/*
-!submission/README.md

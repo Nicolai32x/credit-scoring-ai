@@ -38,9 +38,8 @@ Change one input to discuss model sensitivity, not causality. The form limits
 amount to 276-15,945 DM and duration to 4-60 months, following development data.
 These are demo guardrails; allowed combinations can still be poorly represented.
 
-For the group walkthrough, use [the eight-minute sequence](../presentation/outline.md).
-A second-computer check and team rehearsal are still needed. Keep screenshots
-as a fallback; the recorded aggregate AI responses are already available offline.
+The [presentation overview](../presentation/README.md) links the accompanying slides.
+Recorded aggregate AI responses are available offline.
 
 ## Start locally
 

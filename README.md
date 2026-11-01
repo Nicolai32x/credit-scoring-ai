@@ -1,121 +1,83 @@
-# Credit Scoring AI
+# Credit Risk Prediction with Machine Learning
 
-Team project for **Introduction to AI in Business**.
-**Question:** How well can a simple model classify credit risk using seven inputs?
+A university project for **Introduction to AI in Business and Management**.
 
-## Start here — no installation needed
+**Research question:** How well can a simple machine learning model classify credit risk using seven applicant and loan characteristics?
 
-You can read the text, view/download figures and open the saved notebook outputs
-**directly on GitHub**. You do not need to run Python or learn Git for your part.
+The project combines a comparison of classification models, a Streamlit demonstration and a generative AI explanation experiment. It uses the historical UCI German Credit dataset and is a teaching prototype, not a lending system.
 
-| Read | What you get |
+## Report and presentation
+
+| Document | Content |
 | --- | --- |
-| **[Presentation slides (PDF)](presentation/credit_risk_prediction.pdf)** | Reviewed 19-slide export; the editable version remains in Canva |
-| **[Final report](report/report.md)** · **[PDF](report/report.pdf)** | Reviewed report with the same content in Markdown and PDF |
-| **[Results and figures](results/README.md)** | The model results, errors, cost illustration and reusable graphics |
-| **[Presentation outline](presentation/outline.md)** | Everyone's section, slide suggestions and demo sequence |
-| [GenAI experiment](results/genai/README.md) | The prompt comparison, real answers and assessment |
+| **[Report (PDF)](report/report.pdf)** · [Markdown](report/report.md) | Complete analysis, results, business implications, limitations and references |
+| **[Presentation (PDF)](presentation/credit_risk_prediction.pdf)** | Final 19-slide presentation |
+| [Results](results/README.md) | Model comparison, final test results and figures |
+| [Generative AI experiment](results/genai/README.md) | Prompt comparison, recorded responses and assessment |
 
-For an AI explanation of the project, download this README and `results/README.md`
-and upload them to your usual AI chat. Add the presentation outline for role
-questions. Check its answers against the files. [GitHub/AI tutorial](OPTIONAL_TUTORIAL.md)
-is optional; it is not required to contribute.
+These documents and the saved notebook outputs can be read directly on GitHub without installing software.
 
-## What Nicolai implemented
+## Main findings
 
-1. Checked the original **UCI German Credit** dataset: 1,000 historical cases.
-2. Used seven inputs: amount, duration, purpose, checking account, savings,
-   employment duration and credit history. Amounts stay in historical **DM**, not EUR.
-3. Reserved **200 test cases**; used **800 development cases** to compare an
-   always-good baseline, logistic regression and random forest in five validation folds.
-4. Selected logistic regression and threshold 0.5 **before the final test**.
-   The test was assessed once; the model was not trained on test cases.
-5. Built a seven-input Streamlit demo with optional AI explanations, and compared
-   two GenAI prompts in a six-response pilot and a separate 30-response extension
-   across three scenarios (one actual, two explicitly synthetic).
+The dataset contains 1,000 historical cases. Seven inputs describe the loan and selected financial characteristics; amounts remain in historical Deutsche Mark (DM).
 
-Nicolai confirmed human review of the expanded GenAI comparison on 24 October
-2026. The assessment remains AI-assisted, not independent or blinded.
+We compared an Always-Good baseline, logistic regression and random forest using five-fold cross-validation on 800 development cases. Logistic regression and a threshold of 0.5 were selected before a single final evaluation on 200 held-out cases.
 
-In plain English: **training** learns patterns, **validation** compares approaches,
-and the separate **test** gives the final check. The ML model predicts the risk
-class; generative AI explains results and model contributions, without deciding the class.
+| Final test measure | Logistic regression |
+| --- | --- |
+| Accuracy | 73.0% |
+| Balanced accuracy | 74.0% |
+| Bad risks detected | 46 of 60 (76.7%) |
+| Good risks incorrectly flagged | 40 of 140 (28.6%) |
+| Bad-risk precision | 53.5% |
+| ROC-AUC | 0.810 |
 
-The selected model detected **46 of 60 bad risks**, but wrongly flagged
-**40 of 140 good risks**. Accuracy is **73%**, balanced accuracy **74%**.
-This is a working teaching example with substantial errors, not a lending system.
-The results page explains these numbers and the 5:1 assumed error-cost illustration.
+The model detects bad risks that the majority baseline misses, but produces substantial false alarms. The results do not establish fairness, current lending suitability or calibrated probabilities of future default.
 
-## Where each person continues
+A separate GenAI experiment compared two prompts across three scenarios and five repetitions per prompt, producing 30 responses. One scenario uses actual model results; two use synthetic counts. Structured instructions improved completeness in this sample, but did not guarantee word-limit compliance. The assessment was AI-assisted and subsequently reviewed by Nicolai Hönnige; it was not independent or blinded.
 
-| Person | Area | Main material |
-| --- | --- | --- |
-| Jan | Business context and existing solutions | This page, presentation outline, own literature |
-| Nicolai | Data, method, GenAI and demo | Saved notebooks, GenAI experiment, demo guide |
-| Philipp | Results and economics | Results page and its linked figures |
-| Zosia | Risks, limitations and conclusions | Results/limitations, demo data flow, own sources |
+## Run the demo
 
-Write the report in the **shared Word document in Teams** and slides in the
-[shared Canva presentation](https://canva.link/doeibex7vw4e04b). Use actual authorship
-and record AI assistance. The reviewed report is available as
-[Markdown](report/report.md) and [PDF](report/report.pdf). Keep any later corrections
-consistent across both exports and the Word source.
-
-## Remaining team checks
-
-- Keep the final report and slides consistent if any further corrections are made.
-- Rehearse the 24-minute presentation and 8-minute demo; confirm the lecturer's time slots.
-- Check startup on a second computer and prepare fallback screenshots.
-- Assemble the final files and follow the [submission checklist](submission/README.md).
-
-Presentation date: **3 November 2026**. The reviewed report and presentation
-exports are available above; rehearsal and final submission checks remain.
-
-## Optional: run or inspect the implementation
-
-To use the demo, see the **[demo guide](demo/README.md)**. It separates the
-classifier, aggregate AI explanation and submitted-profile AI explanation.
-Recorded GenAI examples work offline; live explanations need a local API key.
-
-<details>
-<summary>Technical setup, files and collaboration rules</summary>
-
-Python **3.12.13**; install the pinned packages, not newer model-library versions.
-From the project directory in PowerShell, create `.venv` once if absent:
+Use **Python 3.12.13** and the pinned dependencies. From the repository root in PowerShell:
 
 ```powershell
-uv venv --python 3.12.13 --seed .venv
+python -m venv .venv
 .\.venv\Scripts\python.exe -m pip install -r requirements.txt
 .\.venv\Scripts\python.exe demo/run.py
 ```
 
-Use [uv's Python setup](https://docs.astral.sh/uv/guides/install-python/) if needed.
-For an existing environment, skip creation. On macOS/Linux use `.venv/bin/python`;
-only Windows has been verified. Requirements list eight direct dependencies and
-pin resolved versions. Keep the local environment and API key out of Git.
+Open [http://127.0.0.1:8501/](http://127.0.0.1:8501/). Stop the server with Ctrl+C.
+On macOS/Linux, use `.venv/bin/python` instead of `.\.venv\Scripts\python.exe`; the project has been verified on Windows.
 
-- [Notebook 01](notebooks/01_exploration.ipynb): development-data exploration.
-- [Notebook 02](notebooks/02_model_comparison.ipynb): validation and saved final-test results.
-- [Dataset reference](data/README.md): source, category meanings, integrity and limitations.
-- `code/`: loading/preprocessing, model comparison, metrics, frozen final assessment,
-  OpenAI integration and exact profile contributions. `tests/` checks those boundaries.
-- `results/`: evidence and saved pipeline; JSON/CSV files are optional for team reading.
-- `prompts/`: actual prompt texts and chronological AI-use log.
+The saved model, calculated contributions and recorded GenAI examples work without an API key. Optional live AI explanations require an OpenAI API key and incur API charges. See the **[demo guide](demo/README.md)** for configuration, fictional examples and data flow.
 
-Run checks with:
+## Repository contents
+
+| Folder | Content |
+| --- | --- |
+| [report/](report/report.md) | Final report in Markdown and PDF, with its figures |
+| [presentation/](presentation/README.md) | Final presentation and content overview |
+| [demo/](demo/README.md) | Streamlit app, startup and usage guide |
+| [notebooks/](notebooks/01_exploration.ipynb) | Executed data exploration and [model evaluation](notebooks/02_model_comparison.ipynb) |
+| [code/](code/preprocessing.py) | Data loading, preprocessing, training, evaluation and AI integration |
+| [data/](data/README.md) | Original dataset, dictionary, attribution and fixed split |
+| [results/](results/README.md) | Saved metrics, figures, model and experiment evidence |
+| [prompts/](prompts/README.md) | Exact explanation prompts and AI-use documentation |
+| [tests/](tests/test_demo.py) | Automated checks for data, evaluation, demo and AI integration |
+
+## Verification and reproducibility
 
 ```powershell
 .\.venv\Scripts\python.exe -m unittest discover -s tests -v
+.\.venv\Scripts\python.exe -m pip check
 ```
 
-The fixed split, decision and final assessment are already recorded. Do not
-refit/tune using test data or delete artifacts to repeat selection. The demo
-loads the saved pipeline. Read saved results instead of rerunning the final test.
+Tests use simulated API responses and do not require paid API calls. The notebooks retain executed results. The demo loads the saved development-trained pipeline without retraining. The fixed split, model decision and final evaluation are retained with provenance; the reserved test data were not used for model selection. Experimental protocols and raw responses are preserved as evidence, including their original historical review status.
 
-Work directly on `main` by default. Check status and remote updates first,
-coordinate shared-file edits, preserve team changes and check before committing.
-Commit/push completed steps; use a branch only if requested. Never force-push or
-reset over another member's work. All project files are in English. Report chapters
-and slide footers must reflect actual authorship and AI assistance.
+## Team and AI use
 
-</details>
+**Jan Jurczyk:** business context and literature. **Nicolai Hönnige:** data, technical implementation and GenAI. **Philipp Pehlemann:** results and business value. **Zofia Wiśniewska:** risks and conclusions.
+
+Generative AI supported coding, debugging, documentation and drafting/editing of report and presentation material. The team reviewed and adapted that material and remains responsible for the submitted work. The OpenAI API provides explanations; it does not determine the classifier's predictions. See [AI use and prompts](prompts/README.md).
+
+**Presentation date:** 3 November 2026. Dataset attribution and reuse terms are in [data/LICENSE.md](data/LICENSE.md).
