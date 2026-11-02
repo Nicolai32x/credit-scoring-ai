@@ -1,3 +1,13 @@
 # Preserve downloaded UCI originals byte-for-byte, including line endings.
 data/german.data -text
 data/german.doc -text
+
+# Frozen provenance uses SHA-256 of exact file bytes, including line endings.
+data/split.json -text
+code/*.py -text
+prompts/*.txt -text
+results/*.json -text
+results/genai/**/*.json -text
+results/genai/**/*.jsonl -text
+results/genai/*.json -text
+results/genai/*.jsonl -text
